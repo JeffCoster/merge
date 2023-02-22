@@ -1,0 +1,64 @@
+{
+   "name": "merger",
+   "version": "0.1.0-beta.0",
+   "description": "compose dynamic html pages by mapping source data to an html template",
+   "main": "merger-functions.js",
+   "type": "module",
+   "directories": {
+      "schema": "schema"
+   },
+   "dependencies": {
+      "ajv": "^8.12.0"
+   },
+   "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+   },
+   "repository": {
+      "type": "git",
+      "url": "git+https://github.com/JeffCoster/merge.git"
+   },
+   "keywords": [
+      "merger",
+      "merge",
+      "html",
+      "dynamic",
+      "compose"
+   ],
+   "author": "Jeff Coster",
+   "license": "MIT",
+   "bugs": {
+      "url": "https://github.com/JeffCoster/merge/issues"
+   },
+   "homepage": "https://github.com/JeffCoster/merge#readme",
+   "eslintConfig": {
+      "globals": {
+         "Vue": true
+      },
+      "env": {
+         "browser": true,
+         "es6": true,
+         "jquery": true
+      },
+      "extends": [
+         "eslint:recommended"
+      ],
+      "parserOptions": {
+         "sourceType": "module"
+      },
+      "rules": {
+         "no-console": 0,
+         "indent": [
+            "error",
+            3
+         ],
+         "linebreak-style": [
+            "error",
+            "unix"
+         ],
+         "quotes": [
+            "error",
+            "double"
+         ]
+      }
+   }
+}
