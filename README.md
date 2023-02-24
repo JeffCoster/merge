@@ -1,10 +1,17 @@
 # merger
 Merging dynamic source content to html templates by data configuration (mapping)
 
-Objectives are:
-1) to keep html separate from code so that it easier to understand and maintain.
-2) to keep content separate from the html.
-3) to facilitate the construction of dynamic web pages with minimal additional coding.
-4) to use configured json data to map source content to target html sections, elements and attributes.
-5) to configure source object collections to html template sections, for instantion of templates and content filling
-6) to allow the code and mappings to function equally in NodeJS or Browser
+## Objectives:
+- keep html separate from any type of code: so that it easier to understand and maintain
+- keep content separate from the html
+- keep content separate form the code
+- facilitate the construction of dynamic web pages with none or minimal additional coding
+- solution to function equally in NodeJS or Browser
+
+## Overview Of How
+- with example html
+-- remove content
+-- collapse each repeated html sections into one example template (hidden) section
+- use configured json data to map source content json to target html sections, elements and attributes.
+- map source object collections to html template sections, for instantion of templates and content filling
+
