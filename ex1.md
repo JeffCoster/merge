@@ -1,1 +1,158 @@
-TEST ex1.md
+# Tutorials
+
+This section decribes some examples of using Merger, within the Browser, to compose the dynamic view.
+The examples would use Merger the same as they would in Node JS, but it is easier to try out and use Merger 
+in a Browser, as there is no stack needed; and Browsers have good debug tools built in. 
+
+The mapping json, that maps the source data to the html, would be exactly the same, irrespective of use in a Browser or Node JS.
+
+## Example 1 Simple Product Lister
+
+This example is for a simple list of products, using some mock json source data for shoes. 
+Each product having a sub list of shoe sizes. As a prior step it is assumed that a html developer 
+has created the static html and embedded the content to prototype what the page would look like for two products.
+
+This is how that prototype page would display:
+
+<img src="ex1/Ex1_1.png" width="20%" height="20%" >Product List - Static Prototype</img>
+
+
+The task of this example, is to use Merger, to dynamically render the page, using some mock json source 
+data for a list of shoes.
+
+### Ex1 Step1: Creating the html Template
+
+In this step the example static content is removed and the repeated sections of the prototype page 
+are collapsed to form single hidden 'section templates' of the html required for instances of the section.
+
+> It is possible to go straight to the step of building an html template, without a prototype page 
+with example static content. However, it is easier to illustrate what Merger requires of a template, 
+by having the static prototype and turning that into a template.
+
+The following shows the prototype html body, with embedded content:
+
+```html
+<body>
+   <p id="products-header">Product Lister Page</p>
+   <img id="products-header-img" width="100px" height="100px" src="https://dummyjson.com/image/i/products/59/thumbnail.jpg" />
+   <div class="products">
+      <div class="product" id="product_56">
+         <a href="">
+            <img class='thumbnail' width="60px" height="60px" src="https://dummyjson.com/image/i/products/56/thumbnail.jpg" alt="">
+         </a><br>
+         <span class='product-id'>56</span><br>
+         <span class='product-title'>Sneakers Joggers Shoes</span><br>
+         <span class='price'>$40.00</span><br>
+         <form class="attribute-sizes" name="sizes">
+            <table>
+               <caption class='size-label'>Sizes</caption>
+               <tr>
+                  <td class="attribute-size">
+                     <label>6<br>
+                        <input type="radio" name="size-6" value="6"><br>
+                     </label>
+                  </td>
+                  <td class="attribute-size">
+                     <label>7<br>
+                        <input type="radio" name="size-7" value="7"><br>
+                     </label>
+                  </td>
+               </tr>
+            </table>
+         </form>
+      </div>
+      <div class="product" id="product_57">
+         <a href="">
+            <img class='thumbnail' width="60px" height="60px" src="https://dummyjson.com/image/i/products/57/thumbnail.jpg" alt="">
+         </a><br>
+         <span class='product-id'>57</span><br>
+         <span class='product-title'>Loafers for men</span><br>
+         <span class='price'>$47.00</span><br>
+         <form class="attribute-sizes" name="sizes">
+            <table>
+               <caption class='size-label'>Sizes</caption>
+               <tr>
+                  <td class="attribute-size">
+                     <label>8<br>
+                        <input type="radio" name="size-8" value="8"><br>
+                     </label>
+                  </td>
+                  <td class="attribute-size">
+                     <label>9<br>
+                        <input type="radio" name="size-9" value="9"><br>
+                     </label>
+                  </td>
+               </tr>
+            </table>
+         </form>
+      </div>
+   </div>
+</body>
+
+```
+Removing the static prototype content, and collapsing the repeated product and size html into section templates, 
+to create the required Merger template, gives:
+
+```html
+<body>
+   <p id="products-header"></p>
+   <img id="products-header-img" width="100px" height="100px" src="" />
+   <div class="products">
+      <div class="product template" id="product-template-1">
+         <a href="">
+            <img class='thumbnail' width="60px" height="60px" src="">
+         </a><br>
+         <span class='product-id'></span><br>
+         <span class='product-title'></span><br>
+         <span class='price'></span><br>
+         <form class="attribute-sizes" name="sizes">
+            <table>
+               <caption class='size-label'></caption>
+               <tr>
+                  <td class="attribute-size template">
+                     <label><br>
+                        <input type="radio" name="size-" value=""><br>
+                     </label>
+                  </td>
+               </tr>
+            </table>
+         </form>
+      </div>
+   </div>
+</body>
+```
+> Points to note:
+>- Example static content, that will be provided dynamically from source data is removed. This isn't always necessary, 
+as Merger will replace it at runtime. However, it simplifies the template, makes it pure mark up, and helps to avoid 
+ errors at runtime leaving the example content in place, potentially on show.
+>- The div with class of 'products' marks the start and end of the list of products
+>- Its child div, with class of 'product template' is the mark up for a single product in the list, with no content
+>- At runtime the dynamically created 'product' sections, will be inserted before the 'product template' at the same level 
+>- The example products, of the prototype html, are removed
+>- Section templates, such as 'product template' always have a secondary class of template. 
+The CSS will always need a rule to hide sections with a class of template, e.g.
+
+>>```css
+.template {display: none;}
+```
+>
+>- The product sizes need to appear within their parent product section, and as they are a list of dynamic length, 
+they also have a section template with a class of 'attribute-size template'
+>>- In this case the template is tagged with a 'td' element, which shows that the template section does not have to be a 'div'
+>>- It also illustrates that changes to html can often be made, without changing merger configuration
+>>- The input element has a name attribute with content of "size-". This is used by merger as a prefix for that size name, 
+e.g. name="size-**7**"
+
+### Ex1 Step2 Dynamic Source Data
+
+In practice the product source data would normally be a json service response. 
+Merger requires the source data to be json objects, so the service response would be evaluated to to the appropriate object graph.
+For this example though, the object graph is just a const within a script, containing some mock data to test with.
+
+
+
+
+
+
+
+ 
