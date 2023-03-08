@@ -143,12 +143,105 @@ they also have a section template with a class of 'attribute-size template'
 >>- The input element has a name attribute with content of "size-". This is used by merger as a prefix for that size name, 
 e.g. name="size-**7**"
 
-### Ex1 Step2 Dynamic Source Data
+### Ex1 Step2 Set up Dynamic Source Data
 
 In practice the product source data would normally be a json service response. 
 Merger requires the source data to be json objects, so the service response would be evaluated to to the appropriate object graph.
 For this example though, the object graph is just a const within a script, containing some mock data to test with.
 
+The mock data is an array of 5 products, in this case shoes, and each one has a collection of available sizes.
+There is also an object, 'globalContent', listing some name value pairs, which are the pageTitle, pageImg, and sizeLabel.
+
+The following is a snippet of the file, product-list-shoes.js, which details the globalContent and teo of the products:
+
+```js
+export const globalContent = {
+   "pageTitle":"Product Lister",
+   "pageImg":"https://dummyjson.com/image/i/products/57/1.jpg",
+   "sizeLabel":"Sizes",
+};
+
+export const prods = {
+   "products": [
+      {
+         "id": 56,
+         "title": "Sneakers Joggers Shoes",
+         "description": "Gender: Men , Colours: Same as DisplayedCondition: 100% Brand New",
+         "price": 40,
+         "discountPercentage": 12.57,
+         "rating": 4.38,
+         "stock": 6,
+         "brand": "Sneakers",
+         "category": "mens-shoes",
+         "thumbnail": "https://dummyjson.com/image/i/products/56/thumbnail.jpg",
+         "images": [
+            "https://dummyjson.com/image/i/products/56/1.jpg", "https://dummyjson.com/image/i/products/56/2.jpg", "https://dummyjson.com/image/i/products/56/3.jpg", "https://dummyjson.com/image/i/products/56/4.jpg", "https://dummyjson.com/image/i/products/56/5.jpg", "https://dummyjson.com/image/i/products/56/thumbnail.jpg"
+         ],
+         "sizes": [
+            6, 7, 8
+         ]
+      },
+      {
+         "id": 57,
+         "title": "Loafers for men",
+         "description": "Men Shoes - Loafers for men - Rubber Shoes - Nylon Shoes - Shoes for men - Pure Nylon (Rubber) Export Quality.",
+         "price": 47,
+         "discountPercentage": 10.91,
+         "rating": 4.91,
+         "stock": 20,
+         "brand": "Rubber",
+         "category": "mens-shoes",
+         "thumbnail": "https://dummyjson.com/image/i/products/57/thumbnail.jpg",
+         "images": [
+            "https://dummyjson.com/image/i/products/57/1.jpg", "https://dummyjson.com/image/i/products/57/2.jpg", "https://dummyjson.com/image/i/products/57/3.jpg", "https://dummyjson.com/image/i/products/57/4.jpg", "https://dummyjson.com/image/i/products/57/thumbnail.jpg"
+         ],
+         "sizes": [
+            6, 7, 8, 9
+         ]
+      },
+```
+
+Merger needs to be configurable to use any types, names and quantity of data objects, so it uses **jpath** to link to the required
+objects. Each separate source object needs to be registered. To do this there is a standard object name dataSources, and that is 
+set up for this example as follows:
+
+```js
+import {prods} from "./product-list-shoes.js"
+import {globalContent} from "./product-list-shoes.js"
+
+export const dataSources = {};
+
+dataSources.globals = globalContent;
+dataSources.productList = prods.products;
+
+// min and max index of source Products to show
+dataSources.minProducts = 2;
+dataSources.maxProducts = 3;
+```
+
+How the merger configuration mapping, uses **jpath** to obtain the source objects, will become apparent in the following section on configuration 
+for this example.
+
+> The minProducts, and maxProducts will be used in this example to show how merger can be configured to pick a start and end index
+in a collection of objects. The mock data has 5 products, and we are setting to start rendering on the second and end on the third.
+
+### Ex1 Step 3: Configuring (Mapping) of Source Data to html
+
+This step illustrates a major benefit of merger. Using data configuration (mapping), to render the html, rather than writing code.
+
+There are three levels of html that need to be mapped.
+
+1. Top (Document Level) this is just mapping elements and their attributes without any need to consider instantion of section templates.
+
+2. The Product List, where the collection of source product objects will drive the replication, filling, and insertion of product templates
+
+3. Within the product template, the size template, which will be replicated, filled, and inserted as driven by the size data of each 
+source product
+
+The mapping for this example is contained in the merger-map.js file.
+
+The first step, top level, is the simplest, as it just involves mapping source data to elements and attribute values.
+The following snippet 
 
 
 
