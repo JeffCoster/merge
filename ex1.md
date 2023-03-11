@@ -14,7 +14,7 @@ has created the static html and embedded the content to prototype what the page 
 
 This is how that prototype page would display:
 
-<img src="ex1/Ex1_1.png" width="20%" height="20%" >Product List - Static Prototype</img>
+<img src="ex1/Ex1_1.png" width="20%" height="20%" > Product List - Static Prototype</img>
 
 
 The task of this example, is to use Merger, to dynamically render the page, using some mock json source 
@@ -201,7 +201,7 @@ export const prods = {
       },
 ```
 
-Merger needs to be configurable to use any types, names and quantity of data objects, so it uses **jpath** to link to the required
+Merger is configurable to use any types, names and quantity of data objects, so it uses **jpath** to link to the required
 objects. Each separate source object needs to be registered. To do this there is a standard object name dataSources, and that is 
 set up for this example as follows:
 
@@ -231,19 +231,79 @@ This step illustrates a major benefit of merger. Using data configuration (mappi
 
 There are three levels of html that need to be mapped.
 
-1. Top (Document Level) this is just mapping elements and their attributes without any need to consider instantion of section templates.
+1. Top (Document Level) this is just mapping elements and their attributes, before any instantion of section templates.
 
-2. The Product List, where the collection of source product objects will drive the replication, filling, and insertion of product templates
+2. The Product Template, to map the collection of source product objects for replication, filling, and insertion of product templates
 
-3. Within the product template, the size template, which will be replicated, filled, and inserted as driven by the size data of each 
-source product
+3. Within the Product Template, the Size Template, requires mapping to the size data, for replication, filling, and insertion of the sizes 
+for each product
 
-The mapping for this example is contained in the merger-map.js file.
+> The mapping for Example 1, is contained in the ex1/merger-map.js file. 
+The mapping object could of course be streamed from a service and evaluated, 
+but for the purpose of the example it is already a named const.
 
-The first step, top level, is the simplest, as it just involves mapping source data to elements and attribute values.
-The following snippet 
+The first step, the top level, is the simplest; as it just involves mapping source data to elements and attribute values.
+The following snippet shows this part of the mapping:
 
+```json
+export const mergerMap = {
+   "element-fills": [
+      {
+         "dataSrcJpath": "globals",
+         "elementsToDo" : [
+            {
+               "elementTgtCss": "#products-header",
+               "elementValueSrcJpath": "pageTitle"
+            },
+            {
+               "elementTgtCss": "title",
+               "elementValueSrcJpath": "pageTitle"
+            },
+            {
+               "elementTgtCss": ".size-label",
+               "elementValueSrcJpath": "sizeLabel"
+            }
+         ]
+      },
+      {
+         "dataSrcJpath": "productList",
+         "elementsToDo" : [
+            {
+               "elementTgtCss": "#products-header-img",
+               "itsAttributes": [
+                  {
+                     "tgtAttrName": "src",
+                     "srcJpath": "$..thumbnail"
+                  },
+                  {
+                     "tgtAttrName": "alt",
+                     "srcJpath": "$..thumbnail"
+                  }
+               ]
+            }
+         ]
+      }
+   ],
+```
 
+>- element-fills is an object containing an array of objects, each object contains element to source mappings for a single data source
+>>- in the example, there are two of these objects, for data sources globals, and productList
+>>- the dataSrcJpath value is the json path to the required data source within dataSources, i.e dataSources.globals, 
+and dataSources.productList
+
+>- for each data source, the elementsToDo array, contains objects that each map one element to a data source content value
+>>- the elementTgtCss value is the CSS to select the target element
+>>- the elementValueSrcJpath is the json path to select the content value of that element, the json path is relative to the data source
+>>- so #products-header selects the element with id="products-header for filling with the source value 
+"Product Lister" from globalContent.pageTitle
+
+>- with dataSource productList the CSS #products-header-img selects the img tag with id="products-header-img"
+>>- there is no json path in the map for source content for the img tag but the itsAttributed object is there
+to define mappings for the img elements attributes
+>>- similar to the element- content mappings there are attribute name - content mappings
+>>- the srcJpath json of "$..thumbnail" selects all values of data member "thumbnail", however the merger code 
+will only use the first one, as it targets a a single element and its attributes
+>>- so img attributes, src and alt, are filled with the content of the first thumbnail in the productList
 
 
 
