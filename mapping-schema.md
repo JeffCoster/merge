@@ -9,7 +9,7 @@ and html template sections to the source object collections that drive instantio
 and element-fills-schema.js
 
 
-The following schema diagram shows the structure and main options for the mapping json data.
+The following schema diagram, produced using https://www.schemavisualizer.com/ shows the structure and main options for the mapping json data.
 
 <img src="schema/schema.png" width="90%" height="90%" />
 
