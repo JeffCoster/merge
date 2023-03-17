@@ -9,7 +9,7 @@
 
 import {jsonPath} from "./jsonpath.js"
 
-import {doFunction} from "./merger-extensions.js"
+import {extFunctions} from "./merger-extensions.js"
 
 export var dbgConsole = {
    info : function (str) {
@@ -75,7 +75,7 @@ function elementFill(tgtElement, srcObj, srcJpath, functSelector) {
    } else if (functSelector !== undefined && functSelector !== null
          && 0 < functSelector.length) {
       // do function to format src value
-      tgtElement.innerHTML = doFunction(functSelector, srcVal, tgtElement.innerHTML);
+      tgtElement.innerHTML = extFunctions.doFunction(functSelector, srcVal, tgtElement.innerHTML);
    } else {
       tgtElement.innerHTML = srcVal;
    }
@@ -98,7 +98,7 @@ function attributeFill(tgtElement, tgtAttrName, srcObj, srcJpath, functSelector)
    } else if (functSelector !== undefined && functSelector !== null
          && 0 < functSelector.length) {
       // do function to format src value
-      const processedSrcVal = doFunction(functSelector, srcVal, tgtElement.getAttribute(tgtAttrName));
+      const processedSrcVal = extFunctions.doFunction(functSelector, srcVal, tgtElement.getAttribute(tgtAttrName));
       tgtElement.setAttribute(tgtAttrName, processedSrcVal);
    } else {
       tgtElement.setAttribute(tgtAttrName, srcVal);
@@ -224,7 +224,7 @@ function collectionInstantiate(collectionMap, tgtBlock, dataSources, instanceDat
    if (instanceDataSrc === undefined || instanceDataSrc === null || 1 > instanceDataSrc.length) {
       const mtCollectionSel = collectionMap.mtCollectionFunctSel;
       if (mtCollectionSel !== undefined && mtCollectionSel !== null && 0 < mtCollectionSel.length) {
-         doFunction(mtCollectionSel, instanceDataSrc, tgtBlock);
+         extFunctions.doFunction(mtCollectionSel, instanceDataSrc, tgtBlock);
       }
       return;
    }
