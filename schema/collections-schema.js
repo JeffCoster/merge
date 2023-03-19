@@ -44,13 +44,13 @@ export const collectionsSchema = {
             "description": "name that selects the registered function to use for additional processing when source data collection is empty",
             "type": "string"
          },
-         "instance-fill": {
+         "instanceFill": {
             "type": "object",
             "anyOf": [
                {
                   "type": "object",
                   "properties": {
-                     "element-fills": {
+                     "elementFills": {
                         "description": "mapping of datasource values to target elements, for an instantiation from the collections template",
                         "$ref": "element-fills-schema.json",
                      },
