@@ -13,7 +13,7 @@ import {dbgConsole} from "./merger-functions.js"
 export const extFunctions = {
 
    // delegate doFunction for custom functions
-   extFunctionscustomFunctions: undefined,
+   customFunctions: undefined,
 
    prependToExisting: function(srcValue, oldContent) {
       "use strict";
