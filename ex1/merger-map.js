@@ -1,5 +1,5 @@
 export const mergerMap = {
-   "element-fills": [
+   "elementFills": [
       {
          "dataSrcJpath": "globals",
          "elementsToDo" : [
@@ -44,8 +44,8 @@ export const mergerMap = {
          "srcIdPath": "id",
          "startDataSrcJpath": "minProducts",
          "maxToShowDataSrcJpath": "maxProducts",
-         "instance-fill": {
-            "element-fills": [
+         "instanceFill": {
+            "elementFills": [
                {
                   "dataSrcJpath": "instance",
                   "elementsToDo" : [
@@ -87,8 +87,8 @@ export const mergerMap = {
                   "instantiationSrcJpath": "",
                   "templateClassList": "attribute-size template",
                   "srcIdPath": "",
-                  "instance-fill": {
-                     "element-fills": [
+                  "instanceFill": {
+                     "elementFills": [
                         {
                            "dataSrcJpath": "instance",
                            "elementsToDo" : [
