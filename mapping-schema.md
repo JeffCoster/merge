@@ -17,8 +17,8 @@ The following schema diagram, produced using https://www.schemavisualizer.com/ s
 
 >> the top level mergerSchema can have 0 or more elementFills and zero or more collections
 
->> a collections object, has an instance-fill object that can contain zero or more collections and zero 
-or more element-fills
+>> a collections object, has an instanceFill object that can contain zero or more collections and zero 
+or more elementFills
 
 ### Object Definitions
 

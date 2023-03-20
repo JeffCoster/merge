@@ -247,7 +247,7 @@ The following snippet shows this part of the mapping:
 
 ```json
 export const mergerMap = {
-   "element-fills": [
+   "elementFills": [
       {
          "dataSrcJpath": "globals",
          "elementsToDo" : [
@@ -286,7 +286,7 @@ export const mergerMap = {
    ],
 ```
 
->- element-fills is an object containing an array of objects, each object contains element to source mappings for a single data source
+>- elementFills is an object containing an array of objects, each object contains element to source mappings for a single data source
 >>- in the example, there are two of these objects, for data sources globals, and productList
 >>- the dataSrcJpath value is the json path to the required data source within dataSources, i.e dataSources.globals, 
 and dataSources.productList
@@ -298,9 +298,9 @@ and dataSources.productList
 "Product Lister" from globalContent.pageTitle
 
 >- with dataSource productList the CSS #products-header-img selects the img tag with id="products-header-img"
->>- there is no json path in the map for source content for the img tag but the itsAttributed object is there
+>>- there is no json path in the map for source content for the img tag but the itsAttributes object is there
 to define mappings for the img elements attributes
->>- similar to the element- content mappings there are attribute name - content mappings
+>>- similar to the element content mappings there are attribute name - content mappings
 >>- the srcJpath json of "$..thumbnail" selects all values of data member "thumbnail", however the merger code 
 will only use the first one, as it targets a a single element and its attributes
 >>- so img attributes, src and alt, are filled with the content of the first thumbnail in the productList
