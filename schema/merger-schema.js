@@ -14,7 +14,7 @@ export const mergerSchema = {
       {
          "type": "object",
          "properties": {
-            "element-fills": {
+            "elementFills": {
                "description": "mapping of datasource values to target elements, for an instantiation from the collections template",
                "$ref": "element-fills-schema.json",
             },

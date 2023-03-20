@@ -9,7 +9,7 @@
 
 import {jsonPath} from "./jsonpath.js"
 
-import {doFunction} from "./merger-extensions.js"
+import {extFunctions} from "./merger-extensions.js"
 
 export var dbgConsole = {
    info : function (str) {
@@ -75,7 +75,7 @@ function elementFill(tgtElement, srcObj, srcJpath, functSelector) {
    } else if (functSelector !== undefined && functSelector !== null
          && 0 < functSelector.length) {
       // do function to format src value
-      tgtElement.innerHTML = doFunction(functSelector, srcVal, tgtElement.innerHTML);
+      tgtElement.innerHTML = extFunctions.doFunction(functSelector, srcVal, tgtElement.innerHTML);
    } else {
       tgtElement.innerHTML = srcVal;
    }
@@ -98,7 +98,7 @@ function attributeFill(tgtElement, tgtAttrName, srcObj, srcJpath, functSelector)
    } else if (functSelector !== undefined && functSelector !== null
          && 0 < functSelector.length) {
       // do function to format src value
-      const processedSrcVal = doFunction(functSelector, srcVal, tgtElement.getAttribute(tgtAttrName));
+      const processedSrcVal = extFunctions.doFunction(functSelector, srcVal, tgtElement.getAttribute(tgtAttrName));
       tgtElement.setAttribute(tgtAttrName, processedSrcVal);
    } else {
       tgtElement.setAttribute(tgtAttrName, srcVal);
@@ -224,7 +224,7 @@ function collectionInstantiate(collectionMap, tgtBlock, dataSources, instanceDat
    if (instanceDataSrc === undefined || instanceDataSrc === null || 1 > instanceDataSrc.length) {
       const mtCollectionSel = collectionMap.mtCollectionFunctSel;
       if (mtCollectionSel !== undefined && mtCollectionSel !== null && 0 < mtCollectionSel.length) {
-         doFunction(mtCollectionSel, instanceDataSrc, tgtBlock);
+         extFunctions.doFunction(mtCollectionSel, instanceDataSrc, tgtBlock);
       }
       return;
    }
@@ -244,10 +244,10 @@ function collectionInstantiate(collectionMap, tgtBlock, dataSources, instanceDat
       // remove template class from html instance
       templateClone = removeTemplateClassFromInstance(templateClone);
 
-      elementFills(collectionMap, templateClone, "instance-fill.element-fills", dataSources, instanceDataSrc[i]);
+      elementFills(collectionMap, templateClone, "instanceFill.elementFills", dataSources, instanceDataSrc[i]);
 
       //for each collection sub map and sub array data source
-      const collectionSubMap = jsonPath(collectionMap, "instance-fill.collections", null)[0];
+      const collectionSubMap = jsonPath(collectionMap, "instanceFill.collections", null)[0];
       if (collectionSubMap !== undefined && collectionSubMap !== null && 0 < collectionSubMap.length) {
          for (var j = 0; j < collectionSubMap.length; j = j + 1) {
             const subSrcJpath = collectionSubMap[j].dataSrcJpath;
@@ -264,7 +264,7 @@ export function compose(src2targetMap, dataSources, document) {
    "use strict";
    var instanceDataSource, collectionsArrMap, i, dataSrcJpath;
    //top level
-   elementFills(src2targetMap, document, "element-fills", dataSources, null);
+   elementFills(src2targetMap, document, "elementFills", dataSources, null);
 
    // start at top level but recursive build lower levels where defined and data src demands
    collectionsArrMap = jsonPath(src2targetMap, "collections", null)[0];
