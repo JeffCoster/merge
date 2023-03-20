@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <!-- based on tree from https://iamkate.com/code/tree-views/
+      1) content removed
+      2) scriptcode added
+      3) added id taxonomy title, class level{n} template, hierarchy of templates
+   -->
+
+   <title></title>
+   <link rel="stylesheet" type="text/css" href="../../static/tree.css">
+   <style>
+      body {
+         background-color: lightyellow;
+      }
+
+      .template {
+         display: none;
+      }
+      li .template {
+         display: none;
+      }
+      .tree details .end {
+         border-color : transparent;
+         content: "";
+      }
+   </style>
+</head>
+
+<body>
+   <ul class="tree">
+      <li>
+         <details open>
+            <summary id="tree-header"></summary>
+            <ul>
+               <li class="level1 template">
+                  <details>
+                     <summary></summary>
+                     <ul>
+                        <li class="level2 template">
+                           <details>
+                              <summary></summary>
+                              <ul>
+                                 <li class="level3 template">
+                                    <details>
+                                       <summary></summary>
+                                       <ul>
+                                          <li class="level4 template">
+                                             <details>
+                                                <summary></summary>
+                                                <ul>
+                                                   <li class="level5 template">
+                                                      <details>
+                                                         <summary></summary>
+                                                         <ul>
+                                                            <li class="level6 template">
+                                                            </li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                     </ul>
+                  </details>
+               </li>
+            </ul>
+         </details>
+      </li>
+   </ul>
+</body>
+
+</html>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.11.2/ajv7.min.js" integrity="sha512-Nn/LNS41ROKFBE+GQJK9PI+C8NA6/mvHOKZkCbAVx79xBB8T3jHZ7TXtCghQNZ41y2M/7myI4N15j9k6BP+h6w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script type="module">
+
+   import {mergerMap} from "./merger-map.js"
+   import {dataSources} from "./content/data-sources.js"
+
+   import {compose} from "../merger-functions.js"
+   import {mergerSchema} from "../schema/merger-schema.js"
+   import {elementFillsSchema} from "../schema/element-fills-schema.js"
+   import {collectionsSchema} from "../schema/collections-schema.js"
+
+   globalThis.debug = true;
+
+   if(debug) {
+      const Ajv = window.ajv7;
+      const ajv = new Ajv({
+      schemas: [mergerSchema, elementFillsSchema, collectionsSchema]
+      });
+      const validate = ajv.compile(mergerSchema);
+      const valid = validate(mergerMap);
+      if (!valid) {
+         console.log(validate.errors);
+      } else {
+         console.log("schema is valid");
+      }
+   }
+   compose(mergerMap, dataSources, document);
+</script>
+
+
+
