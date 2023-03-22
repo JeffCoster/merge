@@ -369,13 +369,13 @@ corresponding object values.
 >>- the functionSel "priceFormat" is used to format the price, in this example it just prepends a $ 
 >>- all other elementFills aspects have already been explained
 
->-- the srcIdPath, for each collection, deserves explanation
->- it is the jsonPath, relative to the source object, of the unique Id to use to help form a unique id in the target html page/partial
->- so is this example, each product in the source list has an 'id' field, with values that are unique product identifiers
->- the srcIdPath= 'id' instructs merger to use this when forming the product Ids
->- at runtime the default behaviour, for forming the target html instance id is: use the first class declared for a template; 
+>- the srcIdPath, for each collection, deserves explanation
+>>- it is the jsonPath, relative to the source object, of the unique Id to use to help form a unique id in the target html page/partial
+>>- so is this example, each product in the source list has an 'id' field, with values that are unique product identifiers
+>>- the srcIdPath= 'id' instructs merger to use this when forming the product Ids
+>>- at runtime the default behaviour, for forming the target html instance id is: use the first class declared for a template; 
 in this case 'product', append an underscore, then end with the source object id
->- so in this example, for a product with source id of 60 the snippet of target html of product instance would be:
+>>- so in this example, for a product with source id of 60 the snippet of target html of product instance would be:
 
 ```html
 <div class="product" id="product_50">
@@ -442,7 +442,7 @@ of the size instead, e.g. 7
 >>- an example target ID for the sizes, once the parent ID is prepended, would be like this in the html:
 
 ```html
-<td class="attribute-size" id="product_60_attribute-size_10">
+   <td class="attribute-size" id="product_60_attribute-size_10">
 ```
 
 >- the elementsToDo[0] for element "label" has:
