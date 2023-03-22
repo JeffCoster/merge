@@ -305,7 +305,189 @@ to define mappings for the img elements attributes
 will only use the first one, as it targets a a single element and its attributes
 >>- so img attributes, src and alt, are filled with the content of the first thumbnail in the productList
 
+The second step in the mapping task, mapping the product template html to its source objects, is shown in the following snippet:
 
+```json
+  "collections": [
+      {
+         "dataSrcJpath": "productList",
+         "instantiationSrcJpath": "",
+         "templateId": "product-template-1",
+         "srcIdPath": "id",
+         "startDataSrcJpath": "minProducts",
+         "maxToShowDataSrcJpath": "maxProducts",
+         "instanceFill": {
+            "elementFills": [
+               {
+                  "dataSrcJpath": "instance",
+                  "elementsToDo" : [
+                     {
+                        "elementTgtCss": ".product-title",
+                        "elementValueSrcJpath": "title",
+                        "functionSel": "escape"
+                     },
+                     {
+                        "elementTgtCss": ".product-id",
+                        "elementValueSrcJpath": "id"
+                     },
+                     {
 
+                        "elementTgtCss": ".price",
+                        "elementValueSrcJpath": "id",
+                        "functionSel": "priceFormat"
+                     },
+                     {
+                        "elementTgtCss": ".thumbnail",
+                        "elementValueSrcJpath": "title",
+                        "itsAttributes": [
+                           {
+                              "tgtAttrName": "src",
+                              "srcJpath": "thumbnail"
+                           },
+                           {
+                              "tgtAttrName": "alt",
+                              "srcJpath": "thumbnail"
+                           }
+                        ]
+                     }
+                  ]
+               }
+            ],
+```
 
- 
+>- collections is an object containing an array of objects, each object contains element to source mappings for a single data source
+>>- in the example, there is one of these objects, for data source: productList, within this:
+>>- the dataSrcJpath value is the json path to this data source within dataSources, i.e dataSources.productList
+>>- the templateId identifies the id of the target product template element
+>>- the minProducts and maxProducts are json paths to the variables containing start and end bounds for the displayed 
+list of products, i.e. dataSources.minProducts, and dataSources.maxProducts 
+
+>- for this collection, the instanceFill has an elementFills object to map elements of each instantiated template, to the 
+corresponding object values. 
+>>- so instance [n] of the template maps to source object [n] of its list, but it is only necessary to map one instance to one source object
+>>- the functionSel "escape" is used to escape html special chars in the title
+>>- the functionSel "priceFormat" is used to format the price, in this example it just prepends a $ 
+>>- all other elementFills aspects have already been explained
+
+>-- the srcIdPath, for each collection, deserves explanation
+>- it is the jsonPath, relative to the source object, of the unique Id to use to help form a unique id in the target html page/partial
+>- so is this example, each product in the source list has an 'id' field, with values that are unique product identifiers
+>- the srcIdPath= 'id' instructs merger to use this when forming the product Ids
+>- at runtime the default behaviour, for forming the target html instance id is: use the first class declared for a template; 
+in this case 'product', append an underscore, then end with the source object id
+>- so in this example, for a product with source id of 60 the snippet of target html of product instance would be:
+>- ```html
+<div class="product" id="product_50">
+   // ...
+</div>
+```
+>- note: for child collections, e.g product sizes, the parent id prepends the ids of the children
+
+The third and last step of this examples mapping task, maps source (product) sizes to html product instance sizes. 
+The following json mapping snippet shows this:
+
+```json
+  "collections": [
+      {
+         "dataSrcJpath": "productList",
+         "instantiationSrcJpath": "",
+         "templateId": "product-template-1",
+         "srcIdPath": "id",
+         "startDataSrcJpath": "minProducts",
+         "maxToShowDataSrcJpath": "maxProducts",
+         "instanceFill": {
+            "elementFills": [
+               // already explained
+            ],
+            "collections": [
+               {
+                  "dataSrcJpath": "sizes",
+                  "instantiationSrcJpath": "",
+                  "templateClassList": "attribute-size template",
+                  "srcIdPath": "",
+                  "instanceFill": {
+                     "elementFills": [
+                        {
+                           "dataSrcJpath": "instance",
+                           "elementsToDo" : [
+                              {
+                                 "elementTgtCss": "label",
+                                 "elementValueSrcJpath": "",
+                                 "functionSel": "prepend"
+                              },
+                              {
+                                 "elementTgtCss": "input",
+                                 "itsAttributes": [
+                                    {
+                                       "tgtAttrName": "input",
+                                       "srcJpath": ""
+                                    },
+                                    {
+                                       "tgtAttrName": "name",
+                                       "srcJpath": "",
+                                       "functionSel": "append"
+                                    },
+                                 ]
+                              }
+                           ]
+                        }
+                     ]
+```
+
+>- The sizes are a child template of the product, so the collection to map the sizes is a child of the collection that maps the products
+>- as instantiationSrcJpath is not declared, the dataSrcJpath of "sizes" is relative to the parent instance, and maps to the sizes array
+>- the srcIdPath is not declared, as there is no natural unique key for each size, so the merger code will use the actual value 
+of the size instead, e.g. 7
+>>- an example target ID for the sizes, once the parent ID is prepended, would be like this in the html:
+>>- ```html
+<td class="attribute-size" id="product_60_attribute-size_10">
+```
+
+>- the elementsToDo[0] for element "label" has:
+>>- an undeclared elementValueSrcJpath, which means that merger will use the whole of the source object instance as the content value, 
+this approach is needed, as in this case the object in the sizes array is just a string, e.g. "7"
+>>- a functionSel of "prepend" to ensure that the source content is prepended to the existing contents of the template, the sizes 
+template being as follows, where the size needs to be added before the <br>
+>-- ```html
+<td class="attribute-size template">
+   <label><br>
+         <input type="radio" name="size-" value=""><br>
+   </label>
+</td>
+```
+
+>- the elementsToDo[1] for element "input" has:
+>>- an undeclared srcJpath, for each attribute mapping, so again meaning use the whole source content, e.g."10"
+>>- for attribute name: a functionSel of "append", meaning append the source content, to existing content of the name attribute, 
+e.g. name="size-10"
+
+So the end result of all collection mapping, results in the html for a product instance being like:
+
+```html
+<div class="product" id="product_59">
+         <a href="">
+            <img class="thumbnail" width="60px" height="60px" src="https://dummyjson.com/image/i/products/59/thumbnail.jpg" alt="https://dummyjson.com/image/i/products/59/thumbnail.jpg">
+         </a><br>
+         <span class="product-id">59</span><br>
+         <span class="product-title">Spring &amp; ' &lt; &gt; summer shoes</span><br>
+         <span class="price">$59</span><br>
+         <form class="attribute-sizes" name="sizes">
+            <table>
+               <caption class="size-label">Sizes</caption>
+               <tbody>
+                  <tr>
+                     <td class="attribute-size" id="product_59_attribute-size_11">
+                        <label>11<br>
+                           <input type="radio" name="size-11" value="" input="11"><br>
+                        </label>
+                     </td><td class="attribute-size template">
+                        <label><br>
+                           <input type="radio" name="size-" value=""><br>
+                        </label>
+                     </td>
+                  </tr>
+               </tbody>
+            </table>
+         </form>
+      </div>
+```
