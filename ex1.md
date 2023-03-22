@@ -439,7 +439,8 @@ The following json mapping snippet shows this:
 >- as instantiationSrcJpath is not declared, the dataSrcJpath of "sizes" is relative to the parent instance, and maps to the sizes array
 >- the srcIdPath is not declared, as there is no natural unique key for each size, so the merger code will use the actual value 
 of the size instead, e.g. 7
->>- an example target ID for the sizes, once the parent ID is prepended, would be like this in the html: 
+>>- an example target ID for the sizes, once the parent ID is prepended, would be like this in the html:
+
 ```html
 <td class="attribute-size" id="product_60_attribute-size_10">
 ```
@@ -448,8 +449,8 @@ of the size instead, e.g. 7
 >>- an undeclared elementValueSrcJpath, which means that merger will use the whole of the source object instance as the content value, 
 this approach is needed, as in this case the object in the sizes array is just a string, e.g. "7"
 >>- a functionSel of "prepend" to ensure that the source content is prepended to the existing contents of the template, the sizes 
-template being as follows, where the size needs to be added before the <br>
->>- 
+template being as follows, where the size needs to be added before the br tag
+
 ```html
 <td class="attribute-size template">
    <label><br>
