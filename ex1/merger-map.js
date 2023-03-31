@@ -39,7 +39,6 @@ export const mergerMap = {
    "collections": [
       {
          "dataSrcJpath": "productList",
-         "instantiationSrcJpath": "",
          "templateId": "product-template-1",
          "srcIdPath": "id",
          "startDataSrcJpath": "minProducts",
@@ -108,7 +107,7 @@ export const mergerMap = {
                                        "tgtAttrName": "name",
                                        "srcJpath": "",
                                        "functionSel": "append"
-                                    },
+                                    }
                                  ]
                               }
                            ]
