@@ -311,7 +311,6 @@ The second step in the mapping task, mapping the product template html to its so
   "collections": [
       {
          "dataSrcJpath": "productList",
-         "instantiationSrcJpath": "",
          "templateId": "product-template-1",
          "srcIdPath": "id",
          "startDataSrcJpath": "minProducts",
@@ -391,7 +390,6 @@ The following json mapping snippet shows this:
   "collections": [
       {
          "dataSrcJpath": "productList",
-         "instantiationSrcJpath": "",
          "templateId": "product-template-1",
          "srcIdPath": "id",
          "startDataSrcJpath": "minProducts",
@@ -403,7 +401,6 @@ The following json mapping snippet shows this:
             "collections": [
                {
                   "dataSrcJpath": "sizes",
-                  "instantiationSrcJpath": "",
                   "templateClassList": "attribute-size template",
                   "srcIdPath": "",
                   "instanceFill": {
@@ -436,7 +433,7 @@ The following json mapping snippet shows this:
 ```
 
 >- The sizes are a child template of the product, so the collection to map the sizes is a child of the collection that maps the products
->- as instantiationSrcJpath is not declared, the dataSrcJpath of "sizes" is relative to the parent instance, and maps to the sizes array
+>- the dataSrcJpath of "sizes" is relative to the parent instance, and maps to the sizes array
 >- the srcIdPath is not declared, as there is no natural unique key for each size, so the merger code will use the actual value 
 of the size instead, e.g. 7
 >>- an example target ID for the sizes, once the parent ID is prepended, would be like this in the html:

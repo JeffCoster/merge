@@ -5,9 +5,7 @@ This section describes the json schema which controls the json merger mapping.
 The mapping is at the heart of merger operation. It configures the html elements and attributes to their dynamic source data, 
 and html template sections to the source object collections that drive instantions of the section templates.
 
-> The schema for merger mapping is contained in schema/merger-schema.js and its child schemas: collections-schema.js, 
-and element-fills-schema.js
-
+> The schema for merger mapping is contained in schema/merger-schema.js.
 
 The following schema diagram, produced using https://www.schemavisualizer.com/ shows the structure and main options for the mapping json data.
 
@@ -15,7 +13,7 @@ The following schema diagram, produced using https://www.schemavisualizer.com/ s
 
 > Structually:
 
->> the top level mergerSchema can have 0 or more elementFills and zero or more collections
+>> the top level mergerSchema object can have zero or more elementFills and zero or more collections
 
 >> a collections object, has an instanceFill object that can contain zero or more collections and zero 
 or more elementFills
