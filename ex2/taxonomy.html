@@ -79,9 +79,11 @@
 
 </html>
 
-
-
+<!--
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.11.2/ajv7.min.js" integrity="sha512-Nn/LNS41ROKFBE+GQJK9PI+C8NA6/mvHOKZkCbAVx79xBB8T3jHZ7TXtCghQNZ41y2M/7myI4N15j9k6BP+h6w==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.12.0/ajv2019.min.js" integrity="sha512-0lJa9spNGDvx2WdJx9SR4BnB+DHbGc5QKPA0S8Lj2M+rtMyeIyIO8T9Vc8swa/lvZ+kr2nzG3oMJxapZHOlX2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 
 <script type="module">
 
@@ -90,15 +92,15 @@
 
    import {compose} from "../merger-functions.js"
    import {mergerSchema} from "../schema/merger-schema.js"
-   import {elementFillsSchema} from "../schema/element-fills-schema.js"
-   import {collectionsSchema} from "../schema/collections-schema.js"
+//  import {elementFillsSchema} from "../schema/element-fills-schema.js"
+//   import {collectionsSchema} from "../schema/collections-schema.js"
 
    globalThis.debug = true;
 
    if(debug) {
-      const Ajv = window.ajv7;
+      const Ajv = window.ajv2019;
       const ajv = new Ajv({
-      schemas: [mergerSchema, elementFillsSchema, collectionsSchema]
+      schemas: [mergerSchema]
       });
       const validate = ajv.compile(mergerSchema);
       const valid = validate(mergerMap);

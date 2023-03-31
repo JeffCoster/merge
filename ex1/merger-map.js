@@ -108,7 +108,7 @@ export const mergerMap = {
                                        "tgtAttrName": "name",
                                        "srcJpath": "",
                                        "functionSel": "append"
-                                    },
+                                    }
                                  ]
                               }
                            ]
