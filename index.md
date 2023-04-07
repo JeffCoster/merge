@@ -16,6 +16,8 @@
    </img>
 </a>
 
+{% include_relative ex2.md %}
+
 <br>
 <a href="ex2/taxonomy.html">
    <img src="ex2/content/ex2_1.png" width="10%" height="10%" > 
