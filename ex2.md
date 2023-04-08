@@ -256,7 +256,6 @@ This is shown in the following snippet:
          "templateId": "",
          "templateClassList": "level1 template",
          "srcIdPath": "id",
-         "mtCollectionFunctSel": "lastLeafNode",
          "instanceFill": {
             "elementFills": [
                {
@@ -299,8 +298,40 @@ This is shown in the following snippet:
 >>- in the full mapping, the maximum of 6 levels are mapped
 
 >- collections within the instanceFill of a collection, is how merger maps the hierarchy of section templates to source object arrays
->>- in example 1 this approach was used to map products in a list and sizes for each of those products
->>- in this example, it is used to map the taxony tree, e.g level 1 - children level 2 - children level 3 etc
+>>- in example 1 this approach was used to map products in a list, and to list sizes for each of those products
+>>- in this example, it is used to map the taxonomy tree, e.g level 1 to child level 2s to child level 3s etc
+
+The main aspects of the html section, to tree node source mapping, are described in the following table:
+
+| collections[0] | (top) level 1 mapping|
+|:-------------|:--|
+| .dataSrcJpath = taxonomy | jsonPath to the source data taxonomy tree root  |
+| .templateClassList = level1 template | class list of the level 1 html section template |
+| .srcIdPath = id | id is jpath to taxonomy root[instance].id, for use as the unique (level 1) node Id
+
+| collections[0].instanceFill.elementFills[0] | element fills required for level 1 nodes|
+| :------- | :--- |
+| .elementsToDo[0].elementTgtCss = summary | template relative CSS, to find summary target element for showing node name |
+| .elementsToDo[0].elementValueSrcJpath = level1 | jpath to instance.level1, for use as the node name |
+
+| collections[0].instanceFill.collections[0] |level 2 mapping |
+| :------- | :--- |
+| .dataSrcJpath = sub2s | jsonPath, relative to parent (level 1) node, to the child array of level 2 nodes  |
+| .templateClassList = level2 template | class list of the level 2 html section template |
+| .srcIdPath = id | id is jpath to level 2 id, for use as the unique (level 2) node Id |
+| .mtCollectionFunctSel = lastLeafNode| registered name of custom function to invoke if the source array is empty, in this example meaning last leaf node of branch was reached
+
+| collections[0].instanceFill.collections[0].instanceFill.elementFills[0] | element fills required for level 2 nodes|
+| :------- | :--- |
+| .elementsToDo[0].elementTgtCss = summary | template relative CSS, to find summary target element for showing node name |
+| .elementsToDo[0].elementValueSrcJpath = level2 | jpath to instance.level2, for use as the level 2 node name |
+
+| collections[0].instanceFill.collections[0].instanceFill.collections0 |level 3 mapping |
+| :------- | :--- |
+| ... pattern continues for level 3 and subsequent levels | ... |
+
+
+In Operation:
 
 >- to start with, merger will pick the top level array of the taxonomy tree source content, as indicated by the dataSrcJpath of "taxonomy"
 >- the first element of that array will be processed, and the "level 1" content, i.e. "Animals & Pet Supplies" will fill the "summary" element
@@ -310,6 +341,6 @@ fill the "summary" of the first level 2 instance
 >>- processing of that branch will end and continue with the next level 1 branch
 >>- firstly though the empty collection custom function will be invoked, as instructed by the "mtCollectionFunctionSel" of "lastLeafNode"
 >>- this custom function adapts the html so that the last node in a branch will appear as it should with no plus or minus symbol
->- note that the mapping for all levels specifies the same "mtCollectionFunctionSel", this is because the last branch node could be at any level
+>- note that the mapping for level 2 and lower levels, each specify the same "mtCollectionFunctionSel", this is because the last branch node could be at any level below level 1
 
 

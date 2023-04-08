@@ -1,6 +1,6 @@
-# Tutorials
+# Examples
 
-This section decribes some examples of using Merger, within the Browser, to compose the dynamic view.
+This section decribes some examples using Merger, within the Browser, to compose the dynamic view.
 The examples would use Merger the same as they would in Node JS, but it is easier to try out and use Merger 
 in a Browser, as there is no stack needed; and Browsers have good debug tools built in. 
 
@@ -10,26 +10,22 @@ The mapping json, that maps the source data to the html, would be exactly the sa
 
 This example is for a simple list of products, using some mock json source data for shoes. 
 Each product having a sub list of shoe sizes. As a prior step it is assumed that a html developer 
-has created the static html and embedded the content to prototype what the page would look like for two products.
+has created the static html, and embedded the content to prototype how the page would look for  a list of two products.
 
 This is how that prototype page would display:
 
 <img src="ex1/Ex1_1.png" width="20%" height="20%" > Product List - Static Prototype</img>
 
-
-The task of this example, is to use Merger, to dynamically render the page, using some mock json source 
-data for a list of shoes.
-
 ### Ex1 Step1: Creating the html Template
 
-In this step the example static content is removed and the repeated sections of the prototype page 
-are collapsed to form single hidden 'section templates' of the html required for instances of the section.
+In this step the example static content is removed, fro the protype, and the repeated sections for the products 
+are collapsed to form a hidden 'section template'; containing the mark up for a single product.
 
 > It is possible to go straight to the step of building an html template, without a prototype page 
 with example static content. However, it is easier to illustrate what Merger requires of a template, 
 by having the static prototype and turning that into a template.
 
-The following shows the prototype html body, with embedded content:
+The following shows the prototype html body; with embedded content:
 
 ```html
 <body>
@@ -122,9 +118,9 @@ to create the required Merger template, gives:
 </body>
 ```
 > Points to note:
->- Example static content, that will be provided dynamically from source data is removed. This isn't always necessary, 
+>- Example static content, that will be provided dynamically from source data, is removed. This isn't always necessary, 
 as Merger will replace it at runtime. However, it simplifies the template, makes it pure mark up, and helps to avoid 
- errors at runtime leaving the example content in place, potentially on show.
+ the chance of leaving the prototype content showing at runtime.
 >- The div with class of 'products' marks the start and end of the list of products
 >- Its child div, with class of 'product template' is the mark up for a single product in the list, with no content
 >- At runtime the dynamically created 'product' sections, will be inserted before the 'product template' at the same level 
