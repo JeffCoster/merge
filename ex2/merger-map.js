@@ -20,7 +20,6 @@ export const mergerMap = {
          "templateId": "",
          "templateClassList": "level1 template",
          "srcIdPath": "id",
-         "mtCollectionFunctSel": "lastLeafNode",
          "instanceFill": {
             "elementFills": [
                {
