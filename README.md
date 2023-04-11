@@ -20,11 +20,11 @@ javascript, jsonPath, CSS, html, json, json schema
     - each Data Source needs to be available to the merger JS code, as a const
     - each Data Source needs to be registered in the Data Sources object
 3. add merger boiler plate JS, in a script, in the html
-4. configure json data to map source content json to target html sections
+4. configure json data to map source json arrays and values, to target html sections, elements and attirbutes
     - element text maps directly to corresponding source field 
     - attribute value maps directly to corresponding source field 
     - source object collections map to html template sections, for instantion of templates and content filling
-5. load the html page, merger runs and renders the page
+5. load the html page, so that merger runs and renders the page
 
 >_Note: Steps 4 and 5 can be iterated over, to configure and test in parts_
 
@@ -61,12 +61,13 @@ Note: Similar for Node JS
 ```
 
 > Merger is invoked by calling **_compose(mergerMap, dataSources, document);_**
->- margerMap is a const containg the mapping json which maps the source json arrays and values to the html template
+>- margerMap is a const containing the mapping json which maps the source json arrays and values to the html template
 >- dataSources is json object that registers the source data (json) objects
 >- document is DOM of the html template
 
-> The **_if(debug)_** section is an optional section, to validate the mapping complies with the schema, and to help debug the mappimg
+> The **_if(debug)_** section is an optional section, to validate the mapping using the merger mapping schema
 >- generally, this would only be needed in the development of the mapping
+>- errors detected are output in the browser console
 
 For full documentation, in addition to this readme: see https://jeffcoster.github.io/merger/
 
