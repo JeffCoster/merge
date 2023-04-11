@@ -68,5 +68,5 @@ Note: Similar for Node JS
 > The **_if(debug)_** section is an optional section, to validate the mapping complies with the schema, and to help debug the mappimg
 >- generally, this would only be needed in the development of the mapping
 
-Full documentation, on how to use Merger, including examples, is in https://jeffcoster.github.io/merger/ ,which also includes this readme.
+For full documentation, in addition to this readme: see https://jeffcoster.github.io/merger/
 
