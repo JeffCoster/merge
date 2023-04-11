@@ -6,6 +6,7 @@ Merging dynamic source content to html templates by data configuration (mapping)
 - keep content separate from the html
 - keep content separate from the code
 - facilitate the rendering of dynamic web pages with minimal additional coding
+- render dynamic web pages with minimal coding
 - handle dynamic hierarchies of html sections, sourced from dynamic source object hierarchies
 - solution to function equally in NodeJS or Browser
 - run in NodeJS or Browser
