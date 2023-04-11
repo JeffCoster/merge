@@ -24,6 +24,3 @@ Merging dynamic source content to html templates by data configuration (mapping)
 5. load the html page, merger runs and renders the page
 
 >_Note: Steps 4 and 5 can be iterated over, to configure and test in parts_
-
-
-
