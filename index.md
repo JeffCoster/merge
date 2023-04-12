@@ -7,6 +7,8 @@
 
 {% include_relative mapping-schema.md %}
 
+{% include_relative ext-functions.md %}
+
 {% include_relative ex1.md %}
 
 <br>
