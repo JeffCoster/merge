@@ -35,16 +35,6 @@ export const extFunctions = {
          .replace(/'/g, "&#039;");
    },
 
-   handleLastLeafNode: function(leafNodeHtml) {
-      "use strict";
-      // remove <description> opening tag and make basic <li> content for last leaf node
-      // this is a specific function requires by the Taxonomy/Levels ex2 that ships with Merger
-
-      const leafName = leafNodeHtml.getElementsByTagName("summary");
-      leafNodeHtml.innerHTML = (leafName[0].innerHTML);
-      return leafNodeHtml;
-   },
-
    doFunction: function(functionSel, srcValue, oldContent) {
       "use strict";
       //do function requested by function selector string
@@ -55,10 +45,6 @@ export const extFunctions = {
 
       case "append":
          return this.appendToExisting(srcValue, oldContent);
-
-      case "lastLeafNode":
-         // transform html to handle last tree node, giving it no html open selection
-         return this.handleLastLeafNode(oldContent);
 
       case "escape":
          // return html escaped version of src value to use for element or attribute fill
