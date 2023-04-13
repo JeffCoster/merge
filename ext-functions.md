@@ -35,6 +35,81 @@ The optional break out (delagation) points are:
 | srcValue | not used as there is no source array or it is empty |
 | oldContent | document when thi is a top level collection: parent html section instance when this collection has one  |
 | returns | oldContent, transformed as required by this function |
+
 ### Standard Extension Functions
 
+These are the standard extension functions, shipped with merger, contained in file merger-extensions.js, 
+that ship with the current version. They are general purpose and of use in many projects
+
+They are explained as follows:
+
+For element and attribute content transformations:
+
+| function selector value | description |
+| - | - |
+| "escape" | html escape the selected source value used to fill target content |
+| "append" | append the existing selected target content with the selected source value and use it to fill the target content |
+| "prepend" | prepend the existing selected target content with the selected source value and use it to fill the target content|
+
+> with append and prepend the template needs to contain the desired content used to prepend or append
+
+### Custom Extension Functions
+
+These are custom extension functions, that can be added to your project.
  
+There are examples of this in:
+
+- example 1, file ex1/custom-functions.js, which has a very basic outline example of a currency format function
+
+- example 2, file ex2/custom-functions.js, which has a function, specific to example 2, for handling the last leaf node of a taxonomy tree
+
+To create your own custom functions file, the examples can be used as a guide. The following are the necessary steps
+
+1) create a file to include, such as custom-functions.js, in a directory of your project
+
+2) As per the examples, this needs to import from two core merger files, e.g
+```javascript
+import {dbgConsole} from "../merger-functions.js"
+import {extFunctions} from "../merger-extensions.js"
+```
+> ensure the relative file paths are ok relative to your file
+
+3) export const object customFunctions, which can be based on the examples, e.g. ex1
+
+``` javascript
+export const customFunctions = {
+
+   priceFormat: function(srcValue) {
+      "use strict";
+      //in real use this would need a switch case based on context currency
+      return "$" + srcValue;
+   },
+
+   doFunction: function(functionSel, srcValue, oldContent) {
+      "use strict";
+      //do function requested by function selector string
+      //returns  new content based on oldContent html (when supplied) and srcValue (when supplied)
+
+      switch (functionSel) {
+      case "priceFormat":
+         // return src value price display formatted
+         return this.priceFormat(srcValue);
+
+      default:
+         if (debug) {
+            dbgConsole.warn("No custome function found either, for selector:"
+               + functionSel + ", srcValue:" + srcValue + ", oldContent:" + oldContent);
+         }
+      }
+   }
+}
+
+```
+
+4) Follow the pattern of the priceFormat function, to add your own functions. 
+Each new function needs adding to the one and only customFunctions object, as per the priceFormat example. 
+A case statement needs adding to doFunction, to map your function selector name to your new function. 
+Your function can use either or all of the srcValue and oldContent parameters, as required, and must return 
+the desired result content.
+
+
