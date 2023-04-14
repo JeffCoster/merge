@@ -27,7 +27,7 @@ export const customFunctions = {
 
       default:
          if (debug) {
-            dbgConsole.warn("No custome function found either, for selector:"
+            dbgConsole.warn("No custom function found either, for selector:"
                + functionSel + ", srcValue:" + srcValue + ", oldContent:" + oldContent);
          }
       }
