@@ -2,17 +2,25 @@
  debug
 */
 
-/* The purpose of this file is to allow extension functions to be used by the core of Merger
-   In this file there are some standard hi re-use functions
+/* Merger
+ *
+ * Copyright (c) 20023 Jeff Coster
+ * Licensed under the MIT (MIT-LICENSE.txt) licence.
+ * see https://github.com/JeffCoster/merger
+ */
+
+/* The purpose of this file is to allow switchable selectable functions to be used by the core of Merger
+   In this file there are some standard, hi re-use functions
    Assigning a delegate object, to customFunctions, with similar doFunction method and custom functions,
-   allows custom functions to be added to merger without affecting the core
+   allows custom functions to be added to merger without affecting the core or these extension functions.
+   Do not add functions to this file, do so in your own customFunctions file.
 */
 
 import {dbgConsole} from "./merger-functions.js"
 
 export const extFunctions = {
 
-   // delegate doFunction for custom functions
+   // delegate object with doFunction for custom functions
    customFunctions: undefined,
 
    prependToExisting: function(srcValue, oldContent) {
@@ -35,30 +43,16 @@ export const extFunctions = {
          .replace(/'/g, "&#039;");
    },
 
-   handleLastLeafNode: function(leafNodeHtml) {
-      "use strict";
-      // remove <description> opening tag and make basic <li> content for last leaf node
-      // this is a specific function requires by the Taxonomy/Levels ex2 that ships with Merger
-
-      const leafName = leafNodeHtml.getElementsByTagName("summary");
-      leafNodeHtml.innerHTML = (leafName[0].innerHTML);
-      return leafNodeHtml;
-   },
-
    doFunction: function(functionSel, srcValue, oldContent) {
       "use strict";
       //do function requested by function selector string
-      //returns  new content based on oldContent html (when supplied) and srcValue
+      //returns  new content based on optionally supplied oldContent DOM, and srcValue
       switch (functionSel) {
       case "prepend":
          return this.prependToExisting(srcValue, oldContent);
 
       case "append":
          return this.appendToExisting(srcValue, oldContent);
-
-      case "lastLeafNode":
-         // transform html to handle last tree node, giving it no html open selection
-         return this.handleLastLeafNode(oldContent);
 
       case "escape":
          // return html escaped version of src value to use for element or attribute fill
