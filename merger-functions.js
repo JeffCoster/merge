@@ -124,11 +124,8 @@ function attributeFills(tgtElement, attrToFillDefs, dataSrc) {
    }
 }
 
-function elementFills(src2targetMap, tgtBlock, elementFillMapJpath, dataSources, srcObj) {
+function elementFills(src2targetMap, tgtBlock, elementFillArr, dataSources, srcObj) {
    "use strict";
-
-   const elementFillArr = jsonPath(src2targetMap, elementFillMapJpath, null)[0];
-
 
    for (var n = 0; n < elementFillArr.length; n = n + 1) {
       const elementFillDirs = elementFillArr[n];
@@ -162,7 +159,7 @@ function elementFills(src2targetMap, tgtBlock, elementFillMapJpath, dataSources,
             attributeFills(tgtElement, elementsToDo[i].itsAttributes, dataSrc);
          }
       } else if (debug) {
-         dbgConsole.info("No element source to tearget Defs for: " + elementFillMapJpath);
+         dbgConsole.info("No element source to target Defs for: " + elementFillArr[n].dataSrcJpath);
       }
    }
 
@@ -246,15 +243,18 @@ function collectionInstantiate(collectionMap, tgtBlock, dataSources, instanceDat
       // remove template class from html instance
       templateClone = removeTemplateClassFromInstance(templateClone);
 
-      elementFills(collectionMap, templateClone, "instanceFill.elementFills", dataSources, instanceDataSrc[i]);
+      const elementFillArr = collectionMap.instanceFill.elementFills;
+      if (elementFillArr !== undefined && elementFillArr !== null && 0 < elementFillArr.length) {
+         elementFills(collectionMap, templateClone, elementFillArr, dataSources, instanceDataSrc[i]);
+      }
 
       //for each collection sub map and sub array data source
-      const collectionSubMap = jsonPath(collectionMap, "instanceFill.collections", null)[0];
-      if (collectionSubMap !== undefined && collectionSubMap !== null && 0 < collectionSubMap.length) {
-         for (var j = 0; j < collectionSubMap.length; j = j + 1) {
-            const subSrcJpath = collectionSubMap[j].dataSrcJpath;
+      const collectionSubMaps = collectionMap.instanceFill.collections;
+      if (collectionSubMaps !== undefined && collectionSubMaps !== null && 0 < collectionSubMaps.length) {
+         for (var j = 0; j < collectionSubMaps.length; j = j + 1) {
+            const subSrcJpath = collectionSubMaps[j].dataSrcJpath;
             const dataSrcSubObj = jsonPath(instanceDataSrc[i], subSrcJpath, null)[0];
-            collectionInstantiate(collectionSubMap[j], templateClone, dataSources, dataSrcSubObj, dataSrcId);
+            collectionInstantiate(collectionSubMaps[j], templateClone, dataSources, dataSrcSubObj, dataSrcId);
          }
       }
       template.parentNode.insertBefore(templateClone, template);
@@ -265,11 +265,16 @@ function collectionInstantiate(collectionMap, tgtBlock, dataSources, instanceDat
 export function compose(src2targetMap, dataSources, document) {
    "use strict";
    var instanceDataSource, collectionsArrMap, i, dataSrcJpath;
+
    //top level
-   elementFills(src2targetMap, document, "elementFills", dataSources, null);
+   const elementFillArr = src2targetMap.elementFills;
+   if (elementFillArr !== undefined && elementFillArr !== null && 0 < elementFillArr.length) {
+      elementFills(src2targetMap, document, elementFillArr, dataSources, null);
+   }
+//   elementFills(src2targetMap, document, "elementFills", dataSources, null);
 
    // start at top level but recursive build lower levels where defined and data src demands
-   collectionsArrMap = jsonPath(src2targetMap, "collections", null)[0];
+   collectionsArrMap = src2targetMap.collections;
    if (collectionsArrMap !== undefined && collectionsArrMap !== null && 0 < collectionsArrMap.length) {
       // collections to process
       for (i = 0; i < collectionsArrMap.length; i = i + 1) {
