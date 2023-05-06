@@ -44,6 +44,9 @@ function calcStartEndIndices(dataSources, collectionMap, srcCollection) {
          if (start >= srcCollection.length) {
             start = 0;
          }
+      } else if (debug) {
+         console.error("start index variable not found or not a number for jsonpath: " +jsonPath
+                      + " and collection: " + collectionMap.dataSrcJpath);
       }
    }
    path = collectionMap.maxToShowDataSrcJpath;
@@ -55,9 +58,11 @@ function calcStartEndIndices(dataSources, collectionMap, srcCollection) {
          if (end > srcCollection.length) {
             end = srcCollection.length;
          }
+      } else if (debug) {
+         console.error("end index variable not found or not a number for jsonpath: " +jsonPath
+                      + " and collection: " + collectionMap.dataSrcJpath);
       }
    }
-
    return {start,end}
 }
 
@@ -65,18 +70,23 @@ function elementFill(tgtElement, srcObj, srcJpath, functSelector) {
    "use strict";
    var srcVal;
 
+   //where jpath null or empty use all of the src object to fill element text value
    srcVal = srcObj;
 
    if (srcJpath !== null && 0 < srcJpath.length) {
-
-      //where jpath null or empty use all of the src object to fill element text value
+      // use jpath target value from srcObj
       srcVal = jsonPath(srcObj, srcJpath, null)[0];
    }
    if (srcVal === undefined || srcVal === null) {
-      if (debug) {dbgConsole.info("elementFill: src value not found"); }
+      if (debug) {
+         dbgConsole.info("elementFill: src value not found for srcJpath: " +srcJpath
+                            +" and element:" +tgtElement.tagName
+                            +" and srcObject:" +srcObj);
+      }
+      return;
    } else if (functSelector !== undefined && functSelector !== null
          && 0 < functSelector.length) {
-      // do function to format src value
+         // do function to format src value
       tgtElement.innerHTML = extFunctions.doFunction(functSelector, srcVal, tgtElement.innerHTML);
    } else {
       tgtElement.innerHTML = srcVal;
@@ -87,16 +97,20 @@ function attributeFill(tgtElement, tgtAttrName, srcObj, srcJpath, functSelector)
    "use strict";
    var srcVal;
 
+   //where jpath null or empty use all of the src object to fill attribute text value
    srcVal = srcObj;
    if (srcJpath !== null && 0 < srcJpath.length) {
-      //where jpath null or empty use all of the src object to fill element text value
+      // use jpath target value from srcObj
       srcVal = jsonPath(srcObj, srcJpath, null)[0];
    }
-
    if (srcVal === undefined || srcVal === null) {
       if (debug) {
-         dbgConsole.info("attributeFill: src value not found");
+         dbgConsole.info("attributeFill: src value not found for srcJpath: " +srcJpath
+                            +" and element: " +tgtElement.tagName
+                            +" for attribute: " +tgtAttrName
+                            +" and srcObject:" +srcObj);
       }
+      return;
    } else if (functSelector !== undefined && functSelector !== null
          && 0 < functSelector.length) {
       // do function to format src value
@@ -179,7 +193,7 @@ function getCollectionTemplate(collectionMap, tgtBlock) {
       template = tgtBlock.getElementsByClassName(templateClassList)[0];
       msg = "Class List:" +templateClassList;
    }
-   if (template === undefined) {
+   if (template === undefined && debug) {
       dbgConsole.error("No template found for: " + msg);
    }
    return template;
@@ -192,7 +206,13 @@ function getIdForInstance(instanceHtml, instanceSrc, collectionMap, parentId) {
    const dataSrcIdPath = collectionMap.srcIdPath;
    if (dataSrcIdPath !== undefined && dataSrcIdPath !== null && 0 < dataSrcIdPath.length) {
       //set cloned instance id, to be concat of parentId_classname_srcobjectID
-      dataSrcId = jsonPath(instanceSrc, dataSrcIdPath, null);
+      dataSrcId = jsonPath(instanceSrc, dataSrcIdPath, null)[0];
+      if (dataSrcId === undefined || dataSrcId === null) {
+         dataSrcId = ""; // set to safe value of empty string
+         if (debug) {
+            dbgConsole.warn("no ID  found for jpath:" +dataSrcIdPath +" in instance:" +instanceSrc);
+         }
+      }
    }
 
    const mainClass = instanceHtml.classList[0];
@@ -223,11 +243,13 @@ function collectionInstantiate(collectionMap, tgtBlock, dataSources, instanceDat
    if (instanceDataSrc === undefined || instanceDataSrc === null || 1 > instanceDataSrc.length) {
       const mtCollectionSel = collectionMap.mtCollectionFunctSel;
       if (mtCollectionSel !== undefined && mtCollectionSel !== null && 0 < mtCollectionSel.length) {
+         // handle case of no istance in data src, default is to do nothing which could be valid
          extFunctions.doFunction(mtCollectionSel, instanceDataSrc, tgtBlock);
       }
       return;
    }
 
+   // modify collection start and end index, if vars specified in mapping
    const bounds = calcStartEndIndices(dataSources, collectionMap, instanceDataSrc);
 
    // create clone instances and fill them
