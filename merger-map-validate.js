@@ -13,12 +13,11 @@ import {
    mergerSchema
 } from "./schema/merger-schema.js"
 
-import Ajv from "ajv"
+import Ajv2019 from "ajv"
 
 export function validateMergeMapToSchema(mergerMap) {
    // validate merge map json
-//   const Ajv = window.ajv2019;
-   const ajv = new Ajv({
+   const ajv = new Ajv2019({
       schemas: [mergerSchema]
    });
 
