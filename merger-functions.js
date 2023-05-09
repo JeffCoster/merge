@@ -45,7 +45,7 @@ function calcStartEndIndices(dataSources, collectionMap, srcCollection) {
             start = 0;
          }
       } else if (debug) {
-         console.error("start index variable not found or not a number for jsonpath: " +jsonPath
+         dbgConsole.error("start index variable not found or not a number for jsonpath: " +jsonPath
                       + " and collection: " + collectionMap.dataSrcJpath);
       }
    }
@@ -59,9 +59,14 @@ function calcStartEndIndices(dataSources, collectionMap, srcCollection) {
             end = srcCollection.length;
          }
       } else if (debug) {
-         console.error("end index variable not found or not a number for jsonpath: " +jsonPath
+         dbgConsole.error("end index variable not found or not a number for jsonpath: " +jsonPath
                       + " and collection: " + collectionMap.dataSrcJpath);
       }
+   }
+
+   if (debug) {
+      dbgConsole.info("collection start index=" +start +" end index=" +end
+                   +"for collections size=" +srcCollection.length);
    }
    return {start,end}
 }
@@ -91,6 +96,11 @@ function elementFill(tgtElement, srcObj, srcJpath, functSelector) {
    } else {
       tgtElement.innerHTML = srcVal;
    }
+   if (debug) {
+      dbgConsole.info("Filled Element:" +tgtElement.tagName
+                        +" with source value:" +srcVal
+                        +" and transform function:" +functSelector);
+   }
 }
 
 function attributeFill(tgtElement, tgtAttrName, srcObj, srcJpath, functSelector) {
@@ -118,6 +128,11 @@ function attributeFill(tgtElement, tgtAttrName, srcObj, srcJpath, functSelector)
       tgtElement.setAttribute(tgtAttrName, processedSrcVal);
    } else {
       tgtElement.setAttribute(tgtAttrName, srcVal);
+   }
+   if (debug) {
+      dbgConsole.info("Filled Attribute:" +tgtAttrName +" for element:" +tgtElement.tagName
+                        +" with source value:" +srcVal
+                        +" and transform function:" +functSelector);
    }
 }
 
@@ -155,8 +170,8 @@ function elementFills(src2targetMap, tgtBlock, elementFillArr, dataSources, srcO
          for (var i = 0; i < elementsToDo.length; i = i + 1) {
 
             const tgtElement = tgtBlock.querySelector(elementsToDo[i].elementTgtCss);
-            if (tgtElement === undefined || tgtElement === null) {
-               if (debug) {
+            if (debug) {
+               if (tgtElement === undefined || tgtElement === null) {
                   dbgConsole.error("elementFill error: target element not found for CSS: "
                                     + elementsToDo[i].elementTgtCss);
                }
@@ -193,8 +208,12 @@ function getCollectionTemplate(collectionMap, tgtBlock) {
       template = tgtBlock.getElementsByClassName(templateClassList)[0];
       msg = "Class List:" +templateClassList;
    }
-   if (template === undefined && debug) {
-      dbgConsole.error("No template found for: " + msg);
+   if (debug) {
+      if (template === undefined) {
+         dbgConsole.error("No template found for: " + msg);
+      } else {
+         dbgConsole.info("Processing html template with:" +msg);
+      }
    }
    return template;
 }
@@ -221,6 +240,10 @@ function getIdForInstance(instanceHtml, instanceSrc, collectionMap, parentId) {
       dataSrcId = parentId + "_" + dataSrcId;
    }
    instanceHtml.id = dataSrcId;
+
+   if (debug) {
+      dbgConsole.info("ID to use for instance is:" +dataSrcId +" where parent ID is:" +parentId);
+   }
 
    return dataSrcId;
 }
@@ -291,19 +314,28 @@ export function compose(src2targetMap, dataSources, document) {
    //top level
    const elementFillArr = src2targetMap.elementFills;
    if (elementFillArr !== undefined && elementFillArr !== null && 0 < elementFillArr.length) {
+      if (debug) dbgConsole.info("Processing top level element Fills: for mapping.elementFills[]");
       elementFills(src2targetMap, document, elementFillArr, dataSources, null);
    }
-//   elementFills(src2targetMap, document, "elementFills", dataSources, null);
 
    // start at top level but recursive build lower levels where defined and data src demands
    collectionsArrMap = src2targetMap.collections;
    if (collectionsArrMap !== undefined && collectionsArrMap !== null && 0 < collectionsArrMap.length) {
       // collections to process
       for (i = 0; i < collectionsArrMap.length; i = i + 1) {
+         if (debug) dbgConsole.info("Processing Collection[" +i +"]");
          // each collection map
          dataSrcJpath = collectionsArrMap[i].dataSrcJpath;
          instanceDataSource = jsonPath(dataSources, dataSrcJpath, null)[0];
 
+         if (instanceDataSource === null || instanceDataSource === undefined) {
+            if (debug) {
+               dbgConsole.info("Processing Collection[" +i
+                                     +"] but dataSource not found for jpath:" +dataSrcJpath);
+            }
+         } else if (debug) {
+            dbgConsole.info("Processing Collection[" +i +"] with dataSource:" +dataSrcJpath);
+         }
          collectionInstantiate(collectionsArrMap[i], document, dataSources, instanceDataSource, null);
       }
    }
