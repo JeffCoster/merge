@@ -81,5 +81,5 @@ See merger-express project for examples of Merger rendering with Express on Node
 - List of Products: see https://jeffcoster.github.io/merger/ex1/product-lister-template.html
 - Tree of Categories (Taxonomy): see https://jeffcoster.github.io/merger/ex2/taxonomy.html
 
-For full documentation, in addition to this readme: see https://jeffcoster.github.io/merger/
+For full documentation, including explanation of the examples: see https://jeffcoster.github.io/merger/
 
