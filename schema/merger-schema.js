@@ -2,6 +2,7 @@
  *
  * Copyright (c) 20023 Jeff Coster
  * Licensed under the MIT (MIT-LICENSE.txt) licence.
+ * see https://github.com/JeffCoster/merger
  */
 
 export const mergerSchema = {

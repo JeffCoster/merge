@@ -1,27 +1,30 @@
-// validate mergeMap is valid json using merge schema
+/* Merger
+ *
+ * Copyright (c) 20023 Jeff Coster
+ * Licensed under the MIT (MIT-LICENSE.txt) licence.
+ * see https://github.com/JeffCoster/merger
+ */
+
+/*
+  validate mergeMap is valid json using merger schema
+*/
 
 import {
-   mergeSchema
-} from "./schema/merge-schema.js"
-import {
-   elementFillsSchema
-} from "./schema/element-fills-schema.js"
-import {
-   collectionsSchema
-} from "./schema/collections-schema.js"
+   mergerSchema
+} from "./schema/merger-schema.js"
 
 import Ajv from "ajv"
 
-export function validateMergeMapToSchema(mergeMap) {
+export function validateMergeMapToSchema(mergerMap) {
    // validate merge map json
-//   const Ajv = window.ajv7;
+//   const Ajv = window.ajv2019;
    const ajv = new Ajv({
-      schemas: [mergeSchema, elementFillsSchema, collectionsSchema]
+      schemas: [mergerSchema]
    });
 
-   const validate = ajv.compile(mergeSchema);
+   const validate = ajv.compile(mergerSchema);
 
-   const valid = validate(mergeMap);
+   const valid = validate(mergerMap);
    if (!valid) {
       console.log(validate.errors);
    } else {
