@@ -15,21 +15,21 @@
    },
    "repository": {
       "type": "git",
-      "url": "git+https://github.com/JeffCoster/merge.git"
+      "url": "https://github.com/JeffCoster/merger"
    },
    "keywords": [
       "merger",
-      "merge",
       "html",
       "dynamic",
-      "compose"
+      "compose",
+      "render"
    ],
    "author": "Jeff Coster",
    "license": "MIT",
    "bugs": {
-      "url": "https://github.com/JeffCoster/merge/issues"
+      "url": "https://github.com/JeffCoster/merger/issues"
    },
-   "homepage": "https://github.com/JeffCoster/merge#readme",
+   "homepage": "https://github.com/JeffCoster/merger#readme",
    "eslintConfig": {
       "globals": {
          "Vue": true

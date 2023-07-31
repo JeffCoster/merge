@@ -100,7 +100,7 @@ export const mergerMap = {
                                  "elementTgtCss": "input",
                                  "itsAttributes": [
                                     {
-                                       "tgtAttrName": "input",
+                                       "tgtAttrName": "value",
                                        "srcJpath": ""
                                     },
                                     {
