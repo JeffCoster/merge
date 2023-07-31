@@ -69,5 +69,9 @@ Note: Similar for Node JS
 >- generally, this would only be needed in the development of the mapping
 >- errors detected are output in the browser console
 
-For full documentation, in addition to this readme: see https://jeffcoster.github.io/merger/
+## Examples (Rendered in Browser):
+- List of Products: see https://jeffcoster.github.io/merger/ex1/product-lister-template.html
+- Tree of Categories (Taxonomy): see https://jeffcoster.github.io/merger/ex2/taxonomy.html
+
+For full documentation, including explanations of the examples: see https://jeffcoster.github.io/merger/
 
