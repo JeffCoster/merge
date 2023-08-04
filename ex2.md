@@ -1,7 +1,6 @@
 ## Example 2 Taxonomy Tree
 
-It is recommended to explore example 1 first, as the documentation for that is more complete. 
-This example does not detail some of the priciples already covered in example 1.
+It is recommended to explore example 1 first, as the documentation for this example does not detail some of the priciples already covered in example 1.
 
 This example renders a hierachy of product categories, using some source data derived from the 
 openly availaible Google Merchandising Taxonomy. The purpose of this example, is to show how merger can handle a deep hierachy, 
@@ -9,12 +8,14 @@ in the html, and the source data structure. The example taxonomy is of varying d
 
 This is how the example displays, with all tree branches in an open state:
 
-<img src="ex2/content/ex2_1.png" width="20%" height="20%" > Part of Google Merchandising Taxonomy </img>
+Part of the Google Merchandising Taxonomy
+<img src="ex2/content/ex2_1.png" width="20%" height="20%" />
 
 ### Ex2 Step1: Creating the html Template
 
 For this example a readily available open source html tree example was obtained from [I am Kate](https://iamkate.com/code/tree-views/).
-This is a good example of a pure html and CSS tree, and as available from that site, it has static content for two levels of tree.
+This is a good example of a pure html and CSS tree. 
+The example from that site, it has embedded static content for two levels of tree.
 
 In this step of the example:
 
@@ -25,7 +26,7 @@ In this step of the example:
 >>- the six levels, being enough to deal with the maximum depth of hierarchy 
 >- the CSS was left unchanged
 >- note that the static example, before any changes, had a slightly different html for the last node of the tree
->>- to deal with this in merger, required a custom function to recognise that the last node had been reached and modify the html accordingly
+>>- to deal with this in merger, a custom function was developed which recognises when the last node in a branch has beed reached and modifies the html to be a last brach node
 >>- this is explained in more detail in the custom function section of this example
 
 
@@ -71,8 +72,8 @@ and the boiler plate javascript for merger.
 > Points to note:
 >- Each unique top level category, level 1,  forms a branch of the tree, where the level1 template and its children are replicated
 >- the next level, level 2 children of that level 1, form a child leaf node of level 1, which is the level 2 template
->- and so on, for level 3 and on, until there are no more child leaf nodes for the branch
->- at that point, when the dynamic source data has no more children for the branch, the custom function will form the last leaf node
+>- and so on, for level 3 and on, until there are no more child leaf nodes in the branch
+>- at that point, i.e. when the dynamic source data has no more children for the branch, the custom function will form the last leaf node
 >- merger will then start processing the next branch, with the next unique top level 1 category (node)
 
 ### Ex2 Step2 Set up Dynamic Source Data
@@ -83,9 +84,9 @@ For this example though, as in Ex 1, the object graph is just a const within a s
 
 The taxonomy data was first obtained as a csv from Google using the links on this page [merchant taxonomy](https://support.google.com/merchants/answer/6324436?hl=en-GB)
 
-This example, only needed a few branches of that data so a few were retained and the rest discarded.
+This example, only needed a few branches of that data so a they were retained and the rest discarded.
 
-The following is an example snippet of a few rows:
+The following is an example snippet of the resulting rows:
 
 <img src="ex2/content/ex2_csv.png" width="100%" height="20%" > </img>
 
@@ -197,7 +198,7 @@ export const taxonomy = [
 ```
 
 > The full source data for this example resides in ex2/googleTaxonomy.js. That file also has some global content, 
-for title and header, which work in the same way as example 1. Data source registration is also composed in the same way to example 1, as follows:
+for title and header, which work in the same way as example 1. Data source registration is also composed in the same way as example 1, i.e.:
 
 ```json
 import {taxonomy} from "./googleTaxonomy.js"
