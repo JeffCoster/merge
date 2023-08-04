@@ -225,7 +225,7 @@ but for the purpose of the example it is already a named const.
 
 Snippet for the first mapping step is:
 
-```JavaScript
+```JSON
 export const mergerMap = {
    "elementFills": [
       {
