@@ -29,7 +29,7 @@ by having the static prototype and turning that into a template.
 
 The following shows the prototype html body; with embedded content:
 
-```html
+```HTML
 <body>
    <p id="products-header">Product Lister Page</p>
    <img id="products-header-img" width="100px" height="100px" src="https://dummyjson.com/image/i/products/59/thumbnail.jpg" />
@@ -90,7 +90,7 @@ The following shows the prototype html body; with embedded content:
 ```
 Removing the static prototype content, and collapsing the repeated product and size html into section templates, gives:
 
-```html
+```HTML
 <body>
    <p id="products-header"></p>
    <img id="products-header-img" width="100px" height="100px" src="" />
@@ -151,7 +151,7 @@ There is also an object, 'globalContent', listing some name value pairs, which a
 
 The following is a snippet of the file, product-list-shoes.js, which details the globalContent and teo of the products:
 
-```js
+```JavaScript
 export const globalContent = {
    "pageTitle":"Product Lister",
    "pageImg":"https://dummyjson.com/image/i/products/57/1.jpg",
@@ -202,7 +202,7 @@ Merger is configurable to use any types, names and quantity of data objects, usi
 objects. Each separate source object graph needs to be registered. To do this there is a standard object name dataSources, which is 
 set up for this example as follows:
 
-```js
+```JavaScript
 import {prods} from "./product-list-shoes.js"
 import {globalContent} from "./product-list-shoes.js"
 
@@ -241,7 +241,7 @@ but for the purpose of the example it is already a named const.
 The first step, the top level, is the simplest; as it just involves mapping source data to elements and attribute values.
 The following snippet shows this part of the mapping:
 
-```json
+```JavaScript
 export const mergerMap = {
    "elementFills": [
       {
@@ -303,7 +303,7 @@ will only use the first one, as it targets a a single element and its attributes
 
 The second step in the mapping task, mapping the product template html to its source objects, is shown in the following snippet:
 
-```json
+```JSON
   "collections": [
       {
          "dataSrcJpath": "productList",
@@ -372,7 +372,7 @@ corresponding source object values.
 in this case 'product', append an underscore, then end with the source object id
 >>- so in this example, for a product with source id of 60 the snippet of target html of product instance would be:
 
-```html
+```HTML
 <div class="product" id="product_50">
    // ...
 </div>
@@ -382,7 +382,7 @@ in this case 'product', append an underscore, then end with the source object id
 The third and last step of this examples mapping task, maps source (product) sizes to html product instance sizes. 
 The following json mapping snippet shows this:
 
-```json
+```JSON
   "collections": [
       {
          "dataSrcJpath": "productList",
@@ -434,7 +434,7 @@ The following json mapping snippet shows this:
 of the size instead, e.g. 7
 >>- an example target ID for the sizes, once the parent ID is prepended, would be like this in the html:
 
-```html
+```HTML
    <td class="attribute-size" id="product_60_attribute-size_10">
 ```
 
@@ -444,7 +444,7 @@ this approach is needed, as in this case the object in the sizes array is just a
 >>- a functionSel of "prepend" to ensure that the source content is prepended to the existing contents of the template, the sizes 
 template being as follows, where the size needs to be added before the br tag
 
-```html
+```HTML
 <td class="attribute-size template">
    <label><br>
          <input type="radio" name="size-" value=""><br>
@@ -459,7 +459,7 @@ e.g. name="size-10"
 
 So the end result of merger processing the collection mapping, results in the html for a product instance being like:
 
-```html
+```HTML
 <div class="product" id="product_59">
          <a href="">
             <img class="thumbnail" width="60px" height="60px" src="https://dummyjson.com/image/i/products/59/thumbnail.jpg" alt="https://dummyjson.com/image/i/products/59/thumbnail.jpg">
