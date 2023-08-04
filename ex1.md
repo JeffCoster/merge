@@ -29,7 +29,7 @@ by having the static prototype and turning that into a template.
 
 The following shows the prototype html body; with embedded content:
 
-```HTML
+```html
 <body>
    <p id="products-header">Product Lister Page</p>
    <img id="products-header-img" width="100px" height="100px" src="https://dummyjson.com/image/i/products/59/thumbnail.jpg" />
@@ -86,7 +86,6 @@ The following shows the prototype html body; with embedded content:
       </div>
    </div>
 </body>
-
 ```
 Removing the static prototype content, and collapsing the repeated product and size html into section templates, gives:
 
