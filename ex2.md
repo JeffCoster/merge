@@ -35,7 +35,7 @@ The following snippet, shows the html template after this task; limited to three
 The full html resides in the file ex2/content/taxonomy.html, which also includs the CSS, 
 and the boiler plate javascript for merger.
 
-```html
+```HTML
 <body>
    <ul class="tree">
       <li>
@@ -97,7 +97,7 @@ The following is an example snippet of the resulting rows:
 This data was converted to json using an  online utility. That left a "flat" representation, where each row of the csv 
 forms an object with the other columns fields of the same row as data members, for example:
 
-```json
+```JSON
 {
       "id": 1,
       "level1": "Animals & Pet Supplies"
@@ -129,7 +129,7 @@ a section of the hierarchy was manually transposed to be hierarhical. On a real 
 
 The following snippet shows the hierachical form of the source data, as required by merger and this example: 
 
-```js
+```JavaScript
 export const taxonomy = [
    {
       "id": 1,
@@ -201,7 +201,7 @@ export const taxonomy = [
 > The full source data for this example resides in ex2/googleTaxonomy.js. That file also has some global content, 
 for title and header, which work in the same way as example 1. Data source registration is also composed in the same way as example 1, i.e.:
 
-```json
+```JavaScript
 import {taxonomy} from "./googleTaxonomy.js"
 import {globalContent} from "./googleTaxonomy.js"
 
@@ -225,7 +225,7 @@ but for the purpose of the example it is already a named const.
 
 Snippet for the first mapping step is:
 
-```json
+```JavaScript
 export const mergerMap = {
    "elementFills": [
       {
@@ -251,7 +251,7 @@ source object arrays.
 
 This is shown in the following snippet:
 
-```json
+```JSON
 "collections": [
       {
          "dataSrcJpath": "taxonomy",
