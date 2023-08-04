@@ -198,7 +198,7 @@ export const prods = {
       },
 ```
 
-Merger is configurable to use any types, names and quantity of data objects, so it uses **jsonPath** to link to the required
+Merger is configurable to use any types, names and quantity of data objects, using **jsonPath** to link to the required
 objects. Each separate source object graph needs to be registered. To do this there is a standard object name dataSources, which is 
 set up for this example as follows:
 
@@ -216,10 +216,9 @@ dataSources.minProducts = 2;
 dataSources.maxProducts = 3;
 ```
 
-How the merger configuration mapping uses **jpath** to obtain the source objects, will become apparent in the following section on configuration 
-of this example.
+How merger configuration mapping uses **jpath** to obtain the source objects, will become apparent in the following section.
 
-> The minProducts, and maxProducts will be used in this example to show how merger can be configured to pick a start and end index
+> The minProducts, and maxProducts are used in this example to show how merger can be configured to pick a start and end index
 in a collection of objects. The mock data has 5 products, and we are configuring to start rendering on the second and end on the third.
 
 ### Ex1 Step 3: Configuring (Mapping) of Source Data to html
@@ -230,7 +229,7 @@ There are three levels of html that need to be mapped.
 
 1. Top (Document Level) this is just mapping elements and their attributes, before any instantion of section templates.
 
-2. The Product Template, to map the collection of source product objects for replication, filling, and insertion of product instances.
+2. The Product Section Template, to map the collection of source product objects for replication, filling, and insertion of product instances.
 
 3. Within the Product Template, the Size Template, requires mapping to the size data, for replication, filling, and insertion of the sizes 
 for each product
@@ -284,7 +283,7 @@ export const mergerMap = {
 ```
 
 >- elementFills is an object containing an array of objects, each object contains element to source mappings for a single data source
->>- in the example, there are two of these objects, for data sources globals, and productList
+>>- in the example, there are two of these objects, one for data source globals, and one for productList
 >>- the dataSrcJpath value is the json path to the required data source within dataSources, i.e dataSources.globals, 
 and dataSources.productList
 
@@ -351,23 +350,23 @@ The second step in the mapping task, mapping the product template html to its so
             ],
 ```
 
->- collections is an object containing an array of objects, each object contains element to source mappings for a single data source
->>- in the example, there is one of these objects, for data source: productList, within this:
+>- collections is an object containing an array of objects, each object contains section template to source mappings for a single data source
+>>- in the example, there is one of these collection objects, for data source: productList, within this:
 >>- the dataSrcJpath value is the json path to this data source within dataSources, i.e dataSources.productList
->>- the templateId identifies the id of the target product template element
+>>- the templateId identifies the id of the target product section template element
 >>- the minProducts and maxProducts are json paths to the variables containing start and end bounds for the displayed 
 list of products, i.e. dataSources.minProducts, and dataSources.maxProducts 
 
->- for this collection, the instanceFill has an elementFills object to map elements of each instantiated template, to the 
-corresponding object values. 
+>- for this collection, the instanceFill has an elementFills object to map elements of each instantiated template, to their 
+corresponding source object values. 
 >>- so instance [n] of the template maps to source object [n] of its list, but it is only necessary to map one instance to one source object
->>- the functionSel "escape" is used to escape html special chars in the title
+>>- the functionSel "escape" is used to escape html special chars in the product title
 >>- the functionSel "priceFormat" is used to format the price, in this example it just prepends a $ 
 >>- all other elementFills aspects have already been explained
 
 >- the srcIdPath, for each collection, deserves explanation
 >>- it is the jsonPath, relative to the source object, of the unique Id to use to help form a unique id in the target html page/partial
->>- so is this example, each product in the source list has an 'id' field, with values that are unique product identifiers
+>>- in this example, each product in the source list has an 'id' field, with values that are unique product identifiers
 >>- the srcIdPath= 'id' instructs merger to use this when forming the product Ids
 >>- at runtime the default behaviour, for forming the target html instance id is: use the first class declared for a template; 
 in this case 'product', append an underscore, then end with the source object id
@@ -458,7 +457,7 @@ template being as follows, where the size needs to be added before the br tag
 >>- for attribute name: a functionSel of "append", meaning append the source content, to existing content of the name attribute, 
 e.g. name="size-10"
 
-So the end result of all collection mapping, results in the html for a product instance being like:
+So the end result of merger processing the collection mapping, results in the html for a product instance being like:
 
 ```html
 <div class="product" id="product_59">
