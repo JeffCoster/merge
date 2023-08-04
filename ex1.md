@@ -89,7 +89,7 @@ The following shows the prototype html body; with embedded content:
 ```
 Removing the static prototype content, and collapsing the repeated product and size html into section templates, gives:
 
-```HTML
+```html
 <body>
    <p id="products-header"></p>
    <img id="products-header-img" width="100px" height="100px" src="" />
@@ -371,7 +371,7 @@ corresponding source object values.
 in this case 'product', append an underscore, then end with the source object id
 >>- so in this example, for a product with source id of 60 the snippet of target html of product instance would be:
 
-```HTML
+```html
 <div class="product" id="product_50">
    // ...
 </div>
@@ -433,7 +433,7 @@ The following json mapping snippet shows this:
 of the size instead, e.g. 7
 >>- an example target ID for the sizes, once the parent ID is prepended, would be like this in the html:
 
-```HTML
+```html
    <td class="attribute-size" id="product_60_attribute-size_10">
 ```
 
@@ -443,7 +443,7 @@ this approach is needed, as in this case the object in the sizes array is just a
 >>- a functionSel of "prepend" to ensure that the source content is prepended to the existing contents of the template, the sizes 
 template being as follows, where the size needs to be added before the br tag
 
-```HTML
+```html
 <td class="attribute-size template">
    <label><br>
          <input type="radio" name="size-" value=""><br>
@@ -458,7 +458,7 @@ e.g. name="size-10"
 
 So the end result of merger processing the collection mapping, results in the html for a product instance being like:
 
-```HTML
+```html
 <div class="product" id="product_59">
          <a href="">
             <img class="thumbnail" width="60px" height="60px" src="https://dummyjson.com/image/i/products/59/thumbnail.jpg" alt="https://dummyjson.com/image/i/products/59/thumbnail.jpg">
