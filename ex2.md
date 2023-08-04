@@ -9,6 +9,7 @@ in the html, and the source data structure. The example taxonomy is of varying d
 This is how the example displays, with all tree branches in an open state:
 
 Part of the Google Merchandising Taxonomy
+
 <img src="ex2/content/ex2_1.png" width="20%" height="20%" />
 
 ### Ex2 Step1: Creating the html Template
