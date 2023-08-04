@@ -465,7 +465,7 @@ So the end result of merger processing the collection mapping, results in the ht
             <img class="thumbnail" width="60px" height="60px" src="https://dummyjson.com/image/i/products/59/thumbnail.jpg" alt="https://dummyjson.com/image/i/products/59/thumbnail.jpg">
          </a><br>
          <span class="product-id">59</span><br>
-         <span class="product-title">Spring &amp; ' &lt; &gt; summer shoes</span><br>
+         <span class="product-title">Spring &amp; summer shoes</span><br>
          <span class="price">$59</span><br>
          <form class="attribute-sizes" name="sizes">
             <table>
