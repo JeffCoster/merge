@@ -13,6 +13,10 @@ import {jsonPath} from "./jsonpath.js"
 
 import {extFunctions} from "./merger-extensions.js"
 
+declare global {
+   var debug: boolean;
+ }
+
 export var dbgConsole = {
    info : function (str) {
       "use strict";
