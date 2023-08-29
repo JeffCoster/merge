@@ -9,6 +9,7 @@
  * see https://github.com/JeffCoster/merger
  */
 
+import { str } from "ajv";
 import {jsonPath} from "./jsonpath.js"
 
 import {extFunctions} from "./merger-extensions.js"
@@ -77,14 +78,16 @@ function calcStartEndIndices(dataSources, collectionMap, srcCollection) {
 
 function elementFill(tgtElement, srcObj, srcJpath, functSelector) {
    "use strict";
-   var srcVal;
-
-   //where jpath null or empty use all of the src object to fill element text value
-   srcVal = srcObj;
+   var srcVal: any;
+   var newContent: any;
+   const oldContent = tgtElement.innerHTML;
 
    if (srcJpath !== null && 0 < srcJpath.length) {
       // use jpath target value from srcObj
       srcVal = jsonPath(srcObj, srcJpath, null)[0];
+   } else {
+      //where jpath null or empty use all of the src object to fill attribute text value
+      srcVal = srcObj;
    }
    if (srcVal === undefined || srcVal === null) {
       if (debug) {
@@ -96,26 +99,30 @@ function elementFill(tgtElement, srcObj, srcJpath, functSelector) {
    } else if (functSelector !== undefined && functSelector !== null
          && 0 < functSelector.length) {
          // do function to format src value
-      tgtElement.innerHTML = extFunctions.doFunction(functSelector, srcVal, tgtElement.innerHTML);
+         tgtElement.innerHTML = extFunctions.doFunction(functSelector, srcVal, oldContent);
    } else {
       tgtElement.innerHTML = srcVal;
    }
    if (debug) {
-      dbgConsole.info("Filled Element:" +tgtElement.tagName
-                        +" with source value:" +srcVal
-                        +" and transform function:" +functSelector);
+      dbgConsole.info("Filled Element[" +tgtElement.tagName +" " +tgtElement.id
+                        +"]\n\t with new content[" +tgtElement.innerHTML
+                        +"]\n\t using source value[" +srcVal
+                        +"]\n\t where originalContent was[" +oldContent
+                        +"]\n\t using transform function[" +functSelector +"]") ;
    }
 }
 
 function attributeFill(tgtElement, tgtAttrName, srcObj, srcJpath, functSelector) {
    "use strict";
    var srcVal;
+   const oldContent = tgtElement.getAttribute(tgtAttrName);
 
-   //where jpath null or empty use all of the src object to fill attribute text value
-   srcVal = srcObj;
    if (srcJpath !== null && 0 < srcJpath.length) {
       // use jpath target value from srcObj
       srcVal = jsonPath(srcObj, srcJpath, null)[0];
+   } else {
+      //where jpath null or empty use all of the src object to fill attribute text value
+      srcVal = srcObj;
    }
    if (srcVal === undefined || srcVal === null) {
       if (debug) {
@@ -127,16 +134,18 @@ function attributeFill(tgtElement, tgtAttrName, srcObj, srcJpath, functSelector)
       return;
    } else if (functSelector !== undefined && functSelector !== null
          && 0 < functSelector.length) {
-      // do function to format src value
-      const processedSrcVal = extFunctions.doFunction(functSelector, srcVal, tgtElement.getAttribute(tgtAttrName));
-      tgtElement.setAttribute(tgtAttrName, processedSrcVal);
+      // do function to format src value 
+      tgtElement.setAttribute(tgtAttrName, (extFunctions.doFunction(functSelector, srcVal, oldContent)));
    } else {
       tgtElement.setAttribute(tgtAttrName, srcVal);
    }
    if (debug) {
-      dbgConsole.info("Filled Attribute:" +tgtAttrName +" for element:" +tgtElement.tagName
-                        +" with source value:" +srcVal
-                        +" and transform function:" +functSelector);
+      dbgConsole.info("Filled Attribute[" +tgtAttrName 
+                        +"]\n\t for element[" +tgtElement.tagName +" " +tgtElement.id
+                        +"]\n\t with new content[" +tgtElement.getAttribute(tgtAttrName)
+                        +"]\n\t using source value[" +srcVal
+                        +"]\n\t where originalContent was[" +oldContent
+                        +"]\n\t using transform function[" +functSelector +"]");
    }
 }
 
