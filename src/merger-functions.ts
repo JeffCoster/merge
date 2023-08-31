@@ -9,7 +9,6 @@
  * see https://github.com/JeffCoster/merger
  */
 
-import { str } from "ajv";
 import {jsonPath} from "./jsonpath.js"
 
 import {extFunctions} from "./merger-extensions.js"
