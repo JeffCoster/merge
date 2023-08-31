@@ -35,8 +35,7 @@ export const extFunctions = {
 
    escapeHtml: function(escapeMe)
    {
-      return escapeMe
-         .replace(/&/g, "&amp;")
+      return escapeMe.replace(/&/g, "&amp;")
          .replace(/</g, "&lt;")
          .replace(/>/g, "&gt;")
          .replace(/"/g, "&quot;")
