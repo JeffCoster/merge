@@ -1,21 +1,14 @@
-/* Merger
- *
- * Copyright (c) 20023 Jeff Coster
- * Licensed under the MIT (MIT-LICENSE.txt) licence.
- * see https://github.com/JeffCoster/merger
- */
-
-export const mergerSchema = {
+{
    "$schema": "https://json-schema.org/draft/2019-09/schema",
    "$id": "merger-schema.json",
    "title": "Merge Mappings",
-   "description": "Mapping of Data Source values to html content positiions",
+   "description": "Merger Schema for Data Source values to html content positiions, Copyright (c) 20023 Jeff Coster, Licensed under the MIT (MIT-LICENSE.txt), see https://github.com/JeffCoster/mergerMapping",
    "type": "object",
    "properties": {
       "templatePath": {
         "description": "Path to the static html template with mark up for the page or partial. Optional, as usually only needed by Node and not by Browser.",
         "type": "string"
-      },
+      }
    },
    "anyOf": [
       {
@@ -169,4 +162,4 @@ export const mergerSchema = {
          "uniqueItems": true
       }
    }
-};
+}
