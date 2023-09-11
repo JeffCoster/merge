@@ -8,7 +8,9 @@
       "schema": "schema"
    },
    "dependencies": {
-      "ajv": "^8.12.0"
+      "ajv": "^8.12.0",
+      "fs": "^0.0.1-security",
+      "jsdom": "^22.1.0"
    },
    "scripts": {
       "test": "echo \"Error: no test specified\" && exit 1"
@@ -60,5 +62,8 @@
             "double"
          ]
       }
+   },
+   "devDependencies": {
+      "@types/node": "^20.6.0"
    }
 }
