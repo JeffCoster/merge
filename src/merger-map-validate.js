@@ -13,8 +13,14 @@ import {
    mergerSchema
 } from "../schema/merger-schema.js"
 
-//import Ajv, {JSONSchemaType} from "ajv"
+//import Ajv from "ajv"
 import Ajv2019 from "ajv"
+//import _Ajv2019 from "ajv";
+
+//import Ajv, {JSONSchemaType} from "ajv"
+//import _Ajv from "ajv";
+
+// const Ajv = _Ajv as unknown as typeof _Ajv.default;
 
 export function validateMergeMapToSchema(mergerMap) {
    // validate merge map json

@@ -10,7 +10,6 @@
  */
 
 import {jsonPath} from "./jsonpath.js"
-
 import {extFunctions} from "./merger-extensions.js"
 
 declare global {
@@ -319,9 +318,13 @@ function collectionInstantiate(collectionMap, tgtBlock, dataSources, instanceDat
 }
 
 /* exported compose */
-export function compose(src2targetMap, dataSources, document) {
+export function compose(src2targetMap, dataSources, document, customFunctions) {
    "use strict";
    var instanceDataSource, collectionsArrMap, i, dataSrcJpath;
+
+   if (customFunctions) {
+      extFunctions.customFunctions = customFunctions;
+   }
 
    //top level
    const elementFillArr = src2targetMap.elementFills;

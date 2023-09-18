@@ -11,8 +11,8 @@
  * Merger as template engine for node js express server, which prefers to import an __express function.
  */
 
-import {compose} from "./merger-functions.js"
-import jsdom from "jsdom";
+import {compose} from "./merger-functions.js";
+import {JSDOM} from "jsdom";
 import * as fs from "fs";
 import { validateMergeMapToSchema } from "./merger-map-validate.js";
 
@@ -20,17 +20,21 @@ export function __express(filePath: string, options: any, callback: (msg: any, r
 
     fs.readFile(filePath, (err, mappingJson) => {
         if (err) return callback(err);
-        console.log(mappingJson);
+
+        //TODO make robust and add debug for all 4 statements
         const mergeMap4View = JSON.parse(mappingJson.toString());
         const htmlTemplatePath = mergeMap4View.templatePath;
+        const dataSources =  options.dataSources4View;
+        const customFunctions = options.customFunctions;
+
         
-        const {JSDOM} = jsdom;
+        //const {JSDOM} = jsdom;
         var dom = JSDOM.fromFile(htmlTemplatePath, {
         includeNodeLocations: true
         }).then(dom => {
             //validateMergeMapToSchema(mergeMap4View);
             var document = dom.window.document;
-            compose(mergeMap4View, options.dataSources, document);
+            compose(mergeMap4View, dataSources, document, customFunctions);
  
             // regression test
             // TODO regressionTest(dom, baselineRenderedHtmlPath)
