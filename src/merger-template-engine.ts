@@ -23,9 +23,18 @@ export function __express(filePath: string, options: any, callback: (msg: any, r
 
         //TODO make robust and add debug for all 4 statements
         const mergeMap4View = JSON.parse(mappingJson.toString());
+        if (!mergeMap4View) {
+            return callback("invalid Json mapping");
+        }
         const htmlTemplatePath = mergeMap4View.templatePath;
+        if (!htmlTemplatePath) {
+            return callback("no valid html template path obtained");
+        }
         const dataSources =  options.dataSources4View;
-        const customFunctions = options.customFunctions;
+        if (!dataSources) {
+            return callback("no dataSources found");
+        }
+        const customFunctions = options.customFunctions; // undefined is valid case for no custom functions
 
         
         //const {JSDOM} = jsdom;
