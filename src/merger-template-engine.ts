@@ -21,7 +21,6 @@ export function __express(filePath: string, options: any, callback: (msg: any, r
     fs.readFile(filePath, (err, mappingJson) => {
         if (err) return callback(err);
 
-        //TODO make robust and add debug for all 4 statements
         const mergeMap4View = JSON.parse(mappingJson.toString());
         if (!mergeMap4View) {
             return callback("invalid Json mapping");
