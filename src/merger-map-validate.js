@@ -14,7 +14,7 @@ import {
 } from "../schema/merger-schema.js"
 
 //import Ajv from "ajv"
-import Ajv2019 from "ajv"
+import Ajv2019 from "ajv/dist/2019.js"
 //import _Ajv2019 from "ajv";
 
 //import Ajv, {JSONSchemaType} from "ajv"
@@ -24,6 +24,7 @@ import Ajv2019 from "ajv"
 
 export function validateMergeMapToSchema(mergerMap) {
    // validate merge map json
+   try {
    const ajv = new Ajv2019({
       schemas: [mergerSchema]
    });
@@ -32,8 +33,11 @@ export function validateMergeMapToSchema(mergerMap) {
 
    const valid = validate(mergerMap);
    if (!valid) {
-      console.log(validate.errors);
+      console.error(validate.errors);
    } else {
       console.log("schema is valid");
+   }
+   } catch (e) {
+      console.error("Program Exception while validating schema: " +e);
    }
 }

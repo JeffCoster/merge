@@ -9,7 +9,7 @@
  * see https://github.com/JeffCoster/merger
  */
 
-/* Exports for browser (compose), express as template engine __express, and for custome function extensions
+/* Exports for browser (compose), express as template engine __express, and for custom function extensions
 */
 
 export * from "./merger-functions.js"
