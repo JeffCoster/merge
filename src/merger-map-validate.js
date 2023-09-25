@@ -35,7 +35,7 @@ export function validateMergeMapToSchema(mergerMap) {
    if (!valid) {
       console.error(validate.errors);
    } else {
-      console.log("schema is valid");
+      console.log("merger map validates with merger schema");
    }
    } catch (e) {
       console.error("Program Exception while validating schema: " +e);
