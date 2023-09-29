@@ -43,6 +43,9 @@
       "url": "https://github.com/JeffCoster/merger/issues"
    },
    "homepage": "https://github.com/JeffCoster/merger#readme",
+   "browser": {
+      "./built/esm/src/index.js": "./built/esm/src/index.js"
+   },
    "eslintConfig": {
       "globals": {
          "Vue": true
