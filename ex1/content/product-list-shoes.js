@@ -62,7 +62,7 @@ export const prods = {
       },
       {
          "id": 59,
-         "title": "Spring & ' < > summer shoes",
+         "title": "Spring quote[\'] ampersand[&] double quote[\"] LT[<] GT[>] backslash[\\] summer shoes",
          "description": "Comfortable stretch cloth, lightweight body; ,rubber sole, anti-skid wear;",
          "price": 20,
          "discountPercentage": 8.71,
