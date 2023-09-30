@@ -2,16 +2,29 @@
    "name": "merger",
    "version": "0.1.0-beta.0",
    "description": "compose dynamic html pages by mapping source data to an html template",
-   "main": "merger-functions.js",
+   "main": "built/cjs/src/index.js",
    "type": "module",
    "directories": {
       "schema": "schema"
    },
+   "exports": {
+      ".": {
+         "types": "./built/types/src/index.d.ts",
+         "require": "./built/cjs/src/index.js",
+         "import": "./built/esm/src/index.js",
+         "default": "./built/esm/src/index.js"
+      }
+   },
    "dependencies": {
-      "ajv": "^8.12.0"
+      "ajv": "^8.12.0",
+      "fs": "^0.0.1-security",
+      "jsdom": "^22.1.0"
    },
    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1"
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
+      "build:clean": "rm -rf ./built",
+      "build": "npm-run-all build:clean compile && node ./scripts/prepare-package-json"
    },
    "repository": {
       "type": "git",
@@ -30,6 +43,9 @@
       "url": "https://github.com/JeffCoster/merger/issues"
    },
    "homepage": "https://github.com/JeffCoster/merger#readme",
+   "browser": {
+      "./built/esm/src/index.js": "./built/esm/src/index.js"
+   },
    "eslintConfig": {
       "globals": {
          "Vue": true
@@ -60,5 +76,9 @@
             "double"
          ]
       }
+   },
+   "devDependencies": {
+      "@types/node": "^20.6.0",
+      "@types/jsdom": "^21.1.3"
    }
 }
