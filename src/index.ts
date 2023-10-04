@@ -15,3 +15,4 @@
 export * from "./merger-functions.js" // just for dbgConsole
 export * from "./merger-template-engine.js"
 export * from "./merger-extensions.js"
+export * from "./test.js"
