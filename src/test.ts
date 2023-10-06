@@ -28,8 +28,8 @@ export function test(renderedHtml: string, baselineHtmlFilePath: string, callbac
     const options = {
         stripSpaces: true,
         compareComments: false,
-        collapseSpaces: true,
-        normalizeNewlines: true
+        collapseSpaces: false,
+        normalizeNewlines: false
     };
     
     var baselineDom = JSDOM.fromFile(baselineHtmlFilePath, {
