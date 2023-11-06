@@ -1,0 +1,1 @@
+npm exec merger-test -- ~/vscode/express-merger/examples/simpleProductList/pl-merger-map.merger ~/vscode/express-merger/examples/test/ex1baseline.html /Users/jeff/vscode/merger/ex1/content/data-sources.js --chars-around-diff=5 -c /Users/jeff/vscode/merger/ex1/custom-functions.js

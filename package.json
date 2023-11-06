@@ -4,9 +4,6 @@
    "description": "compose dynamic html pages by mapping source data to an html template",
    "main": "built/ejs/src/index.js",
    "type": "module",
-   "directories": {
-      "schema": "schema"
-   },
    "bin": {
       "merger-test": "bin/cli-merger.js"
    },
@@ -24,7 +21,7 @@
       "jsdom": "^22.1.0"
    },
    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
+      "test": "scripts/regression-tests.npm",
       "compile": "tsc -b ./tsconfig.cjs.json ./tsconfig.esm.json ./tsconfig.types.json",
       "build:clean": "rm -rf ./built",
       "build": "npm-run-all build:clean compile && node ./scripts/prepare-package-json"
