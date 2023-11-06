@@ -5,9 +5,9 @@
 // The purpose of this file is to allow custom functions to be added to Merger, by anyone using Merger
 //
 
-import * as mergerExp from "../built/esm/src/browser.js"
+//import * as mergerExp from "../built/esm/src/browser.js"
 
-const dbgConsole = mergerExp.dbgConsole;
+//const dbgConsole = mergerExp.dbgConsole;
 
 export const customFunctions = {
 
@@ -29,7 +29,7 @@ export const customFunctions = {
 
       default:
          if (debug) {
-            dbgConsole.warn("No custom function found either, for selector:"
+            console.warn("No custom function found either, for selector:"
                + functionSel + ", srcValue:" + srcValue + ", oldContent:" + oldContent);
          }
       }
