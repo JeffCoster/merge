@@ -1,0 +1,4 @@
+cd /Users/jeff/vscode/merger/built/cjs/src
+for file in *; do 
+  mv "$file" "${file%.js}.cjs" 
+done

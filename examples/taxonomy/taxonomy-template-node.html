@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <!-- based on tree from https://iamkate.com/code/tree-views/
+      1) content removed
+      2) scriptcode added
+      3) added id taxonomy title, class level{n} template, hierarchy of templates
+   -->
+
+   <title></title>
+   <link rel="stylesheet" type="text/css" href="./tree.css">
+   <style>
+      body {
+         background-color: lightyellow;
+      }
+
+      .template {
+         display: none;
+      }
+      li .template {
+         display: none;
+      }
+      .tree details .end {
+         border-color : transparent;
+         content: "";
+      }
+   </style>
+</head>
+
+<body>
+   <ul class="tree">
+      <li>
+         <details open>
+            <summary id="tree-header"></summary>
+            <ul>
+               <li class="level1 template">
+                  <details>
+                     <summary></summary>
+                     <ul>
+                        <li class="level2 template">
+                           <details>
+                              <summary></summary>
+                              <ul>
+                                 <li class="level3 template">
+                                    <details>
+                                       <summary></summary>
+                                       <ul>
+                                          <li class="level4 template">
+                                             <details>
+                                                <summary></summary>
+                                                <ul>
+                                                   <li class="level5 template">
+                                                      <details>
+                                                         <summary></summary>
+                                                         <ul>
+                                                            <li class="level6 template">
+                                                            </li>
+                                                         </ul>
+                                                      </details>
+                                                   </li>
+                                                </ul>
+                                             </details>
+                                          </li>
+                                       </ul>
+                                    </details>
+                                 </li>
+                              </ul>
+                           </details>
+                        </li>
+                     </ul>
+                  </details>
+               </li>
+            </ul>
+         </details>
+      </li>
+   </ul>
+</body>
+
+</html>
