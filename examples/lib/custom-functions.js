@@ -2,13 +2,13 @@
  debug
 */
 
-// The purpose of this file is to allow custom functions to be added to Merger, by anyone using Merger
-//
-import * as mergerExp from "../built/esm/src/browser.js"
-
-const dbgConsole = mergerExp.dbgConsole;
-
 export const customFunctions = {
+
+   priceFormat: function(srcValue) {
+      "use strict";
+      //in real use this would need a switch case based on context currency
+      return "$" + srcValue;
+   },
 
    handleLastLeafNode: function(leafNodeHtml) {
       "use strict";
@@ -26,15 +26,19 @@ export const customFunctions = {
       //returns  new content based on oldContent html (when supplied) and srcValue (when supplied)
 
       switch (functionSel) {
+      case "priceFormat":
+         // return src value price display formatted
+         return this.priceFormat(srcValue);
+         
       case "lastLeafNode":
-         // transform html to handle last tree node, giving it no html open selection
-         return this.handleLastLeafNode(oldContent);
-
+            // transform html to handle last tree node, giving it no html open selection
+            return this.handleLastLeafNode(oldContent);
+   
       default:
          if (debug) {
-            dbgConsole.warn("No custom function found either, for selector:"
+            console.error("No standard or custom function was found. For selector:"
                + functionSel + ", srcValue:" + srcValue + ", oldContent:" + oldContent);
          }
       }
    }
-}
+};

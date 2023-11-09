@@ -12,7 +12,7 @@
    <link rel="stylesheet" type="text/css" href="../../static/tree.css">
    <style>
       body {
-         background-color: lightyellow;
+         background-color: powderblue;
       }
 
       .template {
@@ -85,10 +85,10 @@
 
    import {mergerMap} from "./merger-map.js"
    import {dataSources} from "./content/data-sources.js"
-   import {customFunctions} from './custom-functions.js'
+   import {customFunctions} from '../lib/custom-functions.js'
 
-   import {compose} from "../built/esm/src/merger-functions.js"
-   import {mergerSchema} from "../built/esm/schema/merger-schema.js"
+   import {compose} from "../../../built/esm/src/merger-functions.js"
+   import {mergerSchema} from "../../../built/esm/schema/merger-schema.js"
 
    globalThis.debug = true;
 
