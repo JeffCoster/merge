@@ -7,7 +7,7 @@ export const globalContent = {
 export const prods = {
    "products": [
       {
-         "id": 56,
+         "id": "SKU-56",
          "title": "Sneakers Joggers Shoes",
          "description": "Gender: Men , Colours: Same as DisplayedCondition: 100% Brand New",
          "price": 40,
@@ -25,7 +25,7 @@ export const prods = {
          ]
       },
       {
-         "id": 57,
+         "id": "SKU-57",
          "title": "Loafers for men",
          "description": "Men Shoes - Loafers for men - Rubber Shoes - Nylon Shoes - Shoes for men - Pure Nylon (Rubber) Export Quality.",
          "price": 47,
@@ -43,7 +43,7 @@ export const prods = {
          ]
       },
       {
-         "id": 58,
+         "id": "SKU-58",
          "title": "formal offices shoes",
          "description": "Pattern Type: Solid, Material: PU, Toe Shape: Pointed Toe ,Outsole Material: Rubber",
          "price": 57,
@@ -61,8 +61,8 @@ export const prods = {
          ]
       },
       {
-         "id": 59,
-         "title": "Spring quote[\'] ampersand[&] double quote[\"] LT[<] GT[>] backslash[\\] summer shoes",
+         "id": "SKU-59",
+         "title": "Spring & summer shoes",
          "description": "Comfortable stretch cloth, lightweight body; ,rubber sole, anti-skid wear;",
          "price": 20,
          "discountPercentage": 8.71,
@@ -79,7 +79,7 @@ export const prods = {
          ]
       },
       {
-         "id": 60,
+         "id": "SKU-60",
          "title": "Stylish Casual Jeans Shoes",
          "description": "High Quality ,Stylish design ,Comfortable wear ,Fashion ,Durable",
          "price": 58,

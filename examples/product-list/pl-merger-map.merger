@@ -61,7 +61,7 @@
                      {
 
                         "elementTgtCss": ".price",
-                        "elementValueSrcJpath": "id",
+                        "elementValueSrcJpath": "price",
                         "functionSel": "priceFormat"
                      },
                      {
