@@ -33,7 +33,8 @@ async function doDiff(baselineHtml: string, renderedHtml: string, baselineHtmlPa
   const isEqual = await htmlDiffer.isEqual(baselineHtml, renderedHtml);
   if (isEqual) {
     // @ts-ignore
-    console.log("PASS: Baseline html: " +baselineHtmlPath +" equals html rendered by Merger");
+    // console.log("PASS: Baseline html: " +baselineHtmlPath +" equals html rendered by Merger");
+    console.log(chalk.green("PASS: Baseline html: " +baselineHtmlPath +" equals html rendered by Merger"));
     process.exit(1);
   } else {
     const loggerOptions = {
