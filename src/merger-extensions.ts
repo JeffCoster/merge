@@ -35,15 +35,14 @@ export const extFunctions = {
 
    escapeHtml: function(escapeMe)
    {
-      return escapeMe
-         .replace(/&/g, "&amp;")
+      return escapeMe.replace(/&/g, "&amp;")
          .replace(/</g, "&lt;")
          .replace(/>/g, "&gt;")
          .replace(/"/g, "&quot;")
          .replace(/'/g, "&#039;");
    },
 
-   doFunction: function(functionSel, srcValue, oldContent) {
+   doFunction: function(functionSel: string, srcValue: any, oldContent: string) {
       "use strict";
       //do function requested by function selector string
       //returns  new content based on optionally supplied oldContent DOM, and srcValue
@@ -60,12 +59,12 @@ export const extFunctions = {
 
       default:
          // function selector did not find standard ext function so try to find and use a custom ext function
-         if (this.customFunctions != undefined) {
+         if (this.customFunctions) {
             return this.customFunctions.doFunction(functionSel, srcValue, oldContent)
          }
          else if (debug) {
             dbgConsole.warn("No standard function found for selector:"
-               + functionSel + ", srcValue:" + srcValue + ", oldContent:" + oldContent);
+               + functionSel + ", srcValue:" + srcValue + ", oldContent:" + oldContent +"customFunctionObject: " +this.customFunctions);
          }
       }
    }

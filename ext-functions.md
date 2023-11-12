@@ -2,14 +2,15 @@
 
 Merger has core functionality contained in the merger-functions.js file. 
 There are breakout points in the core functionality where a function selector, declared in the mapping, 
-may optionally be used to run a selected delegate function to change behaviour as required.
+may optionally be used to select a delegate function to perform additional processing. There are some standard functions that 
+ship with Merger and developers can add custom extension functions where needed.
 
 The function selector is just a string name, that has a registered corresponding function.
 
 All extension functions have the same optional parameters, i.e.
  
 1. srcValue : the source content, selected already by processing
-2. oldContent : the existing content, selected already by processing
+2. oldContent : the existing target content, selected already by processing
 
 The return value of the function will be used by the processing, instead of the srcValue 
 
@@ -33,17 +34,13 @@ The optional break out (delagation) points are:
 | - | - |
 | purpose | handle case where source array is empty |
 | srcValue | not used as there is no source array or it is empty |
-| oldContent | document when thi is a top level collection: parent html section instance when this collection has one  |
+| oldContent | document when this is a top level collection: parent html section instance when this collection has one  |
 | returns | oldContent, transformed as required by this function |
 
 ### Standard Extension Functions
 
-These are the standard extension functions, shipped with merger, contained in file merger-extensions.js, 
-that ship with the current version. They are general purpose and of use in many projects
-
-They are explained as follows:
-
-For element and attribute content transformations:
+These are the standard extension functions, shipped with merger, contained in file merger-extensions.js. 
+They are general purpose element and attribute content transformations, explained in the following table:
 
 | function selector value | description |
 | - | - |
@@ -51,7 +48,7 @@ For element and attribute content transformations:
 | "append" | append the existing selected target content with the selected source value and use it to fill the target content |
 | "prepend" | prepend the existing selected target content with the selected source value and use it to fill the target content|
 
-> with append and prepend the template needs to contain the desired content used to prepend or append
+> with append and prepend the templates existing target content needs to contain the desired content used to prepend or append the new source content.
 
 ### Custom Extension Functions
 
@@ -109,7 +106,7 @@ export const customFunctions = {
 4) Follow the pattern of the priceFormat function, to add your own functions. 
 Each new function needs adding to the one and only customFunctions object, as per the priceFormat example. 
 A case statement needs adding to doFunction, to map your function selector name to your new function. 
-Your function can use either or all of the srcValue and oldContent parameters, as required, and must return 
+Your function can use either or all of the srcValue and oldContent parameters, as required, and return 
 the desired result content.
 
 

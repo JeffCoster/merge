@@ -1,11 +1,4 @@
-/* Merger
- *
- * Copyright (c) 20023 Jeff Coster
- * Licensed under the MIT (MIT-LICENSE.txt) licence.
- * see https://github.com/JeffCoster/merger
- */
-
-export const mergerSchema = {
+{
    "$schema": "https://json-schema.org/draft/2019-09/schema",
    "$id": "merger-schema.json",
    "title": "Merge Mappings",
@@ -153,4 +146,4 @@ export const mergerSchema = {
          }
       }
    }
-};
+}
