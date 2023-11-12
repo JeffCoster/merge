@@ -33,7 +33,8 @@ async function doDiff(baselineHtml: string, renderedHtml: string, baselineHtmlPa
   const isEqual = await htmlDiffer.isEqual(baselineHtml, renderedHtml);
   if (isEqual) {
     // @ts-ignore
-    console.log("PASS: Render of template: " +baselineHtmlPath +" equals baseline render");
+    // console.log("PASS: Baseline html: " +baselineHtmlPath +" equals html rendered by Merger");
+    console.log(chalk.green("PASS: Baseline html: " +baselineHtmlPath +" equals html rendered by Merger"));
     process.exit(1);
   } else {
     const loggerOptions = {
@@ -59,11 +60,11 @@ async function act() {
   global.debug = options.debug;
 
   if (debug) {
-    console.log("Options: debug: %s, charsAroundDiff: %s, /n/t customFunctionsPath: %s", 
+    console.log("Options: debug: %s, charsAroundDiff: %s, customFunctionsPath: %s", 
       options.debug, options.charsAroundDiff, options.customFunctionsPath);
     console.log("mappingJsonPath: %s", mappingJsonPath);
     console.log("baselineHtmlPath: %s", baselineHtmlPath);
-    console.log("dataSourcesPath:%s", dataSourcesPath);
+    console.log("dataSourcesPath: %s", dataSourcesPath);
   }
 
   // get baselineHtml

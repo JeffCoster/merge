@@ -60,7 +60,7 @@ export const mergerMap = {
                      {
 
                         "elementTgtCss": ".price",
-                        "elementValueSrcJpath": "id",
+                        "elementValueSrcJpath": "price",
                         "functionSel": "priceFormat"
                      },
                      {
