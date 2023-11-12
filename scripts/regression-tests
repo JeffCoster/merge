@@ -1,0 +1,2 @@
+npm exec merger-test -- examples/product-list/pl-merger-map.merger examples/test/product-list-baseline.html ../../../examples/product-list/content/data-sources.js --chars-around-diff=5 -c ../../../examples/lib/custom-functions.js
+npm exec merger-test -- examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-baseline.html ../../../examples/taxonomy/content/data-sources.js --chars-around-diff=5 -c ../../../examples/lib/custom-functions.js
