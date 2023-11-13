@@ -1,0 +1,20 @@
+{
+      "id": 1,
+      "level1": "Animals & Pet Supplies"
+},
+{
+      "id": 3237,
+      "level1": "Animals & Pet Supplies",
+      "level2": "Live Animals"
+},
+{
+      "id": 2,
+      "level1": "Animals & Pet Supplies",
+      "level2": "Pet Supplies"
+},
+{
+      "id": 3,
+      "level1": "Animals & Pet Supplies",
+      "level2": "Pet Supplies",
+      "level3": "Bird Supplies"
+}
