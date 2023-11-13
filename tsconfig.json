@@ -1,7 +1,11 @@
 {
     "compilerOptions": {
       "outDir": "./built",
-      "allowJs": true
+      "allowJs": true,
+      "typeRoots": [
+        "src/customTypes",
+        "node_modules/@types"
+      ]
     },
-    "include": ["./src/**/*"]
-  }
+    "include": ["./src/**/*","./schema/*"]
+}
