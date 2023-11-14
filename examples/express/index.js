@@ -24,7 +24,7 @@ app.get("/taxonomy", (req, res) => {
    res.render("taxonomy/tx-merger-map", {dataSources4View, customFunctions});
 });
 
-app.use(express.static("static"));
+app.use(express.static("examples/static"));
 
 app.listen(3000);
 
