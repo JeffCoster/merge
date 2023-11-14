@@ -44,10 +44,9 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
 
    import {mergerMap} from "<path to your merger map js>"
    import {dataSources} from "<path to your data sources object>"
-   import {customFunctions} from '<path to your custom-functions.js'
+   import {customFunctions} from '<path to your custom function js>'
 
-   import {compose} from "../../../built/esm/src/merger-functions.js"
-   import {mergerSchema} from "../../../built/esm/schema/merger-schema.js"
+   import * as __merger from "../../../built/esm/src/browser.js"
 
    globalThis.debug = true; // output debug to console
 
@@ -55,9 +54,9 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
    if(debug) {
       const Ajv = window.ajv2019;
       const ajv = new Ajv({
-      schemas: [mergerSchema]
+      schemas: [__merger.mergerSchema]
       });
-      const validate = ajv.compile(mergerSchema);
+      const validate = ajv.compile(__merger.mergerSchema);
       const valid = validate(mergerMap);
       if (!valid) {
          console.log(validate.errors);
@@ -67,7 +66,7 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
    }
 
    // invoke merger to render template
-   compose(mergerMap, dataSources, document, customFunctions);
+   __merger.compose(mergerMap, dataSources, document, customFunctions);
 
 ```
 
