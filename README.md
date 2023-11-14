@@ -27,29 +27,31 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
     - each Data Source needs to be available to the merger JS code, as a const
     - each Data Source needs to be registered in the Data Sources object
     >- Note: Data Sources will often be the results of a service call
-3a. add [merger boiler plate JS](merger-boiler-plate-js), in a script, in the html OR
-3b. add request route to [index.js](https://jeffcoster.github.io/merger/#node-index-js) of Express
+3. set up render invocation, by either:
+    - (a) add [merger boiler plate JS](merger-boiler-plate-js), in a script, in the html OR
+    - (b) add request route to node Express, e.g. [index.js](https://jeffcoster.github.io/merger/#node-index-js)
 4. configure json data to map source json arrays and values, to target html sections, elements and attributes
     - element text maps directly to corresponding source field 
     - attribute value maps directly to corresponding source field 
     - source object collections map to html template sections, for instantion of templates and content filling
-5a. load the html page, so that merger runs and renders the page OR
-5b. run in node JS
+5.  - (a) load the html page, so that merger runs and renders the page OR
+    - (b) run in node JS
 
 >_Note: Steps 4 and 5 can be iterated over, to configure and test in parts_
 
 ## Merger Boiler Plate JS
 ```javascript
 
-   import {mergerMap} from './merger-map.js'
-   import {dataSources} from './content/data-sources.js'
-   import {customFunctions} from './custom-functions.js'
+   import {mergerMap} from "<path to your merger map js>"
+   import {dataSources} from "<path to your data sources object>"
+   import {customFunctions} from '<path to your custom-functions.js'
 
-   import {compose} from '../merger-functions.js' 
-   import {mergerSchema} from "../schema/merger-schema.js"
+   import {compose} from "../../../built/esm/src/merger-functions.js"
+   import {mergerSchema} from "../../../built/esm/schema/merger-schema.js"
 
-   globalThis.debug = true;
+   globalThis.debug = true; // output debug to console
 
+   // optional section to validate your merger map against merger schema
    if(debug) {
       const Ajv = window.ajv2019;
       const ajv = new Ajv({
@@ -63,17 +65,20 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
          console.log("schema is valid");
       }
    }
-   compose(mergerMap, dataSources, document);
+
+   // invoke merger to render template
+   compose(mergerMap, dataSources, document, customFunctions);
 
 ```
 
-> Merger is invoked by calling **_compose(mergerMap, dataSources, document);_**
->- margerMap is a const containing the mapping json which maps the source json arrays and values to the html template
->- dataSources is a json object that registers the source data (json) objects
->- document is the DOM of the html template. On Node the html has to be parsed into a DOM
+> Merger is invoked by calling **_compose(mergerMap, dataSources, document, customFuom);_**
+>- margerMap is your const containing the mapping json which maps the source json arrays and values to the html template
+>- dataSources is your json object that registers the source data (json) objects
+>- document is the DOM of the html template. On Node, the html has to be parsed into a DOM
+>- customFunctions are your custom functions that can be called from specific extension points of merger
 
 > The **_if(debug)_** section is an optional section, to validate the configured mapping against the merger mapping schema
->- generally, this would only be needed in the development of the mapping
+>- generally, this would only be needed during the configuration of the mapping
 >- errors detected are output in the browser console
 
 ## Examples (Rendered in Browser):
