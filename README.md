@@ -17,9 +17,9 @@ Merging dynamic source content to html templates by data configuration (mapping)
 - facilitate code extensions, where necessary, at suitable break out points
 
 ## Technologies
-javascript, jsonPath, CSS, html, json, json schema
+Typescript, javascript, jsonPath, CSS, html, json, json schema
 
-## Overview Of Typical Steps to use Merger to Render in a Browser
+## Overview Of Typical Steps to use Merger to Render in a Browser(a) or Node JS(b)
 1. with static html, which often start as a preview example of the dynamic page
     - remove example preview content, leaving mark up
     - collapse each repeated html section into a single template (hidden) section
@@ -27,19 +27,18 @@ javascript, jsonPath, CSS, html, json, json schema
     - each Data Source needs to be available to the merger JS code, as a const
     - each Data Source needs to be registered in the Data Sources object
     >- Note: Data Sources will often be the results of a service call
-3. add merger boiler plate JS, in a script, in the html
-4. configure json data to map source json arrays and values, to target html sections, elements and attirbutes
+3a. add [merger boiler plate JS](merger-boiler-plate-js), in a script, in the html OR
+3b. add request route to [index.js](https://jeffcoster.github.io/merger/#node-index-js) of Express
+4. configure json data to map source json arrays and values, to target html sections, elements and attributes
     - element text maps directly to corresponding source field 
     - attribute value maps directly to corresponding source field 
     - source object collections map to html template sections, for instantion of templates and content filling
-5. load the html page, so that merger runs and renders the page
+5a. load the html page, so that merger runs and renders the page OR
+5b. run in node JS
 
 >_Note: Steps 4 and 5 can be iterated over, to configure and test in parts_
 
-## Invocation on Node JS
-See merger-express project for examples of Merger rendering with Express on Node JS.
-
-## Overview of Invocation (Browser)
+## Merger Boiler Plate JS
 ```javascript
 
    import {mergerMap} from './merger-map.js'
@@ -78,8 +77,8 @@ See merger-express project for examples of Merger rendering with Express on Node
 >- errors detected are output in the browser console
 
 ## Examples (Rendered in Browser):
-- List of Products: see https://jeffcoster.github.io/merger/ex1/product-lister-template.html
-- Tree of Categories (Taxonomy): see https://jeffcoster.github.io/merger/ex2/taxonomy.html
+- [List of Products](https://jeffcoster.github.io/merger/examples/product-list/product-lister-template.html)
+- [Tree of Categories (Taxonomy)](https://jeffcoster.github.io/merger/examples/taxonomy/taxonomy-template.html)
 
-For full documentation, in addition to this readme: see https://jeffcoster.github.io/merger/
+[Full documentation, in addition to this readme](https://jeffcoster.github.io/merger/)
 
