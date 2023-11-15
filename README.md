@@ -11,12 +11,14 @@ Merging dynamic source content to html templates by data configuration (mapping)
 - render dynamic web pages by mapping configuration, rather than coding
 >- simpler and more reliable
 >- easier to maintain
+>- facilitate the development of tools that could make the mapping stage even easier
 - keep html pure with no extensions
 - map dynamic source object hierarchies to target html template sections
 >- avoids coding rendering loops: common in other approaches
 - mapping to handle varying width and depth of child objects to html
 - run in NodeJS or Browser
 - facilitate code extensions, where necessary, at suitable break out points
+>- only for cases where mapping cannot handle requirements
 
 ## Technologies
 Typescript, javascript, jsonPath, CSS, html, json, json schema
