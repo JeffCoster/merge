@@ -13,4 +13,4 @@
 */
 
 export * from "./merger-functions.js"
-export * from "./merger-extensions.js"
+export * from "../schema/merger-schema.js"
