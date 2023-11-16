@@ -2,25 +2,29 @@
 Merging dynamic source content to html templates by data configuration (mapping)
 
 ## Objectives:
-- keep html, content, and code separate; for full life cycle
+- keep html, content, and code separate; for the full life cycle
 >- allowing html specialists to focus on mark up and associated CSS rules
 >- mixing code and html makes it harder to visualise and maintain, especially when code loops are required
->- separate content is always best practice 
+>- separate content is always best practice, for example: facilitating multiple languages to be used
+>- allows development of html templates that could work with many types of dynamic source content, e.g. different eCommerce platforms
+>- simplifies the prototyping/workshop phases, as content data sources can be mocked; and changes to mapping/html/css can quickly be made
 - render dynamic web pages by mapping configuration, rather than coding
 >- simpler and more reliable
 >- easier to maintain
+>- facilitate the development of tools that could make the mapping stage even easier
 - keep html pure with no extensions
 - map dynamic source object hierarchies to target html template sections
 >- avoids coding rendering loops: common in other approaches
 - mapping to handle varying width and depth of child objects to html
 - run in NodeJS or Browser
 - facilitate code extensions, where necessary, at suitable break out points
+>- only for cases where mapping cannot meet requirements
 
 ## Technologies
 Typescript, javascript, jsonPath, CSS, html, json, json schema
 
 ## Overview Of Typical Steps to use Merger to Render in a Browser(a) or Node JS(b)
-1. with static html, which often start as a preview example of the dynamic page
+1. with static html, which often starts as a preview example of the dynamic page
     - remove example preview content, leaving mark up
     - collapse each repeated html section into a single template (hidden) section
 2. prepare content source objects
@@ -77,10 +81,11 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
 >- customFunctions are your custom functions that can be called from specific extension points of merger
 
 > The **_if(debug)_** section is an optional section, to validate the configured mapping against the merger mapping schema
->- generally, this would only be needed during the configuration of the mapping
->- errors detected are output in the browser console
+>- generally, this section is only needed during the configuration of the mapping
 
-## Examples (Rendered in Browser):
+> Debug and errors are output in the browser console (or node console for node operation).
+
+## Examples (Rendered live in your Browser):
 - [List of Products](https://jeffcoster.github.io/merger/examples/product-list/product-lister-template.html)
 - [Tree of Categories (Taxonomy)](https://jeffcoster.github.io/merger/examples/taxonomy/taxonomy-template.html)
 
