@@ -7,7 +7,7 @@ Merging dynamic source content to html templates by data configuration (mapping)
 >- mixing code and html makes it harder to visualise and maintain, especially when code loops are required
 >- separate content is always best practice, for example: facilitating multiple languages to be used
 >- allows development of html templates that could work with many types of dynamic source content, e.g. different eCommerce platforms
->- simplifies the prototyping / workshop phases of projects, as presentation can be decoupled from buisiness logic 
+>- simplifies the prototyping/workshop phases, as content data sources can be mocked; and changes to mapping/html/css can quickly be made
 - render dynamic web pages by mapping configuration, rather than coding
 >- simpler and more reliable
 >- easier to maintain
@@ -18,7 +18,7 @@ Merging dynamic source content to html templates by data configuration (mapping)
 - mapping to handle varying width and depth of child objects to html
 - run in NodeJS or Browser
 - facilitate code extensions, where necessary, at suitable break out points
->- only for cases where mapping cannot handle requirements
+>- only for cases where mapping cannot meet requirements
 
 ## Technologies
 Typescript, javascript, jsonPath, CSS, html, json, json schema
@@ -81,10 +81,11 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
 >- customFunctions are your custom functions that can be called from specific extension points of merger
 
 > The **_if(debug)_** section is an optional section, to validate the configured mapping against the merger mapping schema
->- generally, this would only be needed during the configuration of the mapping
->- errors detected are output in the browser console
+>- generally, this section is only needed during the configuration of the mapping
 
-## Examples (Rendered in Browser):
+> Debug and errors are output in the browser console (or node console for node operation).
+
+## Examples (Rendered live in your Browser):
 - [List of Products](https://jeffcoster.github.io/merger/examples/product-list/product-lister-template.html)
 - [Tree of Categories (Taxonomy)](https://jeffcoster.github.io/merger/examples/taxonomy/taxonomy-template.html)
 
