@@ -83,7 +83,7 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
 > The **_if(debug)_** section is an optional section, to validate the configured mapping against the merger mapping schema
 >- generally, this section is only needed during the configuration of the mapping
 
-> debug and errors are output in the browser console (or node console for node operation).
+> Debug and errors are output in the browser console (or node console for node operation).
 
 ## Examples (Rendered live in your Browser):
 - [List of Products](https://jeffcoster.github.io/merger/examples/product-list/product-lister-template.html)
