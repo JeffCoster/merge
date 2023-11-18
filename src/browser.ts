@@ -14,3 +14,4 @@
 
 export * from "./merger-functions.js"
 export * from "../schema/merger-schema.js"
+export * from "./merger-map-validate.js"

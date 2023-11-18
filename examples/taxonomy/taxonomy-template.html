@@ -79,33 +79,20 @@
 
 </html>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/ajv/8.12.0/ajv2019.min.js" integrity="sha512-0lJa9spNGDvx2WdJx9SR4BnB+DHbGc5QKPA0S8Lj2M+rtMyeIyIO8T9Vc8swa/lvZ+kr2nzG3oMJxapZHOlX2A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+<script src="../../dist/browser-dev.js"></script>
 <script type="module">
 
    import {mergerMap} from "./merger-map.js"
    import {dataSources} from "./content/data-sources.js"
    import {customFunctions} from '../lib/custom-functions.js'
 
-   import * as __merger from "../../../built/esm/src/browser.js"
-
+   // set true for development to ouput debug to console
    globalThis.debug = true;
 
-   if(debug) {
-      const Ajv = window.ajv2019;
-      const ajv = new Ajv({
-      schemas: [__merger.mergerSchema]
-      });
-      const validate = ajv.compile(__merger.mergerSchema);
-      const valid = validate(mergerMap);
-      if (!valid) {
-         console.log(validate.errors);
-      } else {
-         console.log("schema is valid");
-      }
-   }
-   __merger.compose(mergerMap, dataSources, document, customFunctions);
+   // optional, usually only for developing mapping, validate merger mapping against schema
+   mergerLib.validateMergeMapToSchema(mergerMap);
+
+   // render document (the html template), with dataSources content, as defined by mapping in mergerMap
+   mergerLib.compose(mergerMap, dataSources, document, customFunctions);
+
 </script>
-
-
-
