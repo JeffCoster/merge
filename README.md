@@ -32,7 +32,7 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
     - each Data Source needs to be registered in the Data Sources object
     >- Note: Data Sources will often be the results of a service call
 3. set up render invocation, by either:
-    - (a) add [merger boiler plate JS](merger-boiler-plate-js), in a script, in the html OR
+    - (a) add [merger boiler plate JS](https://jeffcoster.github.io/merger/#browser-boiler-plate-js), in a script, in the html OR
     - (b) add request route to node Express, as in example: [index.js](https://jeffcoster.github.io/merger/#node-index-js)
 4. configure json data to map source json arrays and values, to target html sections, elements and attributes
     - element text maps directly to corresponding source field 
@@ -43,34 +43,27 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
 
 >_Note: Steps 4 and 5 can be iterated over, to configure and test in parts_
 
-## Merger Boiler Plate JS
+## Browser Boiler Plate JS
 ```javascript
+// import latest merger-dd code from unpkg
+<script src="https://unpkg.com/merger-dd"></script>
 
-   import {mergerMap} from "<path to your merger map js>"
-   import {dataSources} from "<path to your data sources object>"
-   import {customFunctions} from '<path to your custom function js>'
+<script type="module">
 
-   import * as __merger from "../../../built/esm/src/browser.js"
+   import {mergerMap} from "./merger-map.js"
+   import {dataSources} from "./content/data-sources.js"
+   import {customFunctions} from '../lib/custom-functions.js'
 
-   globalThis.debug = true; // output debug to console
+   // set true for development to ouput debug to console
+   globalThis.debug = true;
 
-   // optional section to validate your merger map against merger schema
-   if(debug) {
-      const Ajv = window.ajv2019;
-      const ajv = new Ajv({
-      schemas: [__merger.mergerSchema]
-      });
-      const validate = ajv.compile(__merger.mergerSchema);
-      const valid = validate(mergerMap);
-      if (!valid) {
-         console.log(validate.errors);
-      } else {
-         console.log("schema is valid");
-      }
-   }
+   // optional, usually only for developing mapping, validate merger mapping against schema
+   mergerLib.validateMergeMapToSchema(mergerMap);
 
-   // invoke merger to render template
-   __merger.compose(mergerMap, dataSources, document, customFunctions);
+   // render document (the html template), with dataSources content, as defined by mapping in mergerMap
+   mergerLib.compose(mergerMap, dataSources, document, customFunctions);
+
+</script>
 
 ```
 
