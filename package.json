@@ -1,5 +1,5 @@
 {
-   "name": "merger",
+   "name": "merger-dd",
    "version": "1.0.0-alpha.0",
    "description": "compose dynamic html pages by mapping source data to an html template",
    "main": "built/ejs/src/index.js",
@@ -38,9 +38,12 @@
    "keywords": [
       "merger",
       "html",
-      "dynamic",
+      "template engine",
+      "dynamic html",
       "compose",
-      "render"
+      "render",
+      "compose",
+      "mapping"
    ],
    "author": "Jeff Coster",
    "license": "MIT",
