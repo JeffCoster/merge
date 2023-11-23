@@ -22,7 +22,7 @@
 {% include_relative ex2.md %}
 
 <br>
-<a href="examples/taxonomy/taxonomy.html" target="_blank">
+<a href="examples/taxonomy/taxonomy-template.html" target="_blank">
    <img src="examples/taxonomy/content/ex2_1.png" width="10%" height="10%" > 
    <br>Open full example2 to run in Browser<br>
 </a>
