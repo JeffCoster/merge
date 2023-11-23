@@ -14,8 +14,8 @@
 {% include_relative ex1.md %}
 
 <br>
-<a href="examples/product-lister/product-lister-template.html" target="_blank">
-   <img src="examples/product-lister/Ex1_1.png" width="10%" height="10%" > 
+<a href="examples/product-list/product-lister-template.html" target="_blank">
+   <img src="examples/product-list/Ex1_1.png" width="10%" height="10%" > 
    <br>Open full example1 to run in Browser<br>
 </a>
 
