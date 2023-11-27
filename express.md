@@ -1,7 +1,6 @@
 ## Using merger-dd with Node JS and Express
 
-Using merger with the Express server module, is similar to any other template engine in Express.
-See: https://expressjs.com/en/guide/using-template-engines.html for an example using pug as the template engine
+Using merger with the Express server module, is similar to any other template engine in Express. [Example using pug as a template engine](https://expressjs.com/en/guide/using-template-engines.html)
 
 - First, Install merger-dd module, using npm.
 - Create your html templates and mappings, in the same way as the browser examples.
