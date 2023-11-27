@@ -33,11 +33,12 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
     >- Note: Data Sources will often be the results of a service call
 3. set up render invocation, by either:
     - (a) add [browser boiler plate JS](https://jeffcoster.github.io/merger/#browser-boiler-plate-js), in a script, in the html OR
-    - (b) add request route to node Express, as in example: [index.js](https://jeffcoster.github.io/merger/#node-index-js)
+    - (b) using merger with node Express, as in this [example](https://github.com/JeffCoster/merger/blob/pages/express.md#using-merger-dd-with-node-js-and-express)
 4. configure json data to map source json arrays and values, to target html sections, elements and attributes
     - element text maps directly to corresponding source field 
     - attribute value maps directly to corresponding source field 
     - source object collections map to html template sections, for instantion of templates and content filling
+    >- Note: for node the mapping **must** declare the relative path to the template html
 5.  - (a) load the html page, so that merger runs and renders the page OR
     - (b) run in node JS
 
