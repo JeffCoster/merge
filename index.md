@@ -26,3 +26,5 @@
    <img src="examples/taxonomy/content/ex2_1.png" width="10%" height="10%" > 
    <br>Open full example2 to run in Browser<br>
 </a>
+
+{% include_relative cli.md %}
