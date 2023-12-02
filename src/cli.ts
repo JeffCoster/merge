@@ -37,6 +37,7 @@ async function doDiff(baselineHtml: string, renderedHtml: string, baselineHtmlPa
     console.log(chalk.green("PASS: Baseline html: " +baselineHtmlPath +" equals html rendered by Merger"));
     process.exit(1);
   } else {
+    console.log(chalk.red("FAIL: Baseline html: " +baselineHtmlPath +" differs with html rendered by Merger"));
     const loggerOptions = {
       // @ts-ignore
       charsAroundDiff: charsAroundDiff
@@ -103,7 +104,7 @@ export async function main(argv: any) {
     .allowExcessArguments(false)
     .argument('<mappingJsonPath>', 'Path to merger mapping [.merger] file, controlling rendering.')
     .argument('<baselineHtmlPath>', 'Path to the baseline html file. From a previous tested OK render.')
-    .argument('<dataSourcesPath>', 'Path to the dataSouces object which defines all data sources used to render content')
+    .argument('<dataSourcesPath>', 'Path to the dataSources object which defines all data sources used to render content')
     .option('-d,--debug','output extra debugging', false)
     .option('-a,--chars-around-diff <charsAroundDiff>', 'The number of characters around the diff', parseIntOpt, 20)
     .option('-c,--custom-functions-path <customFunctionsPath>', 'Path to custom functions to import', null)
