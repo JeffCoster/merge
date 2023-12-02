@@ -11,8 +11,30 @@ If the test of baseline html compares to the current render the console indicate
 > PASS: Baseline html: examples/test/product-list-baseline.html equals html rendered by Merger
 
 If there are differences the console highlights each difference section with the expected render section, e.g.
+<img src="examples/cli/differ-example.png" width="100%" height="100%" /> 
 
+### CLI API
 
+```text
+npx merger-test -h    
+Usage: /usr/local/bin/node [options] <mappingJsonPath> <baselineHtmlPath> <dataSourcesPath>
+
+Regression test: Compares merger rendered HTML, with a previously rendered baseline HTML
+
+Arguments:
+  mappingJsonPath                                   Path to merger mapping [.merger] file, controlling rendering.
+  baselineHtmlPath                                  Path to the baseline html file. From a previous tested OK render.
+  dataSourcesPath                                   Path to the dataSources object which defines all data sources used to render
+                                                    content
+
+Options:
+  -V, --version                                     output the version number
+  -d,--debug                                        output extra debugging (default: false)
+  -a,--chars-around-diff <charsAroundDiff>          The number of characters around the diff (default: 20)
+  -c,--custom-functions-path <customFunctionsPath>  Path to custom functions to import (default: null)
+  -h, --help                                        display help for command
+
+```
 
 
 
