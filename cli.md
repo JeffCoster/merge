@@ -37,5 +37,7 @@ Options:
 
 Example:
 ```text
-npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-baseline.html ../../../examples/taxonomy/content/data-sources.js --chars-around-diff=20 -c ../../../examples/lib/custom-functions.js
+npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-baseline.html 
+../../../examples/taxonomy/content/data-sources.js --chars-around-diff=20 
+-c ../../../examples/lib/custom-functions.js
 ```
