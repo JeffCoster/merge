@@ -24,8 +24,7 @@ Regression test: Compares merger rendered HTML, with a previously rendered basel
 Arguments:
   mappingJsonPath                                   Path to merger mapping [.merger] file, controlling rendering.
   baselineHtmlPath                                  Path to the baseline html file. From a previous tested OK render.
-  dataSourcesPath                                   Path to the dataSources object which defines all data sources used to render
-                                                    content
+  dataSourcesPath                                   Path to the dataSources object which defines all data sources used to render content
 
 Options:
   -V, --version                                     output the version number
@@ -36,5 +35,7 @@ Options:
 
 ```
 
-
-
+Example:
+```text
+npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-baseline.html ../../../examples/taxonomy/content/data-sources.js --chars-around-diff=20 -c ../../../examples/lib/custom-functions.js
+```
