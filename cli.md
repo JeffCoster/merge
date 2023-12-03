@@ -41,6 +41,7 @@ npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-ba
 ../../../examples/taxonomy/content/data-sources.js --chars-around-diff=20 
 -c ../../../examples/lib/custom-functions.js
 ```
+
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE5OTA1ODg5ODksMTA0MjU4OTk4NV19
+eyJoaXN0b3J5IjpbMzM4MDE0MDAxLDEwNDI1ODk5ODVdfQ==
 -->
