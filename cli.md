@@ -8,7 +8,7 @@ The baseline, and newly rendered html, normally use the same html template, mapp
 However, to test new features, or for other reasons, the files and content can be edited to provide a new 'expected' baseline.
 
 If the test of baseline html compares to the current render, the console indicates a match, e.g.
-> PASS: Baseline html: examples/test/product-list-baseline.html equals html rendered by Merger
+PASS: Baseline html: examples/test/product-list-baseline.html equals html rendered by Merger
 
 If there are differences, the console highlights each difference section with the expected render section, e.g.
 <img src="examples/cli/differ-example.png" width="100%" height="100%" /> 
@@ -42,5 +42,5 @@ npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-ba
 -c ../../../examples/lib/custom-functions.js
 ```
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTA0MjU4OTk4NV19
+eyJoaXN0b3J5IjpbLTE5OTA1ODg5ODksMTA0MjU4OTk4NV19
 -->
