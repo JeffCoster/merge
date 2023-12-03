@@ -1,4 +1,4 @@
-## CLI for Regression Testing
+## merger-testCLI for Regression Testing
 
 This section describes the command line interface that is used to regression test merger code. 
 The same approach can be used for regression testing your own html that is rendered with merger.
@@ -14,8 +14,7 @@ If the test of baseline html compares to the current render, the console indicat
 If there are differences, the console highlights each difference section with the expected render section, e.g.
 ![](examples/cli/differ-example.png)
 
-### Invo
-
+### Invocation
 ```text
 npx merger-test -h    
 Usage: /usr/local/bin/node [options] <mappingJsonPath> <baselineHtmlPath> <dataSourcesPath>
@@ -44,6 +43,6 @@ npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-ba
 ```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTg5OTMzNjEwMSwtMjEwODI5NjYwNSwxMD
+eyJoaXN0b3J5IjpbMTczOTI3OTc4MCwtMjEwODI5NjYwNSwxMD
 QyNTg5OTg1XX0=
 -->
