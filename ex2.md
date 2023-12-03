@@ -1,39 +1,38 @@
 ## Example 2 Taxonomy Tree
 
-It is recommended to explore example 1 first, as the documentation for this example does not detail some of the priciples already covered in example 1.
+It is recommended to explore example 1 first, as the documentation for this example does not detail some  principles already covered in example 1.
 
-This example renders a hierachy of product categories, using some source data derived from the 
-openly availaible Google Merchandising Taxonomy. The purpose of this example, is to show how merger can handle a deep hierachy, 
-in the html, and the source data structure. The example taxonomy is of varying depth, up to six levels deep, and also covers a large dynamic width .
+This example renders a hierarchy of product categories, using some source data derived from the 
+openly available Google Merchandising Taxonomy. The purpose of this example, is to show how merger can handle a deep hierarchy, both 
+in the html, and the source data structure. The example taxonomy is of varying depth, up to six levels deep, with a large dynamic width.
 
 This is how the example displays, with all tree branches in an open state:
 
 Part of the Google Merchandising Taxonomy
 
-<img src="ex2/content/ex2_1.png" width="20%" height="20%" />
+<img src="examples/taxonomy/content/ex2_1.png" width="20%" height="20%" />
 
 ### Ex2 Step1: Creating the html Template
 
-For this example a readily available open source html tree example was obtained from [I am Kate](https://iamkate.com/code/tree-views/).
-This is a good example of a pure html and CSS tree. 
-The example from that site, it has embedded static content for two levels of tree.
+For this example, a readily available open source html tree was obtained from [I am Kate](https://iamkate.com/code/tree-views/).
+This is a good example of a pure html and CSS tree. It has embedded static content for two levels of tree.
 
 In this step of the example:
 
 >- the example static content was removed from the html
 >- the html branch sections of the prototype page, going down the page, were cropped to leave one top level branch
 >- this was turned into a section template by giving it a top level class of "level1 template"
->- similar section templates were added as children up to six levels deep, with the "level1" class number being incremented for each level, e.g. "level2"
+>- similar section templates were added, as children, up to six levels deep, with the "level1" class number being incremented for each level, e.g. "level2"
 >>- the six levels, being enough to deal with the maximum depth of hierarchy 
 >- the CSS was left unchanged
 >- note that the static example, before any changes, had a slightly different html for the last node of the tree
->>- to deal with this in merger, a custom function was developed which recognises when the last node in a branch has beed reached and modifies the html to be a last brach node
+>>- to deal with this, in merger, a custom function was developed which recognises when the last node in a branch has beed reached and modifies the html to be a last branch node
 >>- this is explained in more detail in the custom function section of this example
 
 
 The following snippet, shows the html template after this task; limited to three levels for brevity. 
-The full html resides in the file ex2/content/taxonomy.html, which also includs the CSS, 
-and the boiler plate javascript for merger.
+The full html template resides in the file [taxonomy-template.html](examples/taxonomy/taxonomy-template.html), which also includes the CSS, 
+and the boilerplate JavaScript for merger.
 
 ```HTML
 <body>
@@ -79,13 +78,13 @@ and the boiler plate javascript for merger.
 
 ### Ex2 Step2 Set up Dynamic Source Data
 
-In practice the taxonomy tree dynamic data would normally be a json service response. 
-Merger requires the source data to be json objects, so the service response would be evaluated to to the appropriate object graph.
+In practice, the taxonomy tree dynamic data would normally be a JSON service response. 
+Merger requires the source data to be JSON objects, so the service response would be evaluated to the appropriate object graph.
 For this example though, as in Ex 1, the object graph is just a const within a script, containing some mock data to test with.
 
 The taxonomy data was first obtained as a csv from Google using the links on this page [merchant taxonomy](https://support.google.com/merchants/answer/6324436?hl=en-GB)
 
-This example, only needed a few branches of that data so a they were retained and the rest discarded.
+This example, only needed a few branches of that data, so they were retained and the rest discarded.
 
 The following is an example snippet of the resulting rows:
 
@@ -94,8 +93,8 @@ The following is an example snippet of the resulting rows:
 >- the id column contains the unique id of the lowest level category of the row
 >- the rest is self explanatory
 
-This data was converted to json using an  online utility. That left a "flat" representation, where each row of the csv 
-forms an object with the other columns fields of the same row as data members, for example:
+This data was converted to JSON using an  online utility. That left a flat representation, where each row of the CSV 
+forms an object, with the other columns fields of the same row as data members; for example:
 
 ```JSON
 {
@@ -120,14 +119,14 @@ forms an object with the other columns fields of the same row as data members, f
 }
 
 ```
-Merger requires the source data to be in hierachical form, rather than this flat representation. For the purposes of this example 
-a section of the hierarchy was manually transposed to be hierarhical. On a real project, there would be two options:
+Merger requires the source data to be in hierarchical form, rather than this flat representation. For the purposes of this example 
+a section of the hierarchy was manually transposed to be hierarchical. On a real project, there would be two options:
 
-1) arrange for the service to return the json results in hierarchical format
+1) arrange for the service to return the JSON results in hierarchical format
 
-2) use browser or node JS code to transpose the results, prior to merger being invoked
+2) use browser or Node.js code to transpose the results, prior to merger being invoked
 
-The following snippet shows the hierachical form of the source data, as required by merger and this example: 
+The following snippet shows the hierarchical form of the source data, as required by merger and this example: 
 
 ```JavaScript
 export const taxonomy = [
@@ -214,14 +213,14 @@ dataSources.taxonomy = taxonomy;
 
 ### Ex2 Step 3: Configuring (Mapping) of Source Data to html
 
-This step maps the google taxonomy content, of step 2 to the html template of step 1.
+This step maps the Google taxonomy content, of step 2 to the html template of step 1.
 
-The first step, the Top (Document Level) is just mapping elements and their attributes, before any instantion of section templates.
-In this case it just maps some global content for page title and the header label for the tree
+The first step, the top (Document Level) is just mapping elements and their attributes, before any instantiation of section templates.
+So it just maps some global content for page title, and the header label for the tree.
 
-> Note: the mapping for Example 2, is contained in the ex2/merger-map.js file. 
+> Note: the mapping for Example 2, is contained in the [merger-map.js](examples/taxonomy/merger-map.js) file. 
 The mapping object could of course be streamed from a service and evaluated, 
-but for the purpose of the example it is already a named const.
+but for the purpose of this example, it is already a named const.
 
 Snippet for the first mapping step is:
 
@@ -346,3 +345,6 @@ fill the "summary" of the first level 2 instance
 >- note that the mapping for level 2 and lower levels, each specify the same "mtCollectionFunctionSel", this is because the last branch node could be at any level below level 1
 
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTQzNTMyNTEyM119
+-->
