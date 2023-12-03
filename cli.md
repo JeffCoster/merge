@@ -1,20 +1,20 @@
-## CLI for Regression Testing
+## merger-test, CLI for regression tests
 
-This section describes the command line interface that is used to regression test merger code. 
+This section describes the nodeJS command line interface that is used to regression test merger code. 
 The same approach can be used for regression testing your own html that is rendered with merger.
 
 It compares a baseline rendered html file, captured from a stable previous release, with html rendered with the current code of merger.
 The baseline, and newly rendered html, normally use the same html template, mapping file, and mocked dataSource content.
 However, to test new features, or for other reasons, the files and content can be edited to provide a new 'expected' baseline.
 
-If the test of baseline html compares to the current render the console indicates a match, e.g.
-> PASS: Baseline html: examples/test/product-list-baseline.html equals html rendered by Merger
+If the test of baseline html compares to the current render, the console indicates a match, e.g.
 
-If there are differences the console highlights each difference section with the expected render section, e.g.
-<img src="examples/cli/differ-example.png" width="100%" height="100%" /> 
+    PASS: Baseline html: examples/test/product-list-baseline.html equals html rendered by Merger
 
-### CLI API
+If there are differences, the console highlights each difference section with the expected render section, e.g.
+![](examples/cli/differ-example.png)
 
+### Invocation
 ```text
 npx merger-test -h    
 Usage: /usr/local/bin/node [options] <mappingJsonPath> <baselineHtmlPath> <dataSourcesPath>
@@ -41,3 +41,8 @@ npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-ba
 ../../../examples/taxonomy/content/data-sources.js --chars-around-diff=20 
 -c ../../../examples/lib/custom-functions.js
 ```
+
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTU0NjU3NTkxNiwtMjEwODI5NjYwNSwxMD
+QyNTg5OTg1XX0=
+-->
