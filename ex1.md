@@ -6,26 +6,26 @@ in a Browser, and Browsers have good debug tools built in.
 
 The mapping json, that maps the source data to the html, would be exactly the same, irrespective of use in a Browser or Node JS.
 
-## Example 1 Simple Product Lister
+## Example 1: Simple Product Lister
 
 This example is for a simple list of products, using some mock json source data for shoes. 
 Each product has a sub list of shoe sizes. 
 
 As a prior step it is assumed that a html developer 
-has created the static html, and embedded the content to prototype how the page would look for  a list of two products.
+has created the static html, and embedded the content to prototype how the page would look for a list of two products.
 
 This is how that prototype page would display:
 
 <img src="ex1/Ex1_1.png" width="20%" height="20%" /> 
 
-### Ex1 Step1: Creating the html Template
+### Ex1 Step1: Creating the html template
 
-In this step the example static content is removed from the prototype, and the repeated sections for the products 
-are collapsed to form a hidden 'section template'; containing the mark up for a single product.
+In this step the example static content is removed from the prototype html, and each repeated section for the products 
+is collapsed to form a hidden 'section template'; containing the mark up for a single product.
 
 > It is possible to go straight to the step of building an html template, without a prototype page 
 with example static content. However, it is easier to illustrate what Merger requires of a template, 
-by having the static prototype and turning that into a template.
+by having the static prototype and turning that into a template. Ot is also easier to confirm the html and css meet requirements
 
 The following shows the prototype html body; with embedded content:
 
@@ -486,3 +486,6 @@ So the end result of merger processing the collection mapping, results in the ht
          </form>
       </div>
 ```
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbLTMwOTk5Mjk2Ml19
+-->
