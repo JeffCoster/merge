@@ -14,7 +14,7 @@ If the test of baseline html compares to the current render, the console indicat
 If there are differences, the console highlights each difference section with the expected render section, e.g.
 ![](examples/cli/differ-example.png)
 
-### CLI API
+### Invo
 
 ```text
 npx merger-test -h    
@@ -44,5 +44,6 @@ npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-ba
 ```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIxMDgyOTY2MDUsMTA0MjU4OTk4NV19
+eyJoaXN0b3J5IjpbMTg5OTMzNjEwMSwtMjEwODI5NjYwNSwxMD
+QyNTg5OTg1XX0=
 -->
