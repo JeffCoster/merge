@@ -1,6 +1,6 @@
-## merger-testCLI for Regression Testing
+## merger-test, CLI for regression tests
 
-This section describes the command line interface that is used to regression test merger code. 
+This section describes the nodeJS command line interface that is used to regression test merger code. 
 The same approach can be used for regression testing your own html that is rendered with merger.
 
 It compares a baseline rendered html file, captured from a stable previous release, with html rendered with the current code of merger.
@@ -43,6 +43,6 @@ npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-ba
 ```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTczOTI3OTc4MCwtMjEwODI5NjYwNSwxMD
+eyJoaXN0b3J5IjpbLTU0NjU3NTkxNiwtMjEwODI5NjYwNSwxMD
 QyNTg5OTg1XX0=
 -->
