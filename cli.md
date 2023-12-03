@@ -7,11 +7,12 @@ It compares a baseline rendered html file, captured from a stable previous relea
 The baseline, and newly rendered html, normally use the same html template, mapping file, and mocked dataSource content.
 However, to test new features, or for other reasons, the files and content can be edited to provide a new 'expected' baseline.
 
-If the test of baseline html compares to the current render, the console indicates a match, e.g.
+If the test of baseline html compares to the current render, the console indicates a match, e.g. 
 
     PASS: Baseline html: examples/test/product-list-baseline.html equals html rendered by Merger
 
-If there are differences, the console highlights each difference section with the expected render section, e.g.
+If there are differences, the console highlights each differing baseline section with its corresponding rendered section, e.g.
+
 ![](examples/cli/differ-example.png)
 
 ### Invocation
@@ -43,6 +44,6 @@ npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-ba
 ```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTU0NjU3NTkxNiwtMjEwODI5NjYwNSwxMD
-QyNTg5OTg1XX0=
+eyJoaXN0b3J5IjpbLTIwNzQ5MDAyMDMsLTU0NjU3NTkxNiwtMj
+EwODI5NjYwNSwxMDQyNTg5OTg1XX0=
 -->
