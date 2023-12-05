@@ -31,7 +31,8 @@ In this step of the example:
 
 
 The following snippet, shows the html template after this task; limited to three levels for brevity. 
-The full html template resides in the file [taxonomy-template.html](examples/taxonomy/taxonomy-template.html), which also includes the CSS, 
+The full html template resides in the file <a href='examples/taxonomy/taxonomy-template.html' target='_blank' type='text/plain'>taxonomy-template.html</a> 
+[taxonomy-template.html](examples/taxonomy/taxonomy-template.html), which also includes the CSS, 
 and the boilerplate JavaScript for merger.
 
 ```HTML
@@ -346,5 +347,5 @@ fill the "summary" of the first level 2 instance
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTQzNTMyNTEyM119
+eyJoaXN0b3J5IjpbLTk0NTg5OTYzNF19
 -->
