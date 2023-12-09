@@ -31,10 +31,6 @@ In this step of the example:
 
 
 The following snippet, shows the html template after this task; limited to three levels for brevity. 
-The full html template resides in the file <a href='examples/taxonomy/taxonomy-template.html' target='_blank' type='text/plain'>taxonomy-template.html</a> 
-[taxonomy-template.html](examples/taxonomy/taxonomy-template.html), which also includes the CSS, 
-and the boilerplate JavaScript for merger.
-
 ```HTML
 <body>
    <ul class="tree">
@@ -77,22 +73,24 @@ and the boilerplate JavaScript for merger.
 >- at that point, i.e. when the dynamic source data has no more children for the branch, the custom function will form the last leaf node
 >- merger will then start processing the next branch, with the next unique top level 1 category (node)
 
+The full html template, can be downloaded as <a href='examples/taxonomy/taxonomy-template.html' target='_blank' download='taxonomy-template.html' type='text/plain'>taxonomy-template-node.html</a> This file includes the required CSS, and is the full file required for Node.js use.  
+
 ### Ex2 Step2 Set up Dynamic Source Data
 
-In practice, the taxonomy tree dynamic data would normally be a JSON service response. 
-Merger requires the source data to be JSON objects, so the service response would be evaluated to the appropriate object graph.
-For this example though, as in Ex 1, the object graph is just a const within a script, containing some mock data to test with.
+In practice, the taxonomy tree dynamic data would normally be a JSON service response.
+ 
+Merger requires the source data to be JSON objects, so the service response would be evaluated to the appropriate object graph. For this example though, as in Ex 1, the object graph is just a const within a script, containing some mock data to test with.
 
-The taxonomy data was first obtained as a csv from Google using the links on this page [merchant taxonomy](https://support.google.com/merchants/answer/6324436?hl=en-GB)
+The taxonomy data was first obtained as a csv from Google using the .xls  download link on  [Google Merchant Taxonomy](https://support.google.com/merchants/answer/6324436?hl=en-GB)
 
-This example, only needed a few branches of that data, so they were retained and the rest discarded.
+This example, only needed a few rows of that data, so only those were used.
 
 The following is an example snippet of the resulting rows:
 
-<img src="ex2/content/ex2_csv.png" width="100%" height="20%" > </img>
+<img src="examples/taxonomy/content/ex2_csv.png" width="100%" height="20%" > </img>
 
 >- the id column contains the unique id of the lowest level category of the row
->- the rest is self explanatory
+>- the other columns are for each level of category, in descending order
 
 This data was converted to JSON using an  online utility. That left a flat representation, where each row of the CSV 
 forms an object, with the other columns fields of the same row as data members; for example:
@@ -125,9 +123,9 @@ a section of the hierarchy was manually transposed to be hierarchical. On a real
 
 1) arrange for the service to return the JSON results in hierarchical format
 
-2) use browser or Node.js code to transpose the results, prior to merger being invoked
+2) use browser or Node.js code to transpose the results, prior to merger being invoked.
 
-The following snippet shows the hierarchical form of the source data, as required by merger and this example: 
+The following snippet shows the hierarchical form of the source data, as required by merger for this example: 
 
 ```JavaScript
 export const taxonomy = [
@@ -198,8 +196,10 @@ export const taxonomy = [
                 //...etc
 ```
 
-> The full source data for this example resides in ex2/googleTaxonomy.js. That file also has some global content, 
-for title and header, which work in the same way as example 1. Data source registration is also composed in the same way as example 1, i.e.:
+The full source data for this example resides in [examples/taxonomy/googleTaxonomy.js. That file also has some global content, 
+for title and header, which work in the same way as example 1. 
+
+Data source registration is also composed in the same way as example 1, i.e.
 
 ```JavaScript
 import {taxonomy} from "./googleTaxonomy.js"
@@ -219,13 +219,12 @@ This step maps the Google taxonomy content, of step 2 to the html template of st
 The first step, the top (Document Level) is just mapping elements and their attributes, before any instantiation of section templates.
 So it just maps some global content for page title, and the header label for the tree.
 
-> Note: the mapping for Example 2, is contained in the [merger-map.js](examples/taxonomy/merger-map.js) file. 
-The mapping object could of course be streamed from a service and evaluated, 
-but for the purpose of this example, it is already a named const.
+The mapping, for Example 2, is contained in the [merger-map.js](examples/taxonomy/merger-map.js) file as an object graph ready for browser import. 
 
-Snippet for the first mapping step is:
+For Node.js, the same mapping is in a [JSON file with .merger file extension](examples/taxonomy/tx-merger-map.merger), as merger will stream in and parse the file. In this case though, the mapping also declares the relative path to the html template, which will be streamed in by express using merger as a template engine.
 
-```JavaScript
+The Snippet for the first mapping step is:
+```javascript
 export const mergerMap = {
    "elementFills": [
       {
@@ -244,14 +243,13 @@ export const mergerMap = {
    ],
 ```
 
-> This one to one top level mapping is all similar to Ex 1. So look at that for more detail.
+> This one to one top level mapping is similar to Ex 1. So look at that for more detail.
 
-The second step in the mapping task, follows on from the first object, and maps the taxonomy level section templates to their 
-source object arrays. 
+The second step in the mapping task, follows on from the first object, and maps the taxonomy level section templates to their source object arrays. 
 
 This is shown in the following snippet:
 
-```JSON
+```json
 "collections": [
       {
          "dataSrcJpath": "taxonomy",
@@ -299,7 +297,7 @@ This is shown in the following snippet:
 >- the snippet just shows the mapping for the top 2 levels, and a small part of the level 3
 >>- in the full mapping, the maximum of 6 levels are mapped
 
->- collections within the instanceFill of a collection, is how merger maps the hierarchy of section templates to source object arrays
+>- collections within the instanceFill of a collection, are how merger maps the hierarchy of section templates to source object arrays
 >>- in example 1 this approach was used to map products in a list, and to list sizes for each of those products
 >>- in this example, it is used to map the taxonomy tree, e.g level 1 to child level 2s to child level 3s etc
 
@@ -341,11 +339,11 @@ In Operation:
 fill the "summary" of the first level 2 instance
 >- the level 2 node "Live Animals" in the data source has no children, so when merger looks for a sub3s array it finds none, so:
 >>- processing of that branch will end and continue with the next level 1 branch
->>- firstly though the empty collection custom function will be invoked, as instructed by the "mtCollectionFunctionSel" of "lastLeafNode"
->>- this custom function adapts the html so that the last node in a branch will appear as it should with no plus or minus symbol
+>>- firstly though, the 'empty collection' custom function will be invoked, as instructed by the "mtCollectionFunctionSel" of "lastLeafNode"
+>>- this custom function adapts the html, so that the last node in a branch, will appear as it should, with no plus or minus symbol
 >- note that the mapping for level 2 and lower levels, each specify the same "mtCollectionFunctionSel", this is because the last branch node could be at any level below level 1
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk0NTg5OTYzNF19
+eyJoaXN0b3J5IjpbMjA4ODY4OTY3MCwtOTQ1ODk5NjM0XX0=
 -->
