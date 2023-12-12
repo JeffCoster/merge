@@ -13,9 +13,9 @@ This is how the example displays, with all tree branches in an open state:
 [Open Taxonomy example to run in your Browser](examples/taxonomy/taxonomy-template.html)
 
 For Node.js with Express server:
-> [View example Node.js express index file](examples/express/index.js)
-> [Folder with files referenced by example](https://github.com/JeffCoster/merger/tree/main/examples/taxonomy)
-> [Custom Functions used in examples](examples/lib/custom-functions.js)
+- [View example Node.js express index file](examples/express/index.js)
+- [Folder with files referenced by example](https://github.com/JeffCoster/merger/tree/main/examples/taxonomy)
+- [Custom Functions used in examples](examples/lib/custom-functions.js)
 
 The Following notes describe how the example was created.
 
@@ -353,5 +353,5 @@ fill the "summary" of the first level 2 instance
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzODg1OTY5MTgsLTk0NTg5OTYzNF19
+eyJoaXN0b3J5IjpbNjAxODk0NTU1LC05NDU4OTk2MzRdfQ==
 -->
