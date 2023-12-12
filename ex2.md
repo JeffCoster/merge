@@ -8,9 +8,16 @@ in the html, and the source data structure. The example taxonomy is of varying d
 
 This is how the example displays, with all tree branches in an open state:
 
-Part of the Google Merchandising Taxonomy
-
 <img src="examples/taxonomy/content/ex2_1.png" width="20%" height="20%" />
+
+[Open Taxonomy example to run in your Browser](examples/taxonomy/taxonomy-template.html)
+
+For Node.js with Express server:
+> [View example Node.js express index file](examples/express/index.js)
+> [Folder with files referenced by example](https://github.com/JeffCoster/merger/tree/main/examples/taxonomy)
+> [Custom Functions used in examples](examples/lib/custom-functions.js)
+
+The Following notes describe how the example was created.
 
 ### Ex2 Step1: Creating the html Template
 
@@ -338,12 +345,13 @@ In Operation:
 >- for that "instanceFill", merger will then find the child data source array "sub2s" and the "level 2" content "Live Animals" will 
 fill the "summary" of the first level 2 instance
 >- the level 2 node "Live Animals" in the data source has no children, so when merger looks for a sub3s array it finds none, so:
->>- processing of that branch will end and continue with the next level 1 branch
->>- firstly though, the 'empty collection' custom function will be invoked, as instructed by the "mtCollectionFunctionSel" of "lastLeafNode"
->>- this custom function adapts the html, so that the last node in a branch, will appear as it should, with no plus or minus symbol
->- note that the mapping for level 2 and lower levels, each specify the same "mtCollectionFunctionSel", this is because the last branch node could be at any level below level 1
+>>- the 'empty collection' custom function is invoked, as declared by the 'mtCollectionFunctionSel' = 'lastLeafNode'
+>>- this custom function, adapts the html, so that the last node in a branch, will appear as it should, with no plus or minus symbol
+>- processing of the branch ends, and continues with the next level 1 branch
+> 
+> note that the mapping for level 2 and lower levels, each specify the same "mtCollectionFunctionSel", this is because the last branch node could be at any level below level 1
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA4ODY4OTY3MCwtOTQ1ODk5NjM0XX0=
+eyJoaXN0b3J5IjpbLTEzODg1OTY5MTgsLTk0NTg5OTYzNF19
 -->
