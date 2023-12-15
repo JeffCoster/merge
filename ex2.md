@@ -226,7 +226,7 @@ This step maps the Google taxonomy content, of step 2 to the html template of st
 The first step, the top (Document Level) is just mapping elements and their attributes, before any instantiation of section templates.
 So it just maps some global content for page title, and the header label for the tree.
 
-The mapping, for Example 2, is contained in the [merger-map.js](examples/taxonomy/merger-map.js) file as an object graph ready for browser import. 
+The mapping, for Example 2, is contained in the [merger-map.js](examples/taxonomy/merger-map.js) file, as an object graph, ready for browser import. 
 
 For Node.js, the same mapping is in a [JSON file with .merger file extension](examples/taxonomy/tx-merger-map.merger), as merger will stream in and parse the file. In this case though, the mapping also declares the relative path to the html template, which will be streamed in by express using merger as a template engine.
 
@@ -353,6 +353,6 @@ fill the "summary" of the first level 2 instance
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTEzMDg0MTg1MjksNjAxODk0NTU1LC05ND
-U4OTk2MzRdfQ==
+eyJoaXN0b3J5IjpbLTYxNDMzNTk4MSw2MDE4OTQ1NTUsLTk0NT
+g5OTYzNF19
 -->
