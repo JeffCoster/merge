@@ -16,7 +16,16 @@ has created the static html, and embedded the content to prototype how the page 
 
 This is how that prototype page would display:
 
-<img src="ex1/Ex1_1.png" width="20%" height="20%" /> 
+<img src="examples/taxonomy/content/ex2_1.png" width="20%" height="20%" />
+
+[Open Product Lister example to run in your Browser](examples/product-list/product-lister-template.html)
+
+For Node.js with Express server:
+- [View example Node.js express index file](examples/express/index.js)
+- [Folder with files referenced by example](https://github.com/JeffCoster/merger/tree/main/examples/product-list)
+- [Custom Functions used in examples](examples/lib/custom-functions.js)
+
+The following notes describe how the example was created.
 
 ### Ex1 Step1: Creating the html template
 
@@ -216,5 +225,5 @@ How merger configuration mapping uses **jpath** to obtain the source objects, wi
 > The minProducts, and maxProducts are used in this example to show how merger can be configured to pick a start and end index in a collection of objects. The mock data has 5 products, and we are configuring to start rendering on the second and end on the third.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQ5MTAwOTU1MV19
+eyJoaXN0b3J5IjpbMjUxNDUyODNdfQ==
 -->
