@@ -102,7 +102,7 @@ The following is an example snippet of the resulting rows:
 This data was converted to JSON using an  online utility. That left a flat representation, where each row of the CSV 
 forms an object, with the other columns fields of the same row as data members; for example:
 
-```JSON
+```js
 {
       "id": 1,
       "level1": "Animals & Pet Supplies"
@@ -134,7 +134,7 @@ a section of the hierarchy was manually transposed to be hierarchical. On a real
 
 The following snippet shows the hierarchical form of the source data, as required by merger for this example: 
 
-```JavaScript
+```js
 export const taxonomy = [
    {
       "id": 1,
@@ -208,7 +208,7 @@ for title and header, which work in the same way as example 1.
 
 Data source registration is also composed in the same way as example 1, i.e.
 
-```JavaScript
+```js
 import {taxonomy} from "./googleTaxonomy.js"
 import {globalContent} from "./googleTaxonomy.js"
 
@@ -231,7 +231,7 @@ The mapping, for Example 2, is contained in the [merger-map.js](examples/taxonom
 For Node.js, the same mapping is in a [JSON file with .merger file extension](examples/taxonomy/tx-merger-map.merger), as merger will stream in and parse the file. In this case though, the mapping also declares the relative path to the html template, which will be streamed in by express using merger as a template engine.
 
 The Snippet for the first mapping step is:
-```javascript
+```js
 export const mergerMap = {
    "elementFills": [
       {
@@ -256,7 +256,7 @@ The second step in the mapping task, follows on from the first object, and maps 
 
 This is shown in the following snippet:
 
-```json
+```js
 "collections": [
       {
          "dataSrcJpath": "taxonomy",
@@ -353,5 +353,6 @@ fill the "summary" of the first level 2 instance
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjAxODk0NTU1LC05NDU4OTk2MzRdfQ==
+eyJoaXN0b3J5IjpbLTEzMDg0MTg1MjksNjAxODk0NTU1LC05ND
+U4OTk2MzRdfQ==
 -->
