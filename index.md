@@ -1,5 +1,3 @@
----
----
 
 {% include_relative README.md %}
 
@@ -14,16 +12,10 @@
 {% include_relative ex1.md %}
 {% include_relative ex1a.md %}
 
-<br>
-<a href="examples/product-list/product-lister-template.html" target="_blank">
-   <img src="examples/product-list/Ex1_1.png" width="10%" height="10%" > 
-   <br>Open full example1 to run in Browser<br>
-</a>
-
 {% include_relative ex2.md %}
 {% include_relative ex2a.md %}
 
 {% include_relative cli.md %}
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1ODc5MjAzODJdfQ==
+eyJoaXN0b3J5IjpbMTM0Njc0MDYwXX0=
 -->
