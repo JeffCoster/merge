@@ -20,8 +20,9 @@
 </a>
 
 {% include_relative ex2.md %}
+{% include_relative ex2a.md %}
 
 {% include_relative cli.md %}
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTIyOTIxNzQwM119
+eyJoaXN0b3J5IjpbNjkzNTkzNjgzXX0=
 -->

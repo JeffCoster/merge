@@ -17,7 +17,7 @@ For Node.js with Express server:
 - [Folder with files referenced by example](https://github.com/JeffCoster/merger/tree/main/examples/taxonomy)
 - [Custom Functions used in examples](examples/lib/custom-functions.js)
 
-The Following notes describe how the example was created.
+The following notes describe how the example was created.
 
 ### Ex2 Step1: Creating the html Template
 
@@ -88,7 +88,7 @@ In practice, the taxonomy tree dynamic data would normally be a JSON service res
  
 Merger requires the source data to be JSON objects, so the service response would be evaluated to the appropriate object graph. For this example though, as in Ex 1, the object graph is just a const within a script, containing some mock data to test with.
 
-The taxonomy data was first obtained as a csv from Google using the .xls  download link on  [Google Merchant Taxonomy](https://support.google.com/merchants/answer/6324436?hl=en-GB)
+The taxonomy data was first obtained as a CSV from Google using the .xls  download link on  [Google Merchant Taxonomy](https://support.google.com/merchants/answer/6324436?hl=en-GB)
 
 This example, only needed a few rows of that data, so only those were used.
 
@@ -102,7 +102,7 @@ The following is an example snippet of the resulting rows:
 This data was converted to JSON using an  online utility. That left a flat representation, where each row of the CSV 
 forms an object, with the other columns fields of the same row as data members; for example:
 
-```JSON
+```js
 {
       "id": 1,
       "level1": "Animals & Pet Supplies"
@@ -134,7 +134,7 @@ a section of the hierarchy was manually transposed to be hierarchical. On a real
 
 The following snippet shows the hierarchical form of the source data, as required by merger for this example: 
 
-```JavaScript
+```js
 export const taxonomy = [
    {
       "id": 1,
@@ -203,12 +203,12 @@ export const taxonomy = [
                 //...etc
 ```
 
-The full source data for this example resides in [examples/taxonomy/googleTaxonomy.js. That file also has some global content, 
+The full source data for this example resides in [googleTaxonomy.js](examples/taxonomy/googleTaxonomy.js). That file also has some global content, 
 for title and header, which work in the same way as example 1. 
 
 Data source registration is also composed in the same way as example 1, i.e.
 
-```JavaScript
+```js
 import {taxonomy} from "./googleTaxonomy.js"
 import {globalContent} from "./googleTaxonomy.js"
 
@@ -219,139 +219,8 @@ dataSources.taxonomy = taxonomy;
 ```
 
 
-### Ex2 Step 3: Configuring (Mapping) of Source Data to html
-
-This step maps the Google taxonomy content, of step 2 to the html template of step 1.
-
-The first step, the top (Document Level) is just mapping elements and their attributes, before any instantiation of section templates.
-So it just maps some global content for page title, and the header label for the tree.
-
-The mapping, for Example 2, is contained in the [merger-map.js](examples/taxonomy/merger-map.js) file as an object graph ready for browser import. 
-
-For Node.js, the same mapping is in a [JSON file with .merger file extension](examples/taxonomy/tx-merger-map.merger), as merger will stream in and parse the file. In this case though, the mapping also declares the relative path to the html template, which will be streamed in by express using merger as a template engine.
-
-The Snippet for the first mapping step is:
-```javascript
-export const mergerMap = {
-   "elementFills": [
-      {
-         "dataSrcJpath": "globals",
-         "elementsToDo": [
-            {
-               "elementTgtCss": "title",
-               "elementValueSrcJpath": "pageTitle"
-            },
-            {
-               "elementTgtCss": "#tree-header",
-               "elementValueSrcJpath": "treeHeader"
-            }
-         ]
-      }
-   ],
-```
-
-> This one to one top level mapping is similar to Ex 1. So look at that for more detail.
-
-The second step in the mapping task, follows on from the first object, and maps the taxonomy level section templates to their source object arrays. 
-
-This is shown in the following snippet:
-
-```json
-"collections": [
-      {
-         "dataSrcJpath": "taxonomy",
-         "templateId": "",
-         "templateClassList": "level1 template",
-         "srcIdPath": "id",
-         "instanceFill": {
-            "elementFills": [
-               {
-                  "dataSrcJpath": "instance",
-                  "elementsToDo": [
-                     {
-                        "elementTgtCss": "summary",
-                        "elementValueSrcJpath": "level1"
-                     }
-                  ]
-               }
-            ],
-            "collections": [
-               {
-                  "dataSrcJpath": "sub2s",
-                  "templateId": "",
-                  "templateClassList": "level2 template",
-                  "srcIdPath": "id",
-                  "mtCollectionFunctSel": "lastLeafNode",
-                  "instanceFill": {
-                     "elementFills": [
-                        {
-                           "dataSrcJpath": "instance",
-                           "elementsToDo": [
-                              {
-                                 "elementTgtCss": "summary",
-                                 "elementValueSrcJpath": "level2"
-                              }
-                           ]
-                        }
-                     ],
-                     "collections": [
-                        {
-                           "dataSrcJpath": "sub3s",
-
-
-```
-
->- the snippet just shows the mapping for the top 2 levels, and a small part of the level 3
->>- in the full mapping, the maximum of 6 levels are mapped
-
->- collections within the instanceFill of a collection, are how merger maps the hierarchy of section templates to source object arrays
->>- in example 1 this approach was used to map products in a list, and to list sizes for each of those products
->>- in this example, it is used to map the taxonomy tree, e.g level 1 to child level 2s to child level 3s etc
-
-The main aspects of the html section, to tree node source mapping, are described in the following table:
-
-| collections[0] | (top) level 1 mapping|
-|:-------------|:--|
-| .dataSrcJpath = taxonomy | jsonPath to the source data taxonomy tree root  |
-| .templateClassList = level1 template | class list of the level 1 html section template |
-| .srcIdPath = id | id is jpath to taxonomy root[instance].id, for use as the unique (level 1) node Id
-
-| collections[0].instanceFill.elementFills[0] | element fills required for level 1 nodes|
-| :------- | :--- |
-| .elementsToDo[0].elementTgtCss = summary | template relative CSS, to find summary target element for showing node name |
-| .elementsToDo[0].elementValueSrcJpath = level1 | jpath to instance.level1, for use as the node name |
-
-| collections[0].instanceFill.collections[0] |level 2 mapping |
-| :------- | :--- |
-| .dataSrcJpath = sub2s | jsonPath, relative to parent (level 1) node, to the child array of level 2 nodes  |
-| .templateClassList = level2 template | class list of the level 2 html section template |
-| .srcIdPath = id | id is jpath to level 2 id, for use as the unique (level 2) node Id |
-| .mtCollectionFunctSel = lastLeafNode| registered name of custom function to invoke if the source array is empty, in this example meaning last leaf node of branch was reached
-
-| collections[0].instanceFill.collections[0].instanceFill.elementFills[0] | element fills required for level 2 nodes|
-| :------- | :--- |
-| .elementsToDo[0].elementTgtCss = summary | template relative CSS, to find summary target element for showing node name |
-| .elementsToDo[0].elementValueSrcJpath = level2 | jpath to instance.level2, for use as the level 2 node name |
-
-| collections[0].instanceFill.collections[0].instanceFill.collections0 |level 3 mapping |
-| :------- | :--- |
-| ... pattern continues for level 3 and subsequent levels | ... |
-
-
-In Operation:
-
->- to start with, merger will pick the top level array of the taxonomy tree source content, as indicated by the dataSrcJpath of "taxonomy"
->- the first element of that array will be processed, and the "level 1" content, i.e. "Animals & Pet Supplies" will fill the "summary" element
->- for that "instanceFill", merger will then find the child data source array "sub2s" and the "level 2" content "Live Animals" will 
-fill the "summary" of the first level 2 instance
->- the level 2 node "Live Animals" in the data source has no children, so when merger looks for a sub3s array it finds none, so:
->>- the 'empty collection' custom function is invoked, as declared by the 'mtCollectionFunctionSel' = 'lastLeafNode'
->>- this custom function, adapts the html, so that the last node in a branch, will appear as it should, with no plus or minus symbol
->- processing of the branch ends, and continues with the next level 1 branch
-> 
-> note that the mapping for level 2 and lower levels, each specify the same "mtCollectionFunctionSel", this is because the last branch node could be at any level below level 1
-
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjAxODk0NTU1LC05NDU4OTk2MzRdfQ==
+eyJoaXN0b3J5IjpbLTEwMzU1ODc4NTAsNjAxODk0NTU1LC05ND
+U4OTk2MzRdfQ==
 -->
