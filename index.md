@@ -12,6 +12,7 @@
 {% include_relative ext-functions.md %}
 
 {% include_relative ex1.md %}
+{% include_relative ex1a.md %}
 
 <br>
 <a href="examples/product-list/product-lister-template.html" target="_blank">
@@ -24,5 +25,5 @@
 
 {% include_relative cli.md %}
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNjkzNTkzNjgzXX0=
+eyJoaXN0b3J5IjpbLTE1ODc5MjAzODJdfQ==
 -->
