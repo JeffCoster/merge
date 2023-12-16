@@ -16,12 +16,12 @@ Merging dynamic source content to html templates by data configuration (mapping)
 - map dynamic source object hierarchies to target html template sections
 >- avoids coding rendering loops: common in other approaches
 - mapping to handle varying width and depth of child objects to html
-- run in NodeJS or Browser
+- run in Node.js or Browser
 - facilitate code extensions, where necessary, at suitable break out points
 >- only for cases where mapping cannot meet requirements
 
 ## Technologies
-Typescript, javascript, jsonPath, CSS, html, json, json schema
+Typescript, JavaScript, jsonPath, CSS, html, JSON, JSON schema
 
 ## Overview Of Typical Steps to use Merger to Render in a Browser(a) or Node JS(b)
 1. with static html, which often starts as a preview example of the dynamic page
@@ -29,22 +29,22 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
     - collapse each repeated html section into a single template (hidden) section
 2. prepare content source objects
     - each Data Source needs to be available to the merger JS code, as a const
-    - each Data Source needs to be registered in the Data Sources object
+    - each Data Source needs to be registered in the Data Sources object.
     >- Note: Data Sources will often be the results of a service call
 3. set up render invocation, by either:
-    - (a) add [browser boiler plate JS](https://jeffcoster.github.io/merger/#browser-boiler-plate-js), in a script, in the html OR
+    - (a) add [browser boilerplate JS](https://jeffcoster.github.io/merger/#browser-boilerplate-js), in a script, in the html OR
     - (b) using merger with Node.js and Express, as explained for this <a href="https://jeffcoster.github.io/merger/#using-merger-dd-with-nodejs-and-express-1" target="_blank">example</a>
-4. configure json data to map source json arrays and values, to target html sections, elements and attributes
+4. configure JSON data to map source JSON arrays and values, to target html sections, elements, and attributes
     - element text maps directly to corresponding source field 
     - attribute value maps directly to corresponding source field 
-    - source object collections map to html template sections, for instantion of templates and content filling
+    - source object collections map to html template sections, for instantiation of templates and content filling.
     >- Note: for node the mapping **must** declare the relative path to the template html
 5.  - (a) load the html page, so that merger runs and renders the page OR
-    - (b) run in node JS
+    - (b) run in Node.js
 
 >_Note: Steps 4 and 5 can be iterated over, to configure and test in parts_
 
-## Browser Boiler Plate JS
+## Browser Boilerplate JS
 ```javascript
 
 // import latest merger-dd code from unpkg
@@ -69,7 +69,7 @@ Typescript, javascript, jsonPath, CSS, html, json, json schema
 
 ```
 
-> Merger is invoked by calling **_compose(mergerMap, dataSources, document, customFuom);_**
+> Merger is invoked by calling **_compose(mergerMap, dataSources, document, customFunctions);_**
 >- margerMap is your const containing the mapping json which maps the source json arrays and values to the html template
 >- dataSources is your json object that registers the source data (json) objects
 >- document is the DOM of the html template. On Node, the html has to be parsed into a DOM
