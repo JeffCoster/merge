@@ -7,7 +7,7 @@ The configured mapping is what drives Merger operations.
 It maps:
 * html elements and attributes to the dynamic source data that fills their content,
 
-* html template sections to the source object collections that drive instantion and filling of the section templates.
+* html template sections to the source object collections that drive instantiation and filling of the section templates.
 
 > Note: The schema for merger mapping is contained in schema/merger-schema.js.
 
@@ -60,7 +60,7 @@ or more elementFills.
 | templateId or <br> templateClassList | ID or class list used to find the target html section template. Id is normally for top level section templates, and class list for child templates. Must be unique within the collection scope |
 | srcIdPath | Optional jsonPath to select the Id within each data source object, used to form the Id values of the target instances. |
 | startDataSrcJpath | Optional jsonPath within Data Sources, to a variable used to indicate start index into the source object array. Zero being the first element. |
-| maxToShowDataSrcJpath | Optional jsonPath within Data Sources, to a variable used to indicate max qty to show from source collection. A value of 3 means a maximum of 3 objects will be shown. |
+| maxToShowDataSrcJpath | Optional jsonPath within Data Sources, to a variable, used to indicate maximum quantity to show from source collection. A value of 3 means a maximum of 3 objects will be shown. |
 | mtCollectionFunctSel | Optional registered name that selects the registered function to use for additional processing when the source data array is empty |
 
 | collection.instanceFill | |
@@ -73,7 +73,7 @@ or more elementFills.
 
 >> All jsonPath expressions, default in scope, to the source data object that instantiated that instance of the template.
 This is the 'normal' case where the dataSourceJpath, within the instanceFill is left empty or is set to "instance".
-This default behaviour can be overriden by specifying a dataSourceJpath another required data source.
+This default behaviour can be overridden by specifying a dataSourceJpath for another required data source.
 
 
 
@@ -82,3 +82,6 @@ This default behaviour can be overriden by specifying a dataSourceJpath another 
 
 
 
+<!--stackedit_data:
+eyJoaXN0b3J5IjpbMTk3Njk4NDk2NV19
+-->
