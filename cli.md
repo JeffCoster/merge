@@ -4,7 +4,7 @@ This section describes the Node.js command line interface that is used to regres
 The same approach can be used for regression testing your own html that is rendered with merger.
 
 It compares a baseline rendered html file, captured from a stable previous release, with html rendered with the current code of merger.
-The baseline, and newly rendered html, normally use the same html template, mapping file, and mocked dataSource content.
+The baseline, and newly rendered html, normally use the same html template, mapping file, and mocked dataSources content.
 However, to test new features, or for other reasons, the files and content can be edited to provide a new 'expected' baseline.
 
 If the test of baseline html compares to the current render, the console indicates a match, e.g. 
@@ -44,6 +44,6 @@ npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-ba
 ```
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMTQzNTE5Mjk3OSwtNTQ2NTc1OTE2LC0yMT
+eyJoaXN0b3J5IjpbLTM0NTUyODI0OCwtNTQ2NTc1OTE2LC0yMT
 A4Mjk2NjA1LDEwNDI1ODk5ODVdfQ==
 -->
