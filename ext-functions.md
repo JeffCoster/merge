@@ -1,18 +1,16 @@
 ## Extension Functions
 
-Merger has core functionality contained in the merger-functions.js file. 
-There are breakout points in the core functionality where a function selector, declared in the mapping, 
-may optionally be used to select a delegate function to perform additional processing. There are some standard functions that 
-ship with Merger, and developers can add custom extension functions where needed.
+Merger has core functionality as standard, but when necessary this can be extended, by the use of delegate functions. At specific points in the processing, delegate functions can optionally be invoked.
+At points in the mapping, the use of a function can be declared by its function selector. This is just a string name, that has a registered corresponding function.
 
-The function selector is just a string name, that has a registered corresponding function.
+There are some standard functions, that ship with Merger, and developers can add custom extension functions, and selectors, where needed.
 
 All extension functions have the same optional parameters, i.e.
  
 1. srcValue : the source content, selected already by processing
 2. oldContent : the existing target content, selected already by processing
 
-The return value of the function will be used by the processing, instead of the srcValue 
+The return value of the function, will be used by the processing, instead of the srcValue 
 
 The optional break out (delegation) points are:
 
@@ -32,7 +30,7 @@ The optional break out (delegation) points are:
 
 | mapping point | collections[].mtCollectionFunctSel |
 | - | - |
-| purpose | handle case where source array is empty |
+| purpose | handle case where the source array is empty |
 | srcValue | not used as there is no source array, or it is empty |
 | oldContent | document --when this is a top level collection, or the parent html section instance, when the collection has one  |
 | returns | oldContent, transformed as required by this function |
@@ -54,36 +52,31 @@ They are general purpose element and attribute content transformations, as expla
 
 These are custom extension functions, that can be added to your project.
  
-There are examples of this in:
+ The Product Lister and Taxonomy examples, use example Custom Functions:
 
-- example 1, file ex1/custom-functions.js, which has a very basic outline example of a currency format function
+- the Product Lister, has a very basic outline example of a currency format function
 
-- example 2, file ex2/custom-functions.js, which has a function, specific to example 2, for handling the last leaf node of a taxonomy tree
+- the Taxonomy, which has a function, for handling the last leaf node of a taxonomy tree; when the source collection is empty.
 
-To create your own custom functions file, the [example functions](examples/lib/custom-functions.js) can be used as a guide. The following are the necessary steps.
+To create your own custom functions file, the <a href="examples/lib/custom-functions.js" target="_blank">example customFunctions object</a>, which is used by the examples, can be used as a guide. The following are the necessary steps:
 
-1) create a file to include, such as custom-functions.js, in a directory of your project
+1) create your file to include, such as custom-functions.js, in a directory of your project
 
-2) As per the examples, this needs to import from two core merger files, e.g.
-```javascript
-import {dbgConsole} from "../merger-functions.js"
-import {extFunctions} from "../merger-extensions.js"
-```
-> ensure the relative file paths are ok relative to your file
+2) this should export a const object customFunctions
 
-3) export const object customFunctions, which can be based on the examples, e.g. ex1
+3) each custom function you require, needs adding to that object, and must follow the pattern of the examples, in terms of what parameters it uses, and the result content it returns
 
-``` javascript
+4) your object also needs a doFunction to select your function, based on your function selector name, e.g.
+
+```js
 export const customFunctions = {
 
    priceFormat: function(srcValue) {
-      "use strict";
       //in real use this would need a switch case based on context currency
       return "$" + srcValue;
    },
 
    doFunction: function(functionSel, srcValue, oldContent) {
-      "use strict";
       //do function requested by function selector string
       //returns  new content based on oldContent html (when supplied) and srcValue (when supplied)
 
@@ -103,13 +96,8 @@ export const customFunctions = {
 
 ```
 
-4) Follow the pattern of the priceFormat function, to add your own functions. 
-Each new function needs adding to the one and only customFunctions object, as per the priceFormat example. 
-A case statement needs adding to doFunction, to map your function selector name to your new function. 
-Your function can use either or all of the srcValue and oldContent parameters, as required, and return 
-the desired result content.
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTExMzU0Nzg0ODhdfQ==
+eyJoaXN0b3J5IjpbNTc0MjE0MTEzXX0=
 -->
