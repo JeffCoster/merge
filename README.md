@@ -30,7 +30,7 @@ Typescript, JavaScript, jsonPath, CSS, html, JSON, JSON schema
 2. prepare content source objects
     - each Data Source needs to be available to the merger JS code, as a const
     - each Data Source needs to be registered in the Data Sources object.
-    >- Note: Data Sources will often be the results of a service call
+    >- Note: content source objects will often be the result of a service call
 3. set up render invocation, by either:
     - (a) add [browser boilerplate JS](https://jeffcoster.github.io/merger/#browser-boilerplate-js), in a script, in the html OR
     - (b) using merger with Node.js and Express, as explained for this <a href="https://jeffcoster.github.io/merger/#using-merger-dd-with-nodejs-and-express-1" target="_blank">example</a>
@@ -52,9 +52,9 @@ Typescript, JavaScript, jsonPath, CSS, html, JSON, JSON schema
 
 <script type="module">
 
-   import {mergerMap} from "./merger-map.js"
-   import {dataSources} from "./content/data-sources.js"
-   import {customFunctions} from '../lib/custom-functions.js'
+   import {mergerMap} from "path to your merger map object"
+   import {dataSources} from "path to your content dataSources object"
+   import {customFunctions} from 'path to you customFunctions object - optional'
 
    // set true for development to ouput debug to console
    globalThis.debug = true;
@@ -63,6 +63,7 @@ Typescript, JavaScript, jsonPath, CSS, html, JSON, JSON schema
    mergerLib.validateMergeMapToSchema(mergerMap);
 
    // render document (the html template), with dataSources content, as defined by mapping in mergerMap
+   // using your customFunctions (optional)
    mergerLib.compose(mergerMap, dataSources, document, customFunctions);
 
 </script>
