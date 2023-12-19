@@ -63,31 +63,42 @@ To create your own custom functions file, the <a href="examples/lib/custom-funct
 1) create your file to include, such as custom-functions.js, in a directory of your project
 
 2) this should export a const object customFunctions
-
+```js
+/*global
+debug
+*/
+export const customFunctions = {
+	// ...
+}
+```
 3) each custom function you require, needs adding to that object, and must follow the pattern of the examples, in terms of what parameters it uses, and the result content it returns
+```js
+export const customFunctions = {
+
+   priceFormat: function(srcValue) {
+      //in real use this would need a switch case based on contextual currency
+      return "$" + srcValue;
+   },
+```
 
 4) your object also needs a doFunction to select your function, based on your function selector name, e.g.
 
 ```js
 export const customFunctions = {
-
-   priceFormat: function(srcValue) {
-      //in real use this would need a switch case based on context currency
-      return "$" + srcValue;
-   },
-
    doFunction: function(functionSel, srcValue, oldContent) {
       //do function requested by function selector string
       //returns  new content based on oldContent html (when supplied) and srcValue (when supplied)
 
       switch (functionSel) {
+      // 'priceFormat' is the function selector string to use in mapping
       case "priceFormat":
          // return src value price display formatted
          return this.priceFormat(srcValue);
-
+		
+	  // warn if functionSelector in mapping not found
       default:
          if (debug) {
-            dbgConsole.warn("No custome function found either, for selector:"
+            console.error("No custome function found either, for selector:"
                + functionSel + ", srcValue:" + srcValue + ", oldContent:" + oldContent);
          }
       }
@@ -99,5 +110,5 @@ export const customFunctions = {
 
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbNTc0MjE0MTEzXX0=
+eyJoaXN0b3J5IjpbNzUyNzA0OTY1XX0=
 -->
