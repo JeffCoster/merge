@@ -124,40 +124,38 @@ Removing the static prototype content, and collapsing the repeated product and s
    </div>
 </body>
 ```
-> Points to note:
->- Example static content, that will be provided dynamically from source data, is removed. This isn't always necessary, as Merger will replace it at runtime. However:
->-- it simplifies the template
->-- makes it pure mark-up
->-- avoids the chance of leaving the prototype content showing at runtime.
->- The div with class of 'products' marks the start and end of the list of products
->-- Its child div, with class of 'product template' is the mark up for a single product in the list, with no content
->- At runtime the dynamically created *product* sections, will be inserted directly before the *product template* 
->- The example two products, of the prototype html, are removed
->- Section templates, such as 'product template' always have a secondary class of template. 
-The CSS will always need a rule to hide sections with a class of template, e.g.
+Points to note:
+- Example static content, that will be provided dynamically from source data, is removed. This isn't always necessary, as Merger will replace it at runtime. However:
+-- it simplifies the template
+-- makes it pure mark-up
+-- avoids the chance of leaving the prototype content showing at runtime.
 
+- The &lt;div&gt; with class of 'products' marks the start and end of the list of products
+-- Its child &lt;div&gt;, with class of 'product template' is the mark up for a single product in the list, with no content
+- At runtime the dynamically created *product* sections, will be inserted directly before the *product template* 
+- The example two products, of the prototype html, are removed
+- Section templates, such as 'product template' always have a secondary class of template. 
+
+- The CSS will always need a rule to hide sections with a class of template, e.g.
 ```css
 .template {display: none;}
 ```
->
->- The product sizes need to appear within their parent product section, and as they are a list of dynamic length, they also have a section template, with a class of *attribute-size template*
->>- In this case the template is tagged with a &lt;td&gt; element, which shows that the template section does not have to be a &lt;div&gt;
->>- It also illustrates that changes to html can often be made, without changing merger configuration
->>- The input element has a name attribute with content of "size-". This is used by merger as a prefix for that size name, 
+- The product sizes need to appear within their parent product section, and as they are a list of dynamic length, they also have a section template, with a class of *attribute-size template*
+- In this case the template is tagged with a &lt;td&gt; element, which shows that the template section does not have to be a &lt;div&gt;
+-- It also illustrates that changes to html can often be made, without changing merger configuration
+-- The input element has a name attribute with content of "size-". This is used by merger as a prefix for that size name, 
 e.g. name="size-**7**"
 
 ### Ex1 Step2 Set up Dynamic Source Data
 
-In practice the product source data would normally be a json service response. 
-Merger requires the source data to be json objects, so the service response would be evaluated to to the appropriate object graph.
-For this example though, the object graph is just a const within a script, containing some mock data to test with.
+In practice, the product source data would normally be a JSON service response. Merger requires the source data to be JSON objects, so the service response would be evaluated to the appropriate object graph.
+For this example, the object graph is just a const, within a script --containing some mock data to test with.
 
-The mock data is an array of 5 products, in this case shoes, and each one has a collection of available sizes.
-There is also an object, 'globalContent', listing some name value pairs, which are the pageTitle, pageImg, and sizeLabel.
+The mock data is an array of 5 products, in this case shoes, and each one has a collection of available sizes. There is also an object, *globalContent*, listing some name value pairs, which are the *pageTitle*, *pageImg*, and *sizeLabel*.
 
-The following is a snippet of the file, product-list-shoes.js, which details the globalContent and teo of the products:
+The following is a snippet of the file, product-list-shoes.js, which details the globalContent, and two of the products:
 
-```JavaScript
+```js
 export const globalContent = {
    "pageTitle":"Product Lister",
    "pageImg":"https://dummyjson.com/image/i/products/57/1.jpg",
@@ -227,5 +225,5 @@ How merger configuration mapping uses **jpath** to obtain the source objects, wi
 > The minProducts, and maxProducts are used in this example to show how merger can be configured to pick a start and end index in a collection of objects. The mock data has 5 products, and we are configuring to start rendering on the second and end on the third.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTk5MjQ2NzcyOF19
+eyJoaXN0b3J5IjpbMjA3NjgxNDYzNV19
 -->
