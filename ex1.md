@@ -129,13 +129,11 @@ Points to note:
 -- it simplifies the template
 -- makes it pure mark-up
 -- avoids the chance of leaving the prototype content showing at runtime.
-
 - The &lt;div&gt; with class of 'products' marks the start and end of the list of products
 -- Its child &lt;div&gt;, with class of 'product template' is the mark up for a single product in the list, with no content
 - At runtime the dynamically created *product* sections, will be inserted directly before the *product template* 
 - The example two products, of the prototype html, are removed
 - Section templates, such as 'product template' always have a secondary class of template. 
-
 - The CSS will always need a rule to hide sections with a class of template, e.g.
 ```css
 .template {display: none;}
@@ -161,7 +159,6 @@ export const globalContent = {
    "pageImg":"https://dummyjson.com/image/i/products/57/1.jpg",
    "sizeLabel":"Sizes",
 };
-
 export const prods = {
    "products": [
       {
@@ -202,11 +199,9 @@ export const prods = {
       },
 ```
 
-Merger is configurable to use any types, names, and quantity of data objects, using **jsonPath** to link to the required
-objects. Each separate source object graph needs to be registered. To do this there is a standard object name dataSources, which is 
-set up for this example as follows:
+Merger is configurable to use any types, names, and quantity of data objects, using **jsonPath** to link to the required objects. Each separate source object graph needs to be registered. To do this there is a standard object name dataSources, which is set up for this example as follows:
 
-```JavaScript
+```js
 import {prods} from "./product-list-shoes.js"
 import {globalContent} from "./product-list-shoes.js"
 
@@ -219,11 +214,10 @@ dataSources.productList = prods.products;
 dataSources.minProducts = 2;
 dataSources.maxProducts = 3;
 ```
+> Merger mapping uses *jsonpath* to obtain the source objects. In this case they are *prods*, and *globalContent*.
 
-How merger configuration mapping uses **jpath** to obtain the source objects, will become apparent in the following section.
-
-> The minProducts, and maxProducts are used in this example to show how merger can be configured to pick a start and end index in a collection of objects. The mock data has 5 products, and we are configuring to start rendering on the second and end on the third.
+> The minProducts, and maxProducts, of this example, are variables configured to pick a start and end index, into a collection of objects. The mock data has 5 products, and we are configuring to start rendering on the second, and end on the third.
 
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbMjA3NjgxNDYzNV19
+eyJoaXN0b3J5IjpbMTU1NzI3NDg3OSwyMDc2ODE0NjM1XX0=
 -->
