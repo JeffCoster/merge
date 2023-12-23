@@ -3,11 +3,11 @@
 This step maps the Google taxonomy content, of step 2 to the html template of step 1.
 
 The first step, the top (Document Level) is just mapping elements and their attributes, before any instantiation of section templates.
-So it just maps some global content for the page title, and the header label for the tree.
+In this case, some global content for the page title, and the header label for the tree.
 
-The mapping, for Example 2, is contained in the [merger-map.js](examples/taxonomy/merger-map.js) file, as an object graph, ready for browser import. 
+The full mapping, for Example 2, is contained in the <a href="examples/taxonomy/merger-map.js" target="_blank">merger-map.js</a> file. As an object graph, ready for browser import. 
 
-For Node.js, the same mapping is in a [JSON file with .merger file extension](examples/taxonomy/tx-merger-map.merger), as merger will stream in and parse the file. In this case, the mapping also declares the relative path to the html template, which will be streamed in by express using merger as a template engine.
+For Node.js, the same mapping, is in a JSON file, with a .merger file extension, <a href="examples/taxonomy/tx-merger-map.merger">tx-merger-map.merger</a>. The Merger template engine, will stream in, and parse the file. In this case, though, the mapping also declares the relative path to the html template, which will be streamed in by the Merger template engine.
 
 The Snippet for the first mapping step is:
 ```js
@@ -52,7 +52,7 @@ This is shown in the following snippet:
                         "elementValueSrcJpath": "level1"
                      }
                   ]
-               }
+               }xc
             ],
             "collections": [
                {
@@ -105,7 +105,7 @@ The main aspects of the html section, to tree node source mapping, are described
 | .dataSrcJpath = sub2s | jsonPath, relative to parent (level 1) node, to the child array of level 2 nodes  |
 | .templateClassList = level2 template | class list of the level 2 html section template |
 | .srcIdPath = id | id is jpath to level 2 id, for use as the unique (level 2) node ID |
-| .mtCollectionFunctSel = lastLeafNode| registered name of custom function to invoke if the source array is empty, in this example meaning last leaf node of branch was reached
+| .mtCollectionFunctSel = lastLeafNode| registered name of custom function to invoke if the source array is empty, in this example meaning the last leaf node of the branch was reached
 
 | collections[0].instanceFill.collections[0].instanceFill.elementFills[0] | element fills required for level 2 nodes|
 | :------- | :--- |
@@ -120,9 +120,9 @@ In Operation:
 
 >- to start with, merger will pick the top level array of the taxonomy tree source content, as indicated by the dataSrcJpath of "taxonomy"
 >- the first element of that array will be processed, and the "level 1" content, i.e. "Animals & Pet Supplies" will fill the "summary" element
->- for that "instanceFill", merger will then find the child data source array "sub2s" and the "level 2" content "Live Animals" will 
-fill the "summary" of the first level 2 instance
->- the level 2 node "Live Animals" in the data source has no children, so when merger looks for a sub3s array it finds none, so:
+>- for that *instanceFill*, merger will then find the child data source array "sub2s" and the "level 2" content "Live Animals" will 
+fill the &lt;summary&gt; element
+>- the level 2 node "Live Animals" in the data source, has no children, so when merger looks for a sub3s array it finds none, so:
 >>- the 'empty collection' custom function is invoked, as declared by the 'mtCollectionFunctionSel' = 'lastLeafNode'
 >>- this custom function, adapts the html, so that the last node in a branch, will appear as it should, with no plus or minus symbol
 >- processing of the branch ends, and continues with the next level 1 branch
@@ -132,5 +132,5 @@ fill the "summary" of the first level 2 instance
 
 > Written with [StackEdit](https://stackedit.io/).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE3MjA0NTIxNzNdfQ==
+eyJoaXN0b3J5IjpbLTE1NzMyOTcyXX0=
 -->
