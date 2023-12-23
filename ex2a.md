@@ -91,26 +91,26 @@ The main aspects of the html section, to tree node source mapping, are described
 
 | collections[0] | (top) level 1 mapping|
 |:-------------|:--|
-| .dataSrcJpath = taxonomy | jsonPath to the source data taxonomy tree root  |
+| .dataSrcJpath = taxonomy | JSONPath to the source data taxonomy tree root  |
 | .templateClassList = level1 template | class list of the level 1 html section template |
-| .srcIdPath = id | id is jpath to taxonomy root[instance].id, for use as the unique (level 1) node ID
+| .srcIdPath = id | id is JSONpath to taxonomy root[instance].id, for use as the unique (level 1) node ID
 
 | collections[0].instanceFill.elementFills[0] | element fills required for level 1 nodes|
 | :------- | :--- |
 | .elementsToDo[0].elementTgtCss = summary | template relative CSS, to find summary target element for showing node name |
-| .elementsToDo[0].elementValueSrcJpath = level1 | jpath to instance.level1, for use as the node name |
+| .elementsToDo[0].elementValueSrcJpath = level1 | JSONpath to instance.level1, for use as the node name |
 
 | collections[0].instanceFill.collections[0] |level 2 mapping |
 | :------- | :--- |
-| .dataSrcJpath = sub2s | jsonPath, relative to parent (level 1) node, to the child array of level 2 nodes  |
+| .dataSrcJpath = sub2s | JSONpath, relative to parent (level 1) node, to the child array of level 2 nodes  |
 | .templateClassList = level2 template | class list of the level 2 html section template |
-| .srcIdPath = id | id is jpath to level 2 id, for use as the unique (level 2) node ID |
+| .srcIdPath = id | id is JSONpath to the level 2 id, for use as the unique (level 2) node ID |
 | .mtCollectionFunctSel = lastLeafNode| registered name of custom function to invoke if the source array is empty, in this example meaning the last leaf node of the branch was reached
 
 | collections[0].instanceFill.collections[0].instanceFill.elementFills[0] | element fills required for level 2 nodes|
 | :------- | :--- |
 | .elementsToDo[0].elementTgtCss = summary | template relative CSS, to find summary target element for showing node name |
-| .elementsToDo[0].elementValueSrcJpath = level2 | jpath to instance.level2, for use as the level 2 node name |
+| .elementsToDo[0].elementValueSrcJpath = level2 | JSONpath to instance.level2, for use as the level 2 node name |
 
 | collections[0].instanceFill.collections[0].instanceFill.collections0 |level 3 mapping |
 | :------- | :--- |
@@ -132,5 +132,5 @@ fill the &lt;summary&gt; element
 
 > Written with [StackEdit](https://stackedit.io/).
 <!--stackedit_data:
-eyJoaXN0b3J5IjpbLTE1NzMyOTcyXX0=
+eyJoaXN0b3J5IjpbLTIxNDU0MTE4OV19
 -->
