@@ -71,7 +71,7 @@ Typescript, JavaScript, jsonPath, CSS, html, JSON, JSON schema
 ```
 
 > Merger is invoked by calling **_compose(mergerMap, dataSources, document, customFunctions);_**
->- margerMap is your const containing the mapping json which maps the source json arrays and values to the html template
+>- mergerMap is your const containing the mapping json which maps the source json arrays and values to the html template
 >- dataSources is your json object that registers the source data (json) objects
 >- document is the DOM of the html template. On Node, the html has to be parsed into a DOM
 >- customFunctions are your custom functions that can be called from specific extension points of merger
@@ -82,8 +82,8 @@ Typescript, JavaScript, jsonPath, CSS, html, JSON, JSON schema
 > Debug and errors are output in the browser console (or node console for node operation).
 
 ## Examples (Rendered live in your Browser):
-- [List of Products](https://jeffcoster.github.io/merger/examples/product-list/product-lister-template.html)
-- [Tree of Categories (Taxonomy)](https://jeffcoster.github.io/merger/examples/taxonomy/taxonomy-template.html)
+- <a href="https://jeffcoster.github.io/merger/examples/product-list/product-lister-template.html" target="_blank">List of Products</a>
+- <a href="https://jeffcoster.github.io/merger/examples/taxonomy/taxonomy-template.html" target="_blank">Tree of Categories (Taxonomy)</a>
 
 [Full documentation, in addition to this readme](https://jeffcoster.github.io/merger/)
 
