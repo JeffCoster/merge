@@ -1,7 +1,7 @@
 ## Extension Functions
 
-Merger has core functionality as standard, but when necessary this can be extended, by the use of delegate functions. At specific points in the processing, delegate functions can optionally be invoked.
-At points in the mapping, the use of a function can be declared by its function selector. This is just a string name, that has a registered corresponding function.
+Merger has core functionality as standard, but when necessary this can be extended, by the use of delegate functions. 
+At specific points in the mapping, delegate function names can be declared, and their cooresponding function will be used when processing that point in the mapping. 
 
 There are some standard functions, that ship with Merger, and developers can add custom extension functions, and selectors, where needed.
 
@@ -18,21 +18,21 @@ The optional break out (delegation) points are:
 | - | - |
 | purpose | formatting selected source value, prior to element content fill |
 | srcValue | content selected to fill the element |
-| oldContent | existing content of selected target element, if any, usually to pre- or post-fix srcValue |
+| oldContent | existing content of selected target element, if any, e.g. to pre- or post-fix srcValue |
 | returns | content to fill element, as transformed by this function |
 
 | mapping point | elementFills[].elementsToDo[].itsAttributes[].functionSel |
 | - | - |
 | purpose | formatting selected source value, prior to attribute content fill |
 | srcValue | content selected to fill the element |
-| oldContent | existing content, of selected target html attribute, if any, usually to pre- or post-fix srcValue |
+| oldContent | existing content, of selected target html attribute, if any, e.g. to pre- or post-fix srcValue |
 | returns | content to fill element, as transformed by this function |
 
 | mapping point | collections[].mtCollectionFunctSel |
 | - | - |
 | purpose | handle case where the source array is empty |
 | srcValue | not used as there is no source array, or it is empty |
-| oldContent | document --when this is a top level collection, or the parent html section instance, when the collection has one  |
+| oldContent | the parent html node, of this section template  |
 | returns | oldContent, transformed as required by this function |
 
 ### Standard Extension Functions
@@ -46,7 +46,7 @@ They are general purpose element and attribute content transformations, as expla
 | "append" | append the existing selected target content with the selected source value and use it to fill the target content |
 | "prepend" | prepend the existing selected target content with the selected source value and use it to fill the target content|
 
-> with append and prepend the templates existing target content needs to contain the desired content used to prepend or append the new source content.
+> with append and prepend, the templates existing content, will be used to prepend or append the new source content.
 
 ### Custom Extension Functions
 
@@ -56,7 +56,7 @@ These are custom extension functions, that can be added to your project.
 
 - the Product Lister, has a very basic outline example of a currency format function
 
-- the Taxonomy, which has a function, for handling the last leaf node of a taxonomy tree; when the source collection is empty.
+- the Taxonomy, has a function for handling the last leaf node of a taxonomy tree; when the source collection is empty.
 
 To create your own custom functions file, the <a href="examples/lib/custom-functions.js" target="_blank">example customFunctions object</a>, which is used by the examples, can be used as a guide. The following are the necessary steps:
 
@@ -71,7 +71,7 @@ export const customFunctions = {
 	// ...
 }
 ```
-3) each custom function you require, needs adding to that object, and must follow the pattern of the examples, in terms of what parameters it uses, and the result content it returns
+3) each custom function you require, needs adding to that object, and must follow the pattern of the examples, in terms of what parameters it uses, and the result content it returns, e.g.
 ```js
 export const customFunctions = {
 
@@ -98,7 +98,7 @@ export const customFunctions = {
 	  // warn if functionSelector in mapping not found
       default:
          if (debug) {
-            console.error("No custome function found either, for selector:"
+            console.error("No custom function found either, for selector:"
                + functionSel + ", srcValue:" + srcValue + ", oldContent:" + oldContent);
          }
       }
