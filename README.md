@@ -73,11 +73,8 @@ Typescript, JavaScript, jsonPath, CSS, html, JSON, JSON schema
 > Merger is invoked by calling **_compose(mergerMap, dataSources, document, customFunctions);_**
 >- mergerMap is your const containing the mapping json which maps the source json arrays and values to the html template
 >- dataSources is your json object that registers the source data (json) objects
->- document is the DOM of the html template. On Node, the html has to be parsed into a DOM
+>- document is the DOM of the html template, this can also be a part of the DOM (child node)
 >- customFunctions are your custom functions that can be called from specific extension points of merger
-
-> The **_if(debug)_** section is an optional section, to validate the configured mapping against the merger mapping schema
->- generally, this section is only needed during the configuration of the mapping
 
 > Debug and errors are output in the browser console (or node console for node operation).
 
