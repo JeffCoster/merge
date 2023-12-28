@@ -39,9 +39,10 @@ The mapping configuration uses:
 - attribute names 
 -- to identify attributes within an element
 - jsonPath expressions, to find 
--- registered data sources
--- object collections within a data source
--- content data within source objects
+>- registered data sources
+>- object collections within a data source
+>- content data within source objects
+
 > The CSS and jsonPath expressions are usually relative to the current context of the processing. This simplifys them, and improves efficiency.
 
 ### Html IDs
@@ -50,7 +51,7 @@ A parent object ID can be used to prefix a child object to help ensure uniquenes
 This topic is explained more fully by the examples and their documentation.
 
 ### Extension Functions
-The mapping configuration approach, used by Merger, significantly reduces the amount of code development. However, it is sometimes a necessary to develop custom code, as delegated functions, 
+The mapping configuration approach, used by Merger, significantly reduces the amount of code development. However, it is sometimes necessary, to develop custom code; as delegate functions, 
 for example:
 
 - to format a price in a particular way
@@ -58,7 +59,7 @@ for example:
 - to cater for variations in behaviour, e.g. a source template mapped to an empty source collection
 
 ### Function Registry
-This is used to register custom coded functions; so that they found by mapping configuration using a declared name. All extension functions have the same pattern of parameters.
+This is used to register custom coded functions; so that they can be found by mapping configuration, using a declared name. All extension functions have the same pattern of parameters.
 
 
 
