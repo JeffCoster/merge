@@ -11,7 +11,7 @@ This is how the example displays, with all tree branches in an open state:
 
 <img src="examples/taxonomy/content/ex2_1.png" width="20%" height="20%" />
 
-<a href="examples/taxonomy/taxonomy-template.html' target="_blank">Open Taxonomy example to run in your Browser</a>
+<a href="examples/taxonomy/taxonomy-template.html" target="_blank">Open Taxonomy example to run in your Browser</a>
 
 For Node.js, with Express server:
 - <a href="examples/express/index.js" target="_blank">View example Node.js express index file</a>
@@ -27,20 +27,21 @@ This is a good example, of a pure HTML, and CSS tree. It contains static content
 
 In this step of the example:
 
->- the example static content was removed from the html
->- the branches of the prototype, going down the page, were cropped to leave one top level branch
->-- this was turned into a section template, by giving it a top level classes of: *level1 template*
->- similar section templates were added, as children, up to six levels deep, with the "level1" class number being incremented for each level: e.g. *level2*
->-- the six levels, being enough to deal with the maximum depth of hierarchy 
->- the CSS was left unchanged
->- note that the static example, before any changes, had a slightly different html for the last node of the tree
->-- to deal with this, in Merger; a custom function was developed: 
->-- this recognises when the last node in a branch has been reached, and modifies the html, to be a last branch node, as in the static example
->-- this is explained in more detail in the custom function section of this example
+* the example static content was removed from the html
+* the branches of the prototype, going down the page, were cropped to leave one top level branch
+    * this was turned into a section template, by giving it classes of: *level1 template*
+* similar section templates were added, as children, up to six levels deep, with the "level1" class number being incremented once for each level: e.g. *level2*
+    * the six levels used, being enough to deal with the maximum depth of hierarchy 
+    * the CSS was left unchanged
+* note that the static example, before any changes, had a slightly different html for the last node of the tree
+    * to deal with this, in Merger; a custom function was developed: 
+    * this to be mapped, to be invoked, when the last node in a branch has been reached
+    * to modify the html, to be a last branch node, as in the static example
+    * this is explained in more detail, in the custom function section of this example
 
+The following snippet, shows the HTML template, after this task; limited to three levels for brevity.
 
-The following snippet, shows the HTML template, after this task; limited to three levels for brevity. 
-```HTML
+```html
 <body>
    <ul class="tree">
       <li>
@@ -76,13 +77,13 @@ The following snippet, shows the HTML template, after this task; limited to thre
 </body>
 ```
 > Points to note:
->- Each unique top level category, level 1,  forms a branch of the tree, where the level1 template and its children are instantiated and filled
+>- Each unique top (level 1) category, forms a branch of the tree, where the level1 template and its children will be instantiated and filled
 >- the next level, level 2, forms a child leaf node of level 1, that is instantiated from the level 2 template
 >- and so on, for level 3 etc; until there are no more child leaf nodes in the branch
 >- at that point, i.e. when the dynamic source data has no more children for the branch, the custom function will form the last leaf node
 >- Merger will then start processing the next branch, with the next level 1, category.
 
-The full html template, can be downloaded as <a href='examples/taxonomy/taxonomy-template.html' target='_blank' download='taxonomy-template.html' type='text/plain'>taxonomy-template-node.html</a>. This file includes the required CSS, and is the full file required for Node.js use.  
+The full html template, can be downloaded as <a href='examples/taxonomy/taxonomy-template-node.html' download='taxonomy-template-node.html' type='text/plain'>taxonomy-template-node.html</a>. This file includes the required CSS, and is the full file required for Node.js use.  
 
 ### Ex2 Step2 Set up Dynamic Source Data
 
@@ -203,7 +204,7 @@ export const taxonomy = [
                 //...etc
 ```
 
-The full source data, for this example, can be viewed here: <a href="examples/taxonomy/googleTaxonomy.js" target="blank">googleTaxonomy.js</a>. The file also has some global content, for title and header, which work in the same way as example 1. 
+The full source data, for this example, can be viewed here: <a href="examples/taxonomy/content/googleTaxonomy.js" target="blank">googleTaxonomy.js</a>. The file also has some global content, for title and header, which work in the same way as example 1. 
 
 Data source registration is also composed in the same way as example 1, i.e.
 
