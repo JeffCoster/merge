@@ -6,8 +6,8 @@ The examples, work in a Browser, or Node.js, but it is recommended to first try 
 
 The mapping JSON, that maps the source data to the html, is the same, for a Browser, or Node.js, with two exceptions:
 
--  the Express Node.js mapping, specifies a relative path to the html template file
--  the Node.js mapping, is stored in a JSON file, that is streamed in by the Merger template engine. For the Browser, it is imported as an object graph.
+-  the Node.js mapping, is stored in a JSON file, that is streamed in by the Merger template engine. For a Browser, the mapping as an object graph.
+-  the Node.js mapping, specifies a relative path to the html template file. For a Browser the html is already loaded into the DOM.
 
 ## Example 1: Simple Product Lister
 
@@ -17,7 +17,7 @@ As a prior step, it is assumed, that a html developer, has created the static ht
 
 This is how that prototype page would display:
 
-<img src="examples/product-list/content/ex1_1.png" width="20%" height="20%" />
+<img src="examples/product-list/ex1_1.png" width="20%" height="20%" />
 
 <a href="examples/product-list/product-lister-template.html" target="_blank">Open Product Lister example to run in your Browser</a>
 
@@ -124,30 +124,30 @@ Removing the static prototype content, and collapsing the repeated product and s
    </div>
 </body>
 ```
+
 Points to note:
-- Example static content, that will be provided dynamically from source data, is removed. This isn't always necessary, as Merger will replace it at runtime. However:
--- it simplifies the template
--- makes it pure mark-up
--- avoids the chance of leaving the prototype content showing at runtime.
-- The &lt;div&gt; with class of 'products' marks the start and end of the list of products
--- Its child &lt;div&gt;, with class of 'product template' is the mark up for a single product in the list, with no content
-- At runtime the dynamically created *product* sections, will be inserted directly before the *product template* 
-- The example two products, of the prototype html, are removed
-- Section templates, such as 'product template' always have a secondary class of template. 
-- The CSS will always need a rule to hide sections with a class of template, e.g.
+* Example static content, that will be provided dynamically from source data, is removed. This isn't always necessary, as Merger will replace it at runtime. However:
+    * it simplifies the template
+    * makes it pure mark-up
+    * avoids the chance of leaving the prototype content showing at runtime.
+* The &lt;div&gt; with class of 'products' marks the start and end of the list of products
+    * Its child &lt;div&gt;, with class of 'product template' is the mark up for a single product in the list, with no content
+* At runtime the dynamically created *product* sections, will be inserted directly before the *product template* 
+* The example two products, of the prototype html, are removed
+* Section templates, such as 'product template' always have a secondary class of template. 
+* The CSS will always need a rule to hide sections with a class of template, e.g.
+  
 ```css
 .template {display: none;}
 ```
 - The product sizes need to appear within their parent product section, and as they are a list of dynamic length, they also have a section template, with a class of *attribute-size template*
 - In this case the template is tagged with a &lt;td&gt; element, which shows that the template section does not have to be a &lt;div&gt;
--- It also illustrates that changes to html can often be made, without changing merger configuration
--- The input element has a name attribute with content of "size-". This is used by merger as a prefix for that size name, 
-e.g. name="size-**7**"
+    * It also illustrates that changes to html can often be made, without changing merger configuration
+    * The input element has a name attribute with content of "size-". This is used by merger as a prefix for that size name, e.g. name="size-**7**"
 
 ### Ex1 Step2 Set up Dynamic Source Data
 
-In practice, the product source data would normally be a JSON service response. Merger requires the source data to be JSON objects, so the service response would be evaluated to the appropriate object graph.
-For this example, the object graph is just a const, within a script --containing some mock data to test with.
+In practice, the product source data would often be a JSON service response. Merger requires the source data to be JSON objects, so the service response would be parsed to the appropriate object graph. For this example, the object graph is just a const, within a script, containing some mock data to test with.
 
 The mock data is an array of 5 products, in this case shoes, and each one has a collection of available sizes. There is also an object, *globalContent*, listing some name value pairs, which are the *pageTitle*, *pageImg*, and *sizeLabel*.
 
