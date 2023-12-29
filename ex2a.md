@@ -5,8 +5,6 @@ This step maps the Google taxonomy content, of step 2 to the html template of st
 The first step, the top (Document Level) is just mapping elements and their attributes, before any instantiation of section templates.
 In this case, some global content for the page title, and the header label for the tree.
 
-The full mapping, for Example 2, is contained in the <a href="examples/taxonomy/merger-map.js" target="_blank">merger-map.js</a> file. As an object graph, ready for browser import. 
-
 For Node.js, the same mapping, is in a JSON file, with a .merger file extension, <a href="examples/taxonomy/tx-merger-map.merger">tx-merger-map.merger</a>. The Merger template engine, will stream in, and parse the file. In this case, though, the mapping also declares the relative path to the html template, which will be streamed in by the Merger template engine.
 
 The Snippet for the first mapping step is:
@@ -82,6 +80,8 @@ This is shown in the following snippet:
 
 >- the snippet just shows the mapping for the top 2 levels, and a small part of the level 3
 >>- in the full mapping, the maximum of 6 levels are mapped
+>>- The full mapping, for Example 2, is contained in the <a href="examples/taxonomy/merger-map.js" target="_blank">merger-map.js</a> file --as an object graph, ready for browser import. 
+
 
 >- collections within the instanceFill of a collection, are how merger maps the hierarchy of section templates to source object arrays
 >>- in example 1 this approach was used to map products in a list, and to list sizes for each of those products
@@ -118,19 +118,16 @@ The main aspects of the html section, to tree node source mapping, are described
 
 In Operation:
 
->- to start with, merger will pick the top level array of the taxonomy tree source content, as indicated by the dataSrcJpath of "taxonomy"
->- the first element of that array will be processed, and the "level 1" content, i.e. "Animals & Pet Supplies" will fill the "summary" element
->- for that *instanceFill*, merger will then find the child data source array "sub2s" and the "level 2" content "Live Animals" will 
-fill the &lt;summary&gt; element
->- the level 2 node "Live Animals" in the data source, has no children, so when merger looks for a sub3s array it finds none, so:
->>- the 'empty collection' custom function is invoked, as declared by the 'mtCollectionFunctionSel' = 'lastLeafNode'
->>- this custom function, adapts the html, so that the last node in a branch, will appear as it should, with no plus or minus symbol
->- processing of the branch ends, and continues with the next level 1 branch
-> 
-> note that the mapping for level 2 and lower levels, each specify the same "mtCollectionFunctionSel", this is because the last branch node could be at any level below level 1
+* to start with, merger will pick the top level array of the taxonomy tree source content, as indicated by the dataSrcJpath of "taxonomy"
+* the first element of that array will be processed, and the "level 1" content, i.e. "Animals & Pet Supplies" will fill the "summary" element
+* for that *instanceFill*, merger will then find the child data source array "sub2s" and the "level 2" content "Live Animals" will fill the &lt;summary&gt; element
+* the level 2 node "Live Animals" in the data source, has no children, so when merger looks for a sub3s array it finds none, so:
+    * the 'empty collection' custom function is invoked, as declared by the 'mtCollectionFunctionSel' = 'lastLeafNode'
+    * this custom function, adapts the html, so that the last node in a branch, will appear as it should, with no plus or minus symbol
+    * processing of the branch ends, and continues with the next level 1 branch
+ 
+> note that the mapping for level 2 and lower levels, each specify the same "mtCollectionFunctionSel", this is because the last node of the branch, could be at any level below level 1
 
-
-> Written with [StackEdit](https://stackedit.io/).
 <!--stackedit_data:
 eyJoaXN0b3J5IjpbLTIxNDU0MTE4OV19
 -->
