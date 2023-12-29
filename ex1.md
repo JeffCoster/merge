@@ -17,7 +17,7 @@ As a prior step, it is assumed, that a html developer, has created the static ht
 
 This is how that prototype page would display:
 
-<img src="examples/product-list/ex1_1.png" width="20%" height="20%" />
+<img src="examples/product-list/Ex1_1.png" width="20%" height="20%" />
 
 <a href="examples/product-list/product-lister-template.html" target="_blank">Open Product Lister example to run in your Browser</a>
 
