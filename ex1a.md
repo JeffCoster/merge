@@ -2,13 +2,13 @@
 
 This step illustrates a major benefit of merger. Using data configuration (mapping), to render the html, rather than writing code.
 
-There are three levels, of html, that need to be mapped.
+There are three levels, of html, that need mapping for this example.
 
 1. Top (Document Level) --mapping elements and their attributes, to source values, before any instantiation of section templates.
 
 2. Product Section Template --mapping to the collection of source product objects --for replication, filling, and insertion of product instances.
 
-3. Size Template, mapping to the size data, for replication, filling, and insertion of the sizes for each product.
+3. Size Template --mapping to the size data, for replication, filling, and insertion of the sizes for each product.
 
 > The mapping for Example 1, is contained in the ex1/merger-map.js file. This mapping object, could of course be streamed from a service and evaluated. But for this example, it is already a named const.
 
@@ -67,8 +67,7 @@ export const mergerMap = {
 
 >- with dataSource *productList*, the CSS #*products-header-img*, selects the &lt;img&gt; tag with id="products-header-img"
 >>- the *itsAttributes* objects, define mappings for the img element attributes
->>- the *srcJpath* json of "$..thumbnail" selects all values of data member "thumbnail", however the merger code will only use the first one, as it targets a single element and its attributes
->>- so, img attributes, src and alt, are filled with the content of the first thumbnail in the productList
+>>- the *srcJpath* json of "$..thumbnail" selects all values of data member "thumbnail", however the merger code will only use the first one, as it targets a single element and its attributes --so, img attributes: src and alt, will be filled with the content of the first thumbnail in the *productList*
 
 The second step in the mapping task --mapping the product template html, to its source objects --is shown in the following snippet:
 
@@ -137,24 +136,22 @@ The second step in the mapping task --mapping the product template html, to its 
 >>- the srcIdPath= *id* instructs merger to use this value, when forming the product Ids
 >>- at runtime the default behaviour, for forming the target html instance ID is 
 
-```text
-<first class name of template> +_  +source ID
-e.g.
-'product' +'_' +50
+```html
+        <first class name of template> +_  +source ID
 ``` 
 >- so in this example, for a product with source id of 50, the snippet of target html would be:
 
 ```html
-<div class="product" id="product_50">
-   // ...
-</div>
+        <div class="product" id="product_50">
+           ...
+        </div>
 ```
 > note: for child collections, e.g product sizes, the parent id, prepends the ids of the children
 
 The third, and last step of the mapping task, maps source (product) sizes, to html product instance sizes. 
 The following JSON mapping snippet shows this:
 
-```json
+```jsonc
   "collections": [
       {
          "dataSrcJpath": "productList",
@@ -201,25 +198,25 @@ The following JSON mapping snippet shows this:
 ```
 
 >- The sizes are a child template of the product, so, the collection to map the sizes, is a child of the collection that maps the products
->- the dataSrcJpath of "sizes" is relative to the parent instance, and maps to the sizes array
->- the srcIdPath is not declared, as there is no natural unique key for each size, so the merger code will use the actual value 
+>- the *dataSrcJpath* of "sizes" is relative to the parent instance, and maps to the sizes array
+>- the *srcIdPath* is not declared, as there is no natural unique key for each size, so the merger code will use the actual value 
 of the size, e.g. 7
 >>- an example target ID for the sizes, once the parent ID is prepended, would be like this in the html:
 
 ```html
-   <td class="attribute-size" id="product_50_attribute-size_10">
+        <td class="attribute-size" id="product_50_attribute-size_10">
 ```
 
 >- the *elementsToDo[0]* for element &lt;label&gt; has:
 >>- an undeclared *elementValueSrcJpath*, which means that merger will use the whole of the source object instance, as the content value, this approach is needed, as in this case the object in the sizes array, is just a string, e.g. "7"
->>- a functionSel of "prepend" to ensure that the source content is prepended to the existing contents of the template, the sizes template being as follows, where the size needs to be added before the &lt;br&gt; tag
+>>- a *functionSel* of "prepend" to ensure that the source content is prepended to the existing contents of the template, the sizes template being as follows, where the size needs to be added before the &lt;br&gt; tag
 
 ```html
-<td class="attribute-size template">
-   <label><br>
-         <input type="radio" name="size-" value=""><br>
-   </label>
-</td>
+        <td class="attribute-size template">
+           <label><br>
+                 <input type="radio" name="size-" value=""><br>
+           </label>
+        </td>
 ```
 
 >- the elementsToDo[1] for element "input" has:
