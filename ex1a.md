@@ -199,8 +199,7 @@ The following JSON mapping snippet shows this:
 
 >- The sizes are a child template of the product, so, the collection to map the sizes, is a child of the collection that maps the products
 >- the *dataSrcJpath* of "sizes" is relative to the parent instance, and maps to the sizes array
->- the *srcIdPath* is not declared, as there is no natural unique key for each size, so the merger code will use the actual value 
-of the size, e.g. 7
+>- the *srcIdPath* is not declared, as there is no natural unique key for each size, this makes the merger code use the actual value of the size, e.g. 7
 >>- an example target ID for the sizes, once the parent ID is prepended, would be like this in the html:
 
 ```html
@@ -254,10 +253,3 @@ So, the end result of processing the collection mapping, results in the html for
          </form>
       </div>
 ```
-
-
-
-> Written with [StackEdit](https://stackedit.io/).
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbMTI0NjQwOTM3NV19
--->
