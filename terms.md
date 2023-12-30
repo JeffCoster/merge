@@ -56,10 +56,14 @@ for example:
 
 - to format a price in a particular way
 - to pre- or post-fix the source content, prior to insertion in the html
-- to cater for variations in behaviour, e.g. a source template mapped to an empty source collection
+- to cater for variations in behaviour, e.g. a section template mapped to an empty source collection
+
+There are Standard and Custom Functions. The Standard ones ship with Merger. Custom Functions can optionally be created, as required for your project.
+
+All extension functions have the same pattern of parameters.
 
 ### Function Registry
-This is used to register custom coded functions; so that they can be found by mapping configuration, using a declared name. All extension functions have the same pattern of parameters.
+This is used to register custom coded functions; so that they can be found by mapping configuration, using a declared name.
 
 
 
