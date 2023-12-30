@@ -33,9 +33,7 @@ In this step of the example:
 * similar section templates were added, as children, up to six levels deep, with the "level1" class number being incremented once for each level: e.g. *level2*
     * the six levels used, being enough to deal with the maximum depth of hierarchy 
     * the CSS was left unchanged
-* note that the static example, before any changes, had a slightly different html for the last node of the tree
-    * to deal with this, in Merger; a custom function was developed: 
-    * this to be mapped, to be invoked, when the last node in a branch has been reached
+* note that the static example, before any changes, had a slightly different html for the last node of the tree. To deal with this, in Merger; a custom function was developed: 
     * to modify the html, to be a last branch node, as in the static example
     * this is explained in more detail, in the custom function section of this example
 
