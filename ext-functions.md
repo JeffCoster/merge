@@ -14,21 +14,21 @@ The return value of the function, will be used by the processing, instead of the
 
 The optional break out (delegation) points are:
 
-| mapping point | elementFills[].elementsToDo[].functionSel |
+| mapping point | elementFill.elementsToDo[].functionSel |
 | - | - |
 | purpose | formatting selected source value, prior to element content fill |
 | srcValue | content selected to fill the element |
 | oldContent | existing content of selected target element, if any, e.g. to pre- or post-fix srcValue |
 | returns | content to fill element, as transformed by this function |
 
-| mapping point | elementFills[].elementsToDo[].itsAttributes[].functionSel |
+| mapping point | elementFill.elementsToDo[].itsAttributes[].functionSel |
 | - | - |
 | purpose | formatting selected source value, prior to attribute content fill |
 | srcValue | content selected to fill the element |
 | oldContent | existing content, of selected target html attribute, if any, e.g. to pre- or post-fix srcValue |
-| returns | content to fill element, as transformed by this function |
+| returns | content to fill attribute, as transformed by this function |
 
-| mapping point | collections[].mtCollectionFunctSel |
+| mapping point | collection.mtCollectionFunctSel |
 | - | - |
 | purpose | handle case where the source array is empty |
 | srcValue | not used as there is no source array, or it is empty |
