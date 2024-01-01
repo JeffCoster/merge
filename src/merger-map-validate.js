@@ -1,13 +1,14 @@
 /* Merger
  *
- * Copyright (c) 20023 Jeff Coster
- * Licensed under the MIT (MIT-LICENSE.txt) licence.
+ * Copyright (c) 20024 Jeff Coster
+ * Licensed under the Apache-2.0 licence.
  * see https://github.com/JeffCoster/merger
- */
+ * 
+ *
+ * Validate mergerMap is valid against merger schema
+ * 
+**/
 
-/*
-  validate mergerMap is valid json using merger schema
-*/
 
 import {
    mergerSchema

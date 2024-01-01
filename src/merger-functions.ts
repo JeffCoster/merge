@@ -1,13 +1,11 @@
-/*global
- debug
-*/
-
 /* Merger
  *
- * Copyright (c) 20023 Jeff Coster
- * Licensed under the MIT (MIT-LICENSE.txt) licence.
+ * Copyright (c) 20024 Jeff Coster
+ * Licensed under the Apache-2.0 licence.
  * see https://github.com/JeffCoster/merger
- */
+ * 
+ * Core functionality of Merger
+ **/
 
 import {jsonPath} from "./jsonpath.js"
 import {extFunctions} from "./merger-extensions.js"

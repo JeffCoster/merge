@@ -1,14 +1,11 @@
-/*global
- debug
-*/
-
 /* Merger
  *
  * Copyright (c) 20023 Jeff Coster
- * Licensed under the MIT (MIT-LICENSE.txt) licence.
+ * Licensed under the Apache-2.0 licence.
  * see https://github.com/JeffCoster/merger
  * 
- * Merger as template engine for node js express server, which prefers to import an __express function.
+ *  Merger as template engine for Node.js express server, which prefers to import an __express function.
+ * 
  */
 
 import {compose} from "./merger-functions.js";

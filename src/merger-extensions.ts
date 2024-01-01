@@ -4,17 +4,16 @@
 
 /* Merger
  *
- * Copyright (c) 20023 Jeff Coster
- * Licensed under the MIT (MIT-LICENSE.txt) licence.
+ * Copyright (c) 20024 Jeff Coster
+ * Licensed under the Apache-2.0 licence.
  * see https://github.com/JeffCoster/merger
- */
-
-/* The purpose of this file is to allow switchable selectable functions to be used by the core of Merger
-   In this file there are some standard, hi re-use functions
-   Assigning a delegate object, to customFunctions, with similar doFunction method and custom functions,
-   allows custom functions to be added to merger without affecting the core or these extension functions.
-   Do not add functions to this file, do so in your own customFunctions file.
-*/
+ *
+ *  The purpose of this file is to allow switchable selectable functions to be used by the core of Merger
+ *  In this file there are some standard, hi re-use functions
+ *  Assigning a delegate object, to customFunctions, with similar doFunction method and custom functions,
+ *  allows custom functions to be added to merger without affecting the core or these extension functions.
+ *  Do not add functions to this file, do so in your own customFunctions file.
+**/
 
 import {dbgConsole} from "./merger-functions.js"
 

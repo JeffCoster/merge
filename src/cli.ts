@@ -1,15 +1,14 @@
 /* Merger
  *
- * Copyright (c) 20023 Jeff Coster
- * Licensed under the MIT (MIT-LICENSE.txt) licence.
+ * Copyright (c) 20024 Jeff Coster
+ * Licensed under the Apache-2.0 licence.
  * see https://github.com/JeffCoster/merger
- */
-
-/*  
-   Regression Test renderedHtml matches a baseline html file. 
-   Baseline, captured and saved using an earlier version of Merger
-   to render the same view using same test data and mapping.
-*/
+ *  
+ * Regression Test renderedHtml matches a baseline html file. 
+ * Baseline, captured and saved using an earlier version of Merger
+ * to render the same view using same test data and mapping.
+ * 
+**/
 
 import * as fs from "fs";
 import chalk from 'chalk';
