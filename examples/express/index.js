@@ -2,9 +2,9 @@ import {customFunctions} from "../../examples/lib/custom-functions.js";
 import {dataSources} from "../../examples/product-list/content/data-sources.js"
 import {dataSources as dataSourcesLevels} from "../../examples/taxonomy/content/data-sources.js"
 import express from "express"
-import * as __merger from "merger"
+import * as __merger from "merger-dd"
 
-global.debug = false;
+global.debug = true;
 
 var dataSources4View;
 

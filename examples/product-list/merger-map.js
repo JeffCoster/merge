@@ -83,7 +83,6 @@ export const mergerMap = {
             "collections": [
                {
                   "dataSrcJpath": "sizes",
-                  "instantiationSrcJpath": "",
                   "templateClassList": "attribute-size template",
                   "srcIdPath": "",
                   "instanceFill": {
