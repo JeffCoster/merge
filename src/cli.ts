@@ -103,10 +103,10 @@ export async function main(argv: any) {
     .allowExcessArguments(false)
     .argument('<mappingJsonPath>', 'Path to merger mapping [.merger] file, controlling rendering.')
     .argument('<baselineHtmlPath>', 'Path to the baseline html file. From a previous tested OK render.')
-    .argument('<dataSourcesPath>', 'Path to the dataSources object which defines all data sources used to render content')
+    .argument('<dataSourcesPath>', 'Full Path to the dataSources object which defines all data sources used to render content')
     .option('-d,--debug','output extra debugging', false)
     .option('-a,--chars-around-diff <charsAroundDiff>', 'The number of characters around the diff', parseIntOpt, 20)
-    .option('-c,--custom-functions-path <customFunctionsPath>', 'Path to custom functions to import', null)
+    .option('-c,--custom-functions-path <customFunctionsPath>', 'Full Path to custom functions to import', null)
     .action(act);
 
     await program.parseAsync(argv);
