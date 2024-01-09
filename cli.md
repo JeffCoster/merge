@@ -25,25 +25,18 @@ Regression test: Compares merger rendered HTML, with a previously rendered basel
 Arguments:
   mappingJsonPath                                   Path to merger mapping [.merger] file, controlling rendering.
   baselineHtmlPath                                  Path to the baseline html file. From a previous tested OK render.
-  dataSourcesPath                                   Path to the dataSources object which defines all data sources used to render content
+  dataSourcesPath                                   Full Path to the dataSources object which defines all data sources used to render content
 
 Options:
   -V, --version                                     output the version number
   -d,--debug                                        output extra debugging (default: false)
   -a,--chars-around-diff <charsAroundDiff>          The number of characters around the diff (default: 20)
-  -c,--custom-functions-path <customFunctionsPath>  Path to custom functions to import (default: null)
+  -c,--custom-functions-path <customFunctionsPath>  Full Path to custom functions to import (default: null)
   -h, --help                                        display help for command
 
 ```
 
 Example:
 ```text
-npx merger-test examples/taxonomy/tx-merger-map.merger examples/test/taxonomy-baseline.html 
-../../../examples/taxonomy/content/data-sources.js --chars-around-diff=20 
--c ../../../examples/lib/custom-functions.js
+npx merger-test ex/taxonomy/tx-merger-map.merger ex/test/taxonomy-baseline.html ~/vscode/test/ex/taxonomy/content/data-sources.js --chars-around-diff=15 -c ~/vscode/test/ex/lib/custom-functions.js
 ```
-
-<!--stackedit_data:
-eyJoaXN0b3J5IjpbLTM0NTUyODI0OCwtNTQ2NTc1OTE2LC0yMT
-A4Mjk2NjA1LDEwNDI1ODk5ODVdfQ==
--->
