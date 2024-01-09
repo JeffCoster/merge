@@ -1,14 +1,11 @@
-/*global
- debug
-*/
-
 /* Merger
  *
  * Copyright (c) 20023 Jeff Coster
- * Licensed under the MIT (MIT-LICENSE.txt) licence.
+ * Licensed under the Apache-2.0 licence.
  * see https://github.com/JeffCoster/merger
  * 
- * Merger as template engine for node js express server, which prefers to import an __express function.
+ *  Merger as template engine for Node.js express server, which prefers to import an __express function.
+ * 
  */
 
 import {compose} from "./merger-functions.js";
@@ -43,9 +40,7 @@ export function __express(filePath: string, options: any, callback: (msg: any, r
         const mapFileDir: string = path.dirname(filePath);
         process.chdir(mapFileDir);
 
-        var dom = JSDOM.fromFile(htmlTemplatePath, {
-        includeNodeLocations: true
-        }).then(dom => {
+        var dom = JSDOM.fromFile(htmlTemplatePath).then(dom => {
             if(debug) {
                 validateMergeMapToSchema(mergeMap4View);
             }

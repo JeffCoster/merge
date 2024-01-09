@@ -1,6 +1,6 @@
 export const globalContent = {
    "pageTitle":"Product Lister",
-   "pageImg":"https://dummyjson.com/image/i/products/57/1.jpg",
+   "pageImg":"https://cdn.dummyjson.com/product-images/56/1.jpg",
    "sizeLabel":"Sizes",
 };
 
@@ -16,9 +16,9 @@ export const prods = {
          "stock": 6,
          "brand": "Sneakers",
          "category": "mens-shoes",
-         "thumbnail": "https://dummyjson.com/image/i/products/56/thumbnail.jpg",
+         "thumbnail": "https://cdn.dummyjson.com/product-images/56/thumbnail.jpg",
          "images": [
-            "https://dummyjson.com/image/i/products/56/1.jpg", "https://dummyjson.com/image/i/products/56/2.jpg", "https://dummyjson.com/image/i/products/56/3.jpg", "https://dummyjson.com/image/i/products/56/4.jpg", "https://dummyjson.com/image/i/products/56/5.jpg", "https://dummyjson.com/image/i/products/56/thumbnail.jpg"
+            "https://cdn.dummyjson.com/product-images/56/1.jpg", "https://cdn.dummyjson.com/product-images/56/2.jpg", "https://cdn.dummyjson.com/product-images/56/3.jpg", "https://cdn.dummyjson.com/product-images/56/4.jpg", "https://cdn.dummyjson.com/product-images/56/5.jpg", "https://cdn.dummyjson.com/product-images/56/thumbnail.jpg"
          ],
          "sizes": [
             6, 7, 8
@@ -34,9 +34,9 @@ export const prods = {
          "stock": 20,
          "brand": "Rubber",
          "category": "mens-shoes",
-         "thumbnail": "https://dummyjson.com/image/i/products/57/thumbnail.jpg",
+         "thumbnail": "https://cdn.dummyjson.com/product-images/57/thumbnail.jpg",
          "images": [
-            "https://dummyjson.com/image/i/products/57/1.jpg", "https://dummyjson.com/image/i/products/57/2.jpg", "https://dummyjson.com/image/i/products/57/3.jpg", "https://dummyjson.com/image/i/products/57/4.jpg", "https://dummyjson.com/image/i/products/57/thumbnail.jpg"
+            "https://cdn.dummyjson.com/product-images/57/1.jpg", "https://cdn.dummyjson.com/product-images/57/2.jpg", "https://cdn.dummyjson.com/product-images/57/3.jpg", "https://cdn.dummyjson.com/product-images/57/4.jpg", "https://cdn.dummyjson.com/product-images/57/thumbnail.jpg"
          ],
          "sizes": [
             6, 7, 8, 9
@@ -52,9 +52,9 @@ export const prods = {
          "stock": 68,
          "brand": "The Warehouse",
          "category": "mens-shoes",
-         "thumbnail": "https://dummyjson.com/image/i/products/58/thumbnail.jpg",
+         "thumbnail": "https://cdn.dummyjson.com/product-images/58/thumbnail.jpg",
          "images": [
-            "https://dummyjson.com/image/i/products/58/1.jpg", "https://dummyjson.com/image/i/products/58/2.jpg", "https://dummyjson.com/image/i/products/58/3.jpg", "https://dummyjson.com/image/i/products/58/4.jpg", "https://dummyjson.com/image/i/products/58/thumbnail.jpg"
+            "https://cdn.dummyjson.com/product-images/58/1.jpg", "https://cdn.dummyjson.com/product-images/58/2.jpg", "https://cdn.dummyjson.com/product-images/58/3.jpg", "https://cdn.dummyjson.com/product-images/58/4.jpg", "https://cdn.dummyjson.com/product-images/58/thumbnail.jpg"
          ],
          "sizes": [
             8, 9, 10
@@ -70,9 +70,9 @@ export const prods = {
          "stock": 137,
          "brand": "Sneakers",
          "category": "mens-shoes",
-         "thumbnail": "https://dummyjson.com/image/i/products/59/thumbnail.jpg",
+         "thumbnail": "https://cdn.dummyjson.com/product-images/59/thumbnail.jpg",
          "images": [
-            "https://dummyjson.com/image/i/products/59/1.jpg", "https://dummyjson.com/image/i/products/59/2.jpg", "https://dummyjson.com/image/i/products/59/3.jpg", "https://dummyjson.com/image/i/products/59/4.jpg", "https://dummyjson.com/image/i/products/59/thumbnail.jpg"
+            "https://cdn.dummyjson.com/product-images/59/1.jpg", "https://cdn.dummyjson.com/product-images/59/2.jpg", "https://cdn.dummyjson.com/product-images/59/3.jpg", "https://cdn.dummyjson.com/product-images/59/4.jpg", "https://cdn.dummyjson.com/product-images/59/thumbnail.jpg"
          ],
          "sizes": [
             11
@@ -88,9 +88,9 @@ export const prods = {
          "stock": 129,
          "brand": "Sneakers",
          "category": "mens-shoes",
-         "thumbnail": "https://dummyjson.com/image/i/products/60/thumbnail.jpg",
+         "thumbnail": "https://cdn.dummyjson.com/product-images/60/thumbnail.jpg",
          "images": [
-            "https://dummyjson.com/image/i/products/60/1.jpg", "https://dummyjson.com/image/i/products/60/2.jpg", "https://dummyjson.com/image/i/products/60/3.jpg", "https://dummyjson.com/image/i/products/60/thumbnail.jpg"
+            "https://cdn.dummyjson.com/product-images/60/1.jpg", "https://cdn.dummyjson.com/product-images/60/2.jpg", "https://cdn.dummyjson.com/product-images/60/3.jpg", "https://cdn.dummyjson.com/product-images/60/thumbnail.jpg"
          ],
          "sizes": [
             10, 11
