@@ -1,6 +1,6 @@
 {
    "name": "merger-dd",
-   "version": "1.0.0-alpha.1",
+   "version": "1.0.0-alpha.2",
    "description": "compose dynamic html pages by mapping source data to an html template",
    "main": "built/ejs/src/index.js",
    "type": "module",
