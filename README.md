@@ -48,7 +48,7 @@ Typescript, JavaScript, jsonPath, CSS, html, JSON, JSON schema
 ```javascript
 
 // import latest merger-dd code from unpkg
-<script src="https://unpkg.com/merger-dd"></script>
+<script src="https://unpkg.com/merger-dd/dist/browser-dev.js"></script>
 
 <script type="module">
 
