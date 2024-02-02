@@ -15,18 +15,18 @@ import { CollectionMapping } from "./collection-mapping.js";
 @Type()
 export class InstanceMapping
 {
-    // json path relative to content source to the id value to use to identify each instance 
-    @Property(String) public srcIdPath: string;
+    // json path relative to src instance of the id value to use for each instance id
+    @Property(String) public srcIdPath?: string;
     // optional: elements to map for each instance 
-    @Property(ElementMapping) public elementMappings: Array<ElementMapping>;
+    @Property(ElementMapping) public elementMappings?: Array<ElementMapping>;
     // optional: child collections to map for each instance 
-    @Property(Array, [CollectionMapping]) public collectionMappings: Array<CollectionMapping>;
+    @Property(Array, [CollectionMapping]) public collectionMappings?: Array<CollectionMapping>;
 
-    public constructor(srcIdPath: string, elementMappings?: Array<ElementMapping>, collectionMappings?: Array<CollectionMapping> ) {
+    public constructor(srcIdPath?: string, elementMappings?: Array<ElementMapping>, collectionMappings?: Array<CollectionMapping> ) {
     
         this.srcIdPath = srcIdPath;
-        if (typeof elementMappings !== "undefined") this.elementMappings = elementMappings;
-        if (typeof collectionMappings !== "undefined") this.collectionMappings = collectionMappings;
+        if (elementMappings !== undefined) this.elementMappings = elementMappings;
+        if (collectionMappings !== undefined) this.collectionMappings = collectionMappings;
  
         return;
     }
@@ -42,8 +42,8 @@ export class InstanceMapping
       removeElementMappingAt(index: number): Array<ElementMapping> {
         if (index <= (this.elementMappings.length -1)) {
            this.elementMappings.splice(index, 1);
-           if (this.elementMappings.length == 0) {
-              this.elementMappings = undefined;
+           if (this.elementMappings.length === 0) {
+              delete this.elementMappings;
            }
         }
         return this.elementMappings;
@@ -57,14 +57,14 @@ export class InstanceMapping
           return this.collectionMappings;
       }
     
-      removeCollectionMappingAt(index: number): Array<ElementMapping> {
+      removeCollectionMappingAt(index: number): Array<CollectionMapping> {
           if (index <= (this.elementMappings.length -1)) {
-             this.elementMappings.splice(index, 1);
-             if (this.elementMappings.length == 0) {
-                this.elementMappings = undefined;
+             this.collectionMappings.splice(index, 1);
+             if (this.collectionMappings.length == 0) {
+                delete this.collectionMappings;
              }
           }
-          return this.elementMappings;
+          return this.collectionMappings;
         }
   
 }

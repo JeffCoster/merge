@@ -18,13 +18,13 @@ export class CollectionMapping
    // json path to content source object used to instantiate and fill collection
    @Property(String) public dataSrcJpath: string;      
    // json path to optional variable used as start index point into content collection, zero is first
-   @Property(String) public startDataSrcJpath: number;
+   @Property(String) public startDataSrcJpath?: number;
    // json path to optional variable used as max number of instances to create and fill
-   @Property(String) public maxToShowDataSrcJpath: number;
+   @Property(String) public maxToShowDataSrcJpath?: number;
    // id of the html section template for this collection
-   @Property(String) public templateId: string;
+   @Property(String) public templateId?: string;
    // class list of template to use instead of id. Use this instead of id for child collections, to ensure unique IDs
-   @Property(String) public templateClassList: string;
+   @Property(String) public templateClassList?: string;
 
    // mapping for each instantiated object of collection
    @Property(InstanceMapping) public instanceMapping: InstanceMapping;
@@ -35,11 +35,11 @@ export class CollectionMapping
         this.dataSrcJpath = dataSrcJpath;
         this.instanceMapping = instanceMapping;
 
-        if (typeof templateId !== "undefined") this.templateId = templateId;
-        if (typeof templateClassList !== "undefined") this.templateClassList = templateClassList;
+        if (templateId !== undefined) this.templateId = templateId;
+        if (templateClassList !== undefined) this.templateClassList = templateClassList;
 
-        if (typeof startDataSrcJpath !== "undefined") this.startDataSrcJpath = startDataSrcJpath;
-        if (typeof maxToShowDataSrcJpath !== "undefined") this.maxToShowDataSrcJpath = maxToShowDataSrcJpath;
+        if (startDataSrcJpath !== undefined) this.startDataSrcJpath = startDataSrcJpath;
+        if (maxToShowDataSrcJpath !== undefined) this.maxToShowDataSrcJpath = maxToShowDataSrcJpath;
 
         return;
     }
