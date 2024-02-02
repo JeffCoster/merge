@@ -4,13 +4,14 @@
  * Licensed under the Apache-2.0 licence.
  * see https://github.com/JeffCoster/merger
  * 
- * Class for Element mapping objects
+ * Class for Element mapping objects, each object maps one html element to its content, 
+ * and optionally maps any number of itsAttributes
  * 
  **/
 
-import {jsonPath} from "./jsonpath.js"
-import {extFunctions} from "./merger-extensions.js"
-import {Type, Property} from '@dipscope/type-manager';
+import { jsonPath } from "./jsonpath.js"
+import { extFunctions } from "./merger-extensions.js"
+import { Type, Property } from '@dipscope/type-manager';
 import { AttributeMapping } from "./attribute-mapping.js";
 
 @Type()
@@ -21,22 +22,21 @@ export class ElementMapping
    // jsonPath to content to use to fill the target element. Relative to the content source object in context, unless #prepended
    @Property(String) public elementValueSrcJpath: string;
    // optional, defined name used to select the registered data formatting function to use on this element fill   
-   @Property(String) public functionSel: string;    
+   @Property(String) public functionSel?: string;    
    // optional, attribute mappings for this element
-   @Property(Array, [AttributeMapping]) public itsAttributes: Array<AttributeMapping>;
+   @Property(Array, [AttributeMapping]) public itsAttributes?: Array<AttributeMapping>;
 
     
-    public constructor(elementTgtCss: string, elementValueSrcJpath: string, functionSel?: string) {
+    public constructor(elementTgtCss: string, elementValueSrcJpath: string, functionSel?: string, itsAttributes?: [AttributeMapping]) {
         this.elementTgtCss = elementTgtCss;
         this.elementValueSrcJpath = elementValueSrcJpath;
-        this.functionSel = functionSel;
-        //this.itsAttributes = new Array<AttributeMapping>;
-
+        if (functionSel !== undefined) this.functionSel = functionSel;
+        if (itsAttributes !== undefined) this.itsAttributes = new Array<AttributeMapping>;
         return;
     }
 
     addAttributeMapping(attrMapping: AttributeMapping): Array<AttributeMapping> {
-      if (this.itsAttributes == undefined) {
+      if (this.itsAttributes === undefined) {
          this.itsAttributes = new Array<AttributeMapping>;
       }
       this.itsAttributes.push(attrMapping);
@@ -47,7 +47,7 @@ export class ElementMapping
       if (index <= (this.itsAttributes.length -1)) {
          this.itsAttributes.splice(index, 1);
          if (this.itsAttributes.length == 0) {
-            this.itsAttributes = undefined;
+            delete this.itsAttributes;
          }
       }
       return this.itsAttributes;

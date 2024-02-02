@@ -20,13 +20,12 @@ export class AttributeMapping
     // jsonPath to content to use to fill the target attribute value. Relative to the source content object in context, unless #prepended
     @Property(String) public srcJpath: string;
     // where required, defined name used to select corresponding formatting function to use on this attribute fill       
-    @Property(String) public functionSel: string;
+    @Property(String) public functionSel?: string;
 
-    public constructor(tgtAttrName: string, srcJpath: string, functionSel: string) {
+    public constructor(tgtAttrName: string, srcJpath: string, functionSel?: string) {
         this.tgtAttrName = tgtAttrName;
         this.srcJpath = srcJpath;
-        this.functionSel = functionSel;
-
+        if (functionSel !== undefined) this.functionSel = functionSel;
         return;
     }
 
