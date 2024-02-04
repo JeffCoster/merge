@@ -1,8 +1,8 @@
 import { AttributeMapping }  from "./attribute-mapping.js";
 import { ElementMapping }  from "./element-mapping.js";
-import { InstanceMapping } from "./instance-mapping.js";
-import { CollectionMapping } from "./collection-mapping.js";
+import { RootMapping } from "./root-mapping.js";
 import { TypeManager } from '@dipscope/type-manager';
+import * as fs from "fs"
 
 const attrMappingObject = new AttributeMapping("id", "srcId");
 const attrMappingObjectSer = TypeManager.serialize(AttributeMapping, attrMappingObject);
@@ -34,8 +34,15 @@ console.info(elementMappingObj);
 
 eFill instanceof ElementMapping;
 
-//instance1 = new InstanceMapping("id", )
+let jsonMapping = fs.readFileSync('examples/product-list/pl-merger-map.merger', 'utf-8');
 
-// add element to collection
-//var col1 = new CollectionMapping()
+const pojo = JSON.parse(jsonMapping);
+
+console.info("original JSON" +jsonMapping);
+
+const mappingGraph: any = TypeManager.deserialize(RootMapping, pojo);
+
+const pojoAfter = TypeManager.deserialize(RootMapping, mappingGraph);
+
+console.warn("Back to json string" +JSON.stringify(pojoAfter));
 

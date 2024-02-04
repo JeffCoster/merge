@@ -19,7 +19,7 @@ export class ElementMapping
 {
    // css to the target element
    @Property(String) public elementTgtCss: string;
-   // jsonPath to content to use to fill the target element. Relative to the content source object in context, unless #prepended
+   // jsonPath to content to use to fill the target element. Relative to the content source object in context, unless $ (root) prepended
    @Property(String) public elementValueSrcJpath: string;
    // optional, defined name used to select the registered data formatting function to use on this element fill   
    @Property(String) public functionSel?: string;    

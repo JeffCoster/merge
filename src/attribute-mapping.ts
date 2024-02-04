@@ -17,7 +17,7 @@ export class AttributeMapping
 {
    // Identifying Name of the target attribute, for parent element
     @Property(String) public tgtAttrName: string; 
-    // jsonPath to content to use to fill the target attribute value. Relative to the source content object in context, unless #prepended
+    // jsonPath to content to use to fill the target attribute value. Relative to the source content object in context, unless $ prepended for 'root'
     @Property(String) public srcJpath: string;
     // where required, defined name used to select corresponding formatting function to use on this attribute fill       
     @Property(String) public functionSel?: string;
