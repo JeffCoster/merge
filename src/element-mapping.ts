@@ -13,21 +13,26 @@ import { jsonPath } from "./jsonpath.js"
 import { extFunctions } from "./merger-extensions.js"
 import { Type, Property } from '@dipscope/type-manager';
 import { AttributeMapping } from "./attribute-mapping.js";
+import { error } from "console";
 
 @Type()
 export class ElementMapping
 {
    // css to the target element
    @Property(String) public elementTgtCss: string;
+
    // jsonPath to content to use to fill the target element. Relative to the content source object in context, unless $ (root) prepended
-   @Property(String) public elementValueSrcJpath: string;
+   // if not defined or null the whole src object is used for the fill content
+   @Property(String) public elementValueSrcJpath?: string;
+
    // optional, defined name used to select the registered data formatting function to use on this element fill   
-   @Property(String) public functionSel?: string;    
+   @Property(String) public functionSel?: string;
+       
    // optional, attribute mappings for this element
    @Property(Array, [AttributeMapping]) public itsAttributes?: Array<AttributeMapping>;
 
     
-    public constructor(elementTgtCss: string, elementValueSrcJpath: string, functionSel?: string, itsAttributes?: [AttributeMapping]) {
+    public constructor(elementTgtCss: string, elementValueSrcJpath?: string, functionSel?: string, itsAttributes?: [AttributeMapping]) {
         this.elementTgtCss = elementTgtCss;
         this.elementValueSrcJpath = elementValueSrcJpath;
         if (functionSel !== undefined) this.functionSel = functionSel;
@@ -53,7 +58,17 @@ export class ElementMapping
       return this.itsAttributes;
     }
 
-    fillElement(tgtElement: Element, srcContentObj: object) {
+   fillAttributes(tgtElement: Element, dataSrc: any) {
+   
+      if (this.itsAttributes !== undefined) {
+
+         this.itsAttributes.forEach(function (attrMap) {
+               attrMap.fillAttribute(tgtElement, dataSrc);
+         })
+      }
+   }
+
+   fillElementValue(tgtElement: Element, srcContentObj: object) {
 
       var srcVal: any;
       var newContent: any;
@@ -88,6 +103,27 @@ export class ElementMapping
                            +"]\n\t using transform function[" +this.functionSel +"]") ;
       }
    }
+
+   fillElementValueInTargetBlock(tgtBlock: Element, srcContent: object) {
+      // tgtBlock can be Document OR target instance html block OR a section of html
+      // the css mapping of this object finds the target element to fill
+      // TODO heck out scoping and use with document
+      try {
+         const tgtElement = tgtBlock.querySelector(this.elementTgtCss);
+         if (tgtElement !== undefined && tgtElement !== null) {
+            this.fillElementValue(tgtElement, srcContent);
+         } else if (debug) {
+            console.error("elementFill error: target element not found for CSS: "
+                                    + this.elementTgtCss);
+         }
+      } catch (err) {
+         // invalid css
+         if (debug) console.error(err);
+      }
+
+   }
+
 }
+
 
 

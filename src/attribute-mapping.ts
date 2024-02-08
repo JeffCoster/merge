@@ -29,10 +29,10 @@ export class AttributeMapping
         return;
     }
 
-    public fillAttribute(tgtElement: Element, srcContentObj: object) {
+    public fillAttribute(tgtElement: Element, srcContentObj: any) {
 
-        var srcVal;
-        const oldContent = tgtElement.getAttribute(this.tgtAttrName);
+        var srcVal: any;
+        const oldContent: string = tgtElement.getAttribute(this.tgtAttrName);
      
         if (this.srcJpath !== null && 0 < this.srcJpath.length) {
            // use jpath target value from srcObj

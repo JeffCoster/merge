@@ -66,5 +66,50 @@ export class InstanceMapping
           }
           return this.collectionMappings;
         }
+
+        fillElements(src2targetMap, tgtBlock, elementFillArr, dataSources, srcObj) {
+
+            if (this.elementMappings !== undefined && this.elementMappings !== null) {
+                this.elementMappings.forEach(function(elementMap) {
+                    elementMap.fillElementValue()
+                })
+            }
+            for (var n = 0; n < elementFillArr.length; n = n + 1) {
+               const elementFillDirs = elementFillArr[n];
+               var dataSrc = srcObj;
+         
+               if (srcObj === undefined || srcObj === null) {
+                  const dataSrcJpath = elementFillDirs.dataSrcJpath;
+                  dataSrc = jsonPath(dataSources, dataSrcJpath, null)[0];
+               }
+         
+               const elementsToDo = elementFillDirs.elementsToDo;
+               if (elementsToDo !== undefined && elementsToDo !== null && 0 < elementsToDo.length) {
+                  for (var i = 0; i < elementsToDo.length; i = i + 1) {
+         
+                     const tgtElement = tgtBlock.querySelector(elementsToDo[i].elementTgtCss);
+                     if (debug) {
+                        if (tgtElement === undefined || tgtElement === null) {
+                           dbgConsole.error("elementFill error: target element not found for CSS: "
+                                             + elementsToDo[i].elementTgtCss);
+                        }
+                     }
+                     const elementValueSrcJpath = elementsToDo[i].elementValueSrcJpath;
+                     if (elementValueSrcJpath !== undefined) {
+         
+                        // element text value needs to be filled
+                        elementFill(tgtElement,
+                           dataSrc, elementValueSrcJpath, elementsToDo[i].functionSel);
+                     }
+         
+                     // for element being filled, fill required attributes
+                     attributeFills(tgtElement, elementsToDo[i].itsAttributes, dataSrc);
+                  }
+               } else if (debug) {
+                  dbgConsole.info("No element source to target Defs for: " + elementFillArr[n].dataSrcJpath);
+               }
+            }
+         
+         }
   
 }
