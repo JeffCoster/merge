@@ -13,6 +13,8 @@ import {JSDOM} from "jsdom";
 import * as fs from "fs";
 import {validateMergeMapToSchema} from "./merger-map-validate.js";
 import * as path from "path";
+import { RootMapping } from "./root-mapping.js";
+import { TypeManager } from '@dipscope/type-manager';
 
 export function __express(filePath: string, options: any, callback: (msg: any, rendered?:string) => void) { // define the template engine
 
@@ -21,10 +23,14 @@ export function __express(filePath: string, options: any, callback: (msg: any, r
     fs.readFile(filePath, (err, mappingJson) => {
         if (err) return callback(err);
 
-        const mergeMap4View = JSON.parse(mappingJson.toString());
-        if (!mergeMap4View) {
+        const mergeMap4ViewPojo = JSON.parse(mappingJson.toString());
+        
+        if (!mergeMap4ViewPojo) {
             return callback("invalid Json mapping");
         }
+        
+        const mergeMap4View =  TypeManager.deserialize(RootMapping, mergeMap4ViewPojo);
+
         const htmlTemplatePath = mergeMap4View.templatePath;
         if (!htmlTemplatePath) {
             return callback("no valid html template path obtained");

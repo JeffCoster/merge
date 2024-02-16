@@ -10,10 +10,10 @@
  **/
 
 import { jsonPath } from "./jsonpath.js"
-import { extFunctions } from "./merger-extensions.js"
 import { Type, Property } from '@dipscope/type-manager';
 import { AttributeMapping } from "./attribute-mapping.js";
 import { error } from "console";
+import { ExtFunctions } from "./merger-extensions.js";
 
 @Type()
 export class ElementMapping
@@ -27,7 +27,7 @@ export class ElementMapping
 
    // optional, defined name used to select the registered data formatting function to use on this element fill   
    @Property(String) public functionSel?: string;
-       
+
    // optional, attribute mappings for this element
    @Property(Array, [AttributeMapping]) public itsAttributes?: Array<AttributeMapping>;
 
@@ -58,17 +58,17 @@ export class ElementMapping
       return this.itsAttributes;
     }
 
-   fillAttributes(tgtElement: Element, dataSrc: any) {
+   fillAttributes(tgtElement: Element, dataSrc: any, extFunctions: ExtFunctions) {
    
       if (this.itsAttributes !== undefined) {
 
          this.itsAttributes.forEach(function (attrMap) {
-               attrMap.fillAttribute(tgtElement, dataSrc);
+               attrMap.fillAttribute(tgtElement, dataSrc, extFunctions);
          })
       }
    }
 
-   fillElementValue(tgtElement: Element, srcContentObj: object) {
+   fillElementValue(tgtElement: Element, srcContentObj: object, extFunctions: ExtFunctions) {
 
       var srcVal: any;
       var newContent: any;
@@ -104,14 +104,15 @@ export class ElementMapping
       }
    }
 
-   fillElementValueInTargetBlock(tgtBlock: Element, srcContent: object) {
-      // tgtBlock can be Document OR target instance html block OR a section of html
+   fillElementInTargetBlock(tgtBlock: Element, srcContent: object, extFunctions) {
+      // tgtBlock can be Document root element OR target instance html block OR a section of html
       // the css mapping of this object finds the target element to fill
-      // TODO heck out scoping and use with document
+      // TODO check out scoping, may need to prefix scope::
       try {
          const tgtElement = tgtBlock.querySelector(this.elementTgtCss);
          if (tgtElement !== undefined && tgtElement !== null) {
-            this.fillElementValue(tgtElement, srcContent);
+            this.fillElementValue(tgtElement, srcContent, extFunctions);
+            this.fillAttributes(tgtElement, srcContent, extFunctions);
          } else if (debug) {
             console.error("elementFill error: target element not found for CSS: "
                                     + this.elementTgtCss);

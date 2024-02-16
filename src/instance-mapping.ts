@@ -8,13 +8,13 @@
  * 
  **/
 
-import {Type, Property} from '@dipscope/type-manager';
+import { Type, Property } from '@dipscope/type-manager';
 import { ElementMapping } from "./element-mapping.js";
 import { CollectionMapping } from "./collection-mapping.js";
+import { ExtFunctions } from "./merger-extensions.js"
 
 @Type()
-export class InstanceMapping
-{
+export class InstanceMapping {
     // json path relative to src instance of the id value to use for each instance id
     @Property(String) public srcIdPath?: string;
     // optional: elements to map for each instance 
@@ -22,94 +22,70 @@ export class InstanceMapping
     // optional: child collections to map for each instance 
     @Property(Array, [CollectionMapping]) public collectionMappings?: Array<CollectionMapping>;
 
-    public constructor(srcIdPath?: string, elementMappings?: Array<ElementMapping>, collectionMappings?: Array<CollectionMapping> ) {
-    
-        this.srcIdPath = srcIdPath;
+    public constructor(srcIdPath?: string, elementMappings?: Array<ElementMapping>, collectionMappings?: Array<CollectionMapping>) {
+
+        if (srcIdPath !== undefined) this.srcIdPath = srcIdPath;
         if (elementMappings !== undefined) this.elementMappings = elementMappings;
         if (collectionMappings !== undefined) this.collectionMappings = collectionMappings;
- 
+
         return;
     }
 
     addElementMapping(elementMapping: ElementMapping): Array<ElementMapping> {
         if (this.elementMappings == undefined) {
-           this.elementMappings = new Array<ElementMapping>;
+            this.elementMappings = new Array<ElementMapping>;
         }
         this.elementMappings.push(elementMapping);
         return this.elementMappings;
-      }
-  
-      removeElementMappingAt(index: number): Array<ElementMapping> {
-        if (index <= (this.elementMappings.length -1)) {
-           this.elementMappings.splice(index, 1);
-           if (this.elementMappings.length === 0) {
-              delete this.elementMappings;
-           }
+    }
+
+    removeElementMappingAt(index: number): Array<ElementMapping> {
+        if (index <= (this.elementMappings.length - 1)) {
+            this.elementMappings.splice(index, 1);
+            if (this.elementMappings.length === 0) {
+                delete this.elementMappings;
+            }
         }
         return this.elementMappings;
-      }
-  
-      addCollectionMapping(collectionMapping: CollectionMapping): Array<CollectionMapping> {
-          if (this.collectionMappings == undefined) {
-             this.collectionMappings = new Array<CollectionMapping>;
-          }
-          this.collectionMappings.push(collectionMapping);
-          return this.collectionMappings;
-      }
-    
-      removeCollectionMappingAt(index: number): Array<CollectionMapping> {
-          if (index <= (this.elementMappings.length -1)) {
-             this.collectionMappings.splice(index, 1);
-             if (this.collectionMappings.length == 0) {
-                delete this.collectionMappings;
-             }
-          }
-          return this.collectionMappings;
+    }
+
+    addCollectionMapping(collectionMapping: CollectionMapping): Array<CollectionMapping> {
+        if (this.collectionMappings == undefined) {
+            this.collectionMappings = new Array<CollectionMapping>;
         }
+        this.collectionMappings.push(collectionMapping);
+        return this.collectionMappings;
+    }
 
-        fillElements(src2targetMap, tgtBlock, elementFillArr, dataSources, srcObj) {
+    removeCollectionMappingAt(index: number): Array<CollectionMapping> {
+        if (index <= (this.elementMappings.length - 1)) {
+            this.collectionMappings.splice(index, 1);
+            if (this.collectionMappings.length == 0) {
+                delete this.collectionMappings;
+            }
+        }
+        return this.collectionMappings;
+    }
 
-            if (this.elementMappings !== undefined && this.elementMappings !== null) {
-                this.elementMappings.forEach(function(elementMap) {
-                    elementMap.fillElementValue()
-                })
-            }
-            for (var n = 0; n < elementFillArr.length; n = n + 1) {
-               const elementFillDirs = elementFillArr[n];
-               var dataSrc = srcObj;
-         
-               if (srcObj === undefined || srcObj === null) {
-                  const dataSrcJpath = elementFillDirs.dataSrcJpath;
-                  dataSrc = jsonPath(dataSources, dataSrcJpath, null)[0];
-               }
-         
-               const elementsToDo = elementFillDirs.elementsToDo;
-               if (elementsToDo !== undefined && elementsToDo !== null && 0 < elementsToDo.length) {
-                  for (var i = 0; i < elementsToDo.length; i = i + 1) {
-         
-                     const tgtElement = tgtBlock.querySelector(elementsToDo[i].elementTgtCss);
-                     if (debug) {
-                        if (tgtElement === undefined || tgtElement === null) {
-                           dbgConsole.error("elementFill error: target element not found for CSS: "
-                                             + elementsToDo[i].elementTgtCss);
-                        }
-                     }
-                     const elementValueSrcJpath = elementsToDo[i].elementValueSrcJpath;
-                     if (elementValueSrcJpath !== undefined) {
-         
-                        // element text value needs to be filled
-                        elementFill(tgtElement,
-                           dataSrc, elementValueSrcJpath, elementsToDo[i].functionSel);
-                     }
-         
-                     // for element being filled, fill required attributes
-                     attributeFills(tgtElement, elementsToDo[i].itsAttributes, dataSrc);
-                  }
-               } else if (debug) {
-                  dbgConsole.info("No element source to target Defs for: " + elementFillArr[n].dataSrcJpath);
-               }
-            }
-         
-         }
-  
+    fillChildElements(tgtBlock: Element, srcObj: any, extFunctions: ExtFunctions) {
+
+        if (this.elementMappings !== undefined && this.elementMappings !== null) {
+            this.elementMappings.forEach(function (elementMap) {
+                elementMap.fillElementInTargetBlock(tgtBlock, srcObj, extFunctions );
+            })
+        } else if (debug) {
+                console.info("No element mappings for instance: " + this.srcIdPath);
+        }
+    }
+
+    fillChildCollections (doc: Document, dataSources: object, srcObj: any, extFunctions: ExtFunctions, parentElement?: Element) {
+        if (this.collectionMappings !== undefined && this.collectionMappings !== null) {
+            this.collectionMappings.forEach(function (collectionMap) {
+                collectionMap.instantiateAndFill(doc, dataSources, srcObj, parentElement );
+            })
+        } else if (debug) {
+                console.info("No child collection mappings for instance: " + this.srcIdPath);
+        }
+    }
+
 }

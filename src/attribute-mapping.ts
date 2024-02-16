@@ -9,8 +9,8 @@
  **/
 
 import {jsonPath} from "./jsonpath.js"
-import {extFunctions} from "./merger-extensions.js"
 import {Type, Property} from '@dipscope/type-manager';
+import { ExtFunctions } from "./merger-extensions.js";
 
 @Type()
 export class AttributeMapping
@@ -29,7 +29,7 @@ export class AttributeMapping
         return;
     }
 
-    public fillAttribute(tgtElement: Element, srcContentObj: any) {
+    public fillAttribute(tgtElement: Element, srcContentObj: object, extFunctions: ExtFunctions) {
 
         var srcVal: any;
         const oldContent: string = tgtElement.getAttribute(this.tgtAttrName);

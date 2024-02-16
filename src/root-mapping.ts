@@ -10,6 +10,11 @@
 
 import { Type, Property } from '@dipscope/type-manager';
 import { InstanceMapping } from "./instance-mapping.js";
+import { extFunctions, ExtFunctions } from "./merger-extensions.js"
+
+declare global {
+    var debug: boolean;
+}
 
 @Type()
 export class RootMapping
@@ -24,5 +29,17 @@ export class RootMapping
         this.instanceMapping = instanceMapping;
         if (templatePath !== undefined) this.templatePath = templatePath;
         return;
+    }
+
+    public compose(dataSources: object, doc: Document, customFunctions?: ExtFunctions) {
+     
+        if (customFunctions) {
+            extFunctions.customFunctions = customFunctions;
+        }
+
+        this.instanceMapping.fillChildElements(doc.documentElement, dataSources, extFunctions);
+
+        this.instanceMapping.fillChildCollections(doc, dataSources, dataSources, extFunctions);
+
     }
 }

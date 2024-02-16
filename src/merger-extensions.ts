@@ -17,32 +17,37 @@
 
 import {dbgConsole} from "./merger-functions.js"
 
-export const extFunctions = {
+export interface ExtFunctions {
+
+   doFunction(functionSel: string, srcValue: any, oldContent: string): string
+
+ }
+
+ class StandardFunctions implements ExtFunctions {
 
    // delegate object with doFunction for custom functions
-   customFunctions: undefined,
+   customFunctions: ExtFunctions
 
-   prependToExisting: function(srcValue, oldContent) {
-      "use strict";
+   //standard extension functions follow. Your custom functions can be added to this.customFunctions Object.
+
+   prependToExisting(srcValue: any, oldContent: string): string {
       return srcValue + oldContent;
-   },
+   }
 
-   appendToExisting: function(srcValue, oldContent) {
-      "use strict";
+   appendToExisting(srcValue: any, oldContent: string): string {
       return oldContent +srcValue;
-   },
+   }
 
-   escapeHtml: function(escapeMe)
+   escapeHtml(srcValue): string
    {
-      return escapeMe.replace(/&/g, "&amp;")
+      return srcValue.replace(/&/g, "&amp;")
          .replace(/</g, "&lt;")
          .replace(/>/g, "&gt;")
          .replace(/"/g, "&quot;")
          .replace(/'/g, "&#039;");
-   },
+   }
 
-   doFunction: function(functionSel: string, srcValue: any, oldContent: string) {
-      "use strict";
+   doFunction(functionSel: string, srcValue: any, oldContent: string): string {
       //do function requested by function selector string
       //returns  new content based on optionally supplied oldContent DOM, and srcValue
       switch (functionSel) {
@@ -69,3 +74,5 @@ export const extFunctions = {
    }
 
 }
+
+export var extFunctions: StandardFunctions = new StandardFunctions();
