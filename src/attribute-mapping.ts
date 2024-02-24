@@ -9,8 +9,10 @@
  **/
 
 import {jsonPath} from "./jsonpath.js"
-import {Type, Property} from '@dipscope/type-manager';
 import { ExtFunctions } from "./merger-extensions.js";
+import { Property, Type} from '@dipscope/type-manager';
+//import * as tm from '@dipscope/type-manager';
+//const {Type, Property} = tm;
 
 @Type()
 export class AttributeMapping

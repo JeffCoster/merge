@@ -10,8 +10,10 @@
 
 import { jsonPath } from "./jsonpath.js"
 import { extFunctions } from "./merger-extensions.js"
-import { Type, Property } from '@dipscope/type-manager';
+// import { Type, Property } from '@dipscope/type-manager';
 import { InstanceMapping } from "./instance-mapping.js";
+import * as tm from '@dipscope/type-manager';
+const {Type, Property} = tm;
 
 class Bounds {
     start: number;

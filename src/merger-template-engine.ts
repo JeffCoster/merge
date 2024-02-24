@@ -14,7 +14,9 @@ import * as fs from "fs";
 import {validateMergeMapToSchema} from "./merger-map-validate.js";
 import * as path from "path";
 import { RootMapping } from "./root-mapping.js";
-import { TypeManager } from '@dipscope/type-manager';
+// import { TypeManager } from '@dipscope/type-manager';
+import * as tm from '@dipscope/type-manager';
+const TypeManager = tm.TypeManager;
 
 export function __express(filePath: string, options: any, callback: (msg: any, rendered?:string) => void) { // define the template engine
 

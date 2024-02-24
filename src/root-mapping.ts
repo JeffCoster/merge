@@ -8,9 +8,11 @@
  *
  **/
 
-import { Type, Property } from '@dipscope/type-manager';
+// import { Type, Property } from '@dipscope/type-manager';
 import { InstanceMapping } from "./instance-mapping.js";
 import { extFunctions, ExtFunctions } from "./merger-extensions.js"
+import * as tm from '@dipscope/type-manager';
+const {Type, Property} = tm;
 
 declare global {
     var debug: boolean;

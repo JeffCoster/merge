@@ -13,10 +13,10 @@
 import * as fs from "fs";
 import chalk from 'chalk';
 import { Command, InvalidArgumentError } from '@commander-js/extra-typings';
-import { ChangeObject, HtmlDiffer } from '@markedjs/html-differ';
 import * as diffLogger from '@markedjs/html-differ/lib/logger.js';
-import { defaults, presets } from '@markedjs/html-differ/lib/defaults.js';
+import { defaults } from '@markedjs/html-differ/lib/defaults.js';
 import { __express } from './merger-template-engine.js';
+import { HtmlDiffer } from '@markedjs/html-differ';
  
 function parseIntOpt(value, _dummyPrevious): number {
   const parsedValue: number = parseInt(value, 10);
